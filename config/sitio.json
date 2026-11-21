@@ -1,0 +1,14 @@
+{
+  "nombre": "Manual práctico Deepal",
+  "nombreCorto": "Manual Deepal",
+  "subtitulo": "Tips de la comunidad de propietarios en Colombia",
+  "comunidad": "Comunidad de propietarios Deepal en Colombia (grupo de WhatsApp «General»)",
+  "aviso": "Son experiencias de usuarios, no información oficial de Deepal, Changan ni Grupo Vardí. Ante cualquier duda, mandan el manual del vehículo, la etiqueta del carro y el taller autorizado.",
+  "creditos": [
+    { "rol": "Versión inicial del manual en HTML", "nombre": "Alejandro Urreta" },
+    { "rol": "Contenido", "nombre": "Propietarios del grupo, con sus experiencias" },
+    { "rol": "Administración y actualizaciones", "nombre": "Administración del grupo" }
+  ],
+  "directorio": { "ocultarPersonasNaturales": false },
+  "github": { "usuario": "", "repositorio": "", "rama": "main" }
+}

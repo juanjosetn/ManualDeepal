@@ -1,0 +1,812 @@
+{
+ "version": "2026.11.21",
+ "contactos": [
+  {
+   "nombre": "Deepal Colombia – citas",
+   "servicio": "Deepal oficial",
+   "ciudad": "Nacional",
+   "nota": "WhatsApp para pedir cita y asignación de taller en cualquier ciudad.",
+   "telefono": "+57 321 9183801",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Taller Vardí Salitre – asesor de taller",
+   "servicio": "Deepal oficial",
+   "ciudad": "Bogotá",
+   "nota": "Compartido como número para hablar directo con el asesor del taller.",
+   "telefono": "+57 310 2494239",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Deepal Salitre (fijo)",
+   "servicio": "Deepal oficial",
+   "ciudad": "Bogotá",
+   "nota": "Un propietario dice que este fijo le contestó Nissan y no le dieron cita; mejor usa el WhatsApp de citas.",
+   "telefono": "+57 601 4866870",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Taller autorizado Vardí Morato",
+   "servicio": "Deepal oficial",
+   "ciudad": "Bogotá",
+   "nota": "Taller que varios prefieren para revisiones.",
+   "telefono": "+57 310 2851405",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Repuestos Deepal Bogotá",
+   "servicio": "Repuestos",
+   "ciudad": "Bogotá",
+   "nota": "",
+   "telefono": "+57 313 4037182",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Repuestos Vardí Bogotá",
+   "servicio": "Repuestos",
+   "ciudad": "Bogotá",
+   "nota": "Cotizaciones de stop y piezas de carrocería.",
+   "telefono": "+57 320 9181196",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Taller Deepal/Changan",
+   "servicio": "Deepal oficial",
+   "ciudad": "Barranquilla",
+   "nota": "Compartido como taller de Barranquilla para mantenimientos.",
+   "telefono": "+57 320 2110905",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Repuestos Nissan Circunvalar",
+   "servicio": "Repuestos",
+   "ciudad": "Barranquilla",
+   "nota": "",
+   "telefono": "+57 310 2363992",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "César Cordero – taller Deepal Las Vegas",
+   "servicio": "Deepal oficial",
+   "ciudad": "Medellín",
+   "nota": "Técnico/asesor de taller.",
+   "telefono": "+57 313 8707295",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Jeferson Jerez – Deepal",
+   "servicio": "Deepal oficial",
+   "ciudad": "Sin confirmar",
+   "nota": "Ayudó a un propietario a activar la app en 2 días.",
+   "telefono": "+57 320 5670716",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Jessica Mora – taller Deepal",
+   "servicio": "Deepal oficial",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 321 4516427",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Taller Changan",
+   "servicio": "Deepal oficial",
+   "ciudad": "Sin confirmar",
+   "nota": "Compartido para cotizar piezas.",
+   "telefono": "+57 311 2294685",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Diego Pardo – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Vitrina de la 116 con Autopista.",
+   "telefono": "+57 320 4935821",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Luis Hincapié – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Sede Morato. Para test drive.",
+   "telefono": "+57 319 7501439",
+   "tipo": "persona",
+   "verificado": true,
+   "alias": "Luis – asesor"
+  },
+  {
+   "nombre": "Marco Vargas – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Sede Morato.",
+   "telefono": "+57 300 7910000",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Félix Munárriz – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Sede Morato.",
+   "telefono": "+57 305 2740711",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Wilfredo Rodríguez – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Vitrina 118 con Autonorte. “Me fue muy bien con él”.",
+   "telefono": "+57 320 2406127",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Diego – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Vitrina Autonorte.",
+   "telefono": "+57 315 2777576",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Javi – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "Vitrina Autonorte.",
+   "telefono": "+57 320 4900455",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "René Pantoja – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bogotá",
+   "nota": "",
+   "telefono": "+57 316 9052230",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Ángela Osorio – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Sin confirmar",
+   "nota": "“Es muy buena”.",
+   "telefono": "+57 314 2191167",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Oswaldo Castillo – comercial Vardí",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 313 2942749",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Carmen – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Medellín",
+   "nota": "",
+   "telefono": "+57 300 8540805",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Viviana – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Medellín",
+   "nota": "",
+   "telefono": "+57 311 5337204",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Paola – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Medellín",
+   "nota": "",
+   "telefono": "+57 310 4058022",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Angelly Peñate – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Barranquilla",
+   "nota": "Ayudó a agendar la revisión de 1.000 km.",
+   "telefono": "+57 300 2495565",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Tatiana Rengifo – asesora",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Barranquilla",
+   "nota": "",
+   "telefono": "+57 314 4779223",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Luis Carlos – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Barranquilla",
+   "nota": "Vitrina Cl. 110 #42-235 (Circunvalar).",
+   "telefono": "+57 350 8124609",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Ángel – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Manizales",
+   "nota": "Recomendado como uno de los asesores más expertos.",
+   "telefono": "+57 321 3387981",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Gonzalo – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Manizales",
+   "nota": "“Muy correctos”. Trabaja con Edwin.",
+   "telefono": "+57 317 6175172",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Edwin Álvarez – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Manizales",
+   "nota": "",
+   "telefono": "+57 310 3861240",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Andrés Franco – asesor",
+   "servicio": "Asesores comerciales",
+   "ciudad": "Bucaramanga",
+   "nota": "“Muy buena atención”.",
+   "telefono": "+57 313 2967308",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Andrea Bohórquez – Seguro Canguro",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "Precios mejores que el concesionario, según un propietario.",
+   "telefono": "+57 316 5744394",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Vardí Agencia de Seguros",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "Cotización con varias aseguradoras.",
+   "telefono": "+57 322 9074590",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "HDI Seguros",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "“La póliza más económica” para un propietario.",
+   "telefono": "+57 316 4821802",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Lorena – Mapfre",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "",
+   "telefono": "+57 317 2215549",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Pedro – seguros",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "“Buen precio y 100 % confiable”.",
+   "telefono": "+57 321 4649252",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Efraín Martínez – corredor",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "“Súper efectivo y buenos precios”.",
+   "telefono": "+57 312 4572747",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Axa Partners Colombia",
+   "servicio": "Seguros",
+   "ciudad": "Nacional",
+   "nota": "",
+   "telefono": "+57 315 3820629",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Juan José O. – seguros",
+   "servicio": "Seguros",
+   "ciudad": "Sin confirmar",
+   "nota": "Recomendado para seguros.",
+   "telefono": "+57 301 6856893",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "PPF Cover Colombia – Julián",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Medellín",
+   "nota": "Polarizado + PPF en farolas, stop y partes internas por ~$2 M.",
+   "telefono": "+57 320 4570217",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Polaritec Polarizados",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Medellín",
+   "nota": "Servicio a domicilio en el área metropolitana.",
+   "telefono": "+57 304 4364473",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Proexperto Autodetailing",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Medellín",
+   "nota": "Nanocerámico y PPF.",
+   "telefono": "+57 315 4796341",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Polarizados a domicilio",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Medellín",
+   "nota": "Cotizó todo el carro en ~$1,28 M.",
+   "telefono": "+57 302 4542119",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "PPF Cover Colombia – Daniel Cortés",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Donde varios hicieron PPF.",
+   "telefono": "+57 317 6593668",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "CD Cars & Design",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Instaladores 3M con garantía; han polarizado varios Deepal.",
+   "telefono": "+57 312 5907077",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Juan – CD Cars & Design",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "",
+   "telefono": "+57 300 8228274",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "LC Polarizados",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Spectra: polarizado + película de seguridad en todos los vidrios ~$2 M.",
+   "telefono": "+57 323 7226390",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Polarizados MyM",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Nanocerámica a domicilio ~$350.000.",
+   "telefono": "+57 311 5750768",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Fabián Marín – Polarizados Gold",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Por la 127, cerca a la Autopista.",
+   "telefono": "+57 320 2633249",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Bogotá Detailing Center – El Polo",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Polarizado y detailing.",
+   "telefono": "+57 311 8777229",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "DuoDetailing",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Bogotá",
+   "nota": "Recomendado como lavadero en el norte.",
+   "telefono": "+57 333 2424330",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Diego Romero – polarizados y accesorios",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Sin confirmar",
+   "nota": "“Súper bien”.",
+   "telefono": "+57 320 4341471",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Alfa Polarizados Prado",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 311 4578935",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Car Bang Sede 66",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Sin confirmar",
+   "nota": "Cerámico.",
+   "telefono": "+57 311 6543250",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Protergy",
+   "servicio": "Polarizado, PPF y detailing",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 300 2086220",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Héctor – PDR",
+   "servicio": "Latonería y pintura",
+   "ciudad": "Bogotá",
+   "nota": "Reparación de abolladuras sin pintar. Tiene los tonos de pintura de todas las Deepal.",
+   "telefono": "+57 316 5282941",
+   "tipo": "persona",
+   "verificado": true,
+   "alias": "PDR Colombia"
+  },
+  {
+   "nombre": "Dentless Solutions",
+   "servicio": "Latonería y pintura",
+   "ciudad": "Sin confirmar",
+   "nota": "Sumidos sin pintar. “Mi primera opción siempre”.",
+   "telefono": "+57 311 6650051",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Diamantados JE – Rines (Mónica)",
+   "servicio": "Rines y llantas",
+   "ciudad": "Bogotá",
+   "nota": "",
+   "telefono": "+57 305 3031078",
+   "tipo": "persona",
+   "verificado": true,
+   "alias": "Central de Diamantados JR"
+  },
+  {
+   "nombre": "Autorines Yacar",
+   "servicio": "Rines y llantas",
+   "ciudad": "Bogotá",
+   "nota": "",
+   "telefono": "+57 311 2665938",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Javier – Rines 38",
+   "servicio": "Rines y llantas",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 320 4385031",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Carllantas y Servicios",
+   "servicio": "Rines y llantas",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 311 7383796",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Luisa Téllez – llanta temporal (dona)",
+   "servicio": "Rines y llantas",
+   "ciudad": "Sin confirmar",
+   "nota": "Venden llanta temporal.",
+   "telefono": "+57 312 3415400",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Tuercas de lujo y seguridad",
+   "servicio": "Rines y llantas",
+   "ciudad": "Medellín",
+   "nota": "Tuercas M12 × 1,5.",
+   "telefono": "+57 314 8147934",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Vidrios 7 de Agosto",
+   "servicio": "Vidrios y espejos",
+   "ciudad": "Bogotá",
+   "nota": "Fabrican vidrios a medida.",
+   "telefono": "+57 313 8903094",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Importadora de Espejos",
+   "servicio": "Vidrios y espejos",
+   "ciudad": "Sin confirmar",
+   "nota": "Luna de espejo temporal a medida.",
+   "telefono": "+57 316 8952362",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "TinCars 7 de Agosto",
+   "servicio": "Vidrios y espejos",
+   "ciudad": "Bogotá",
+   "nota": "Seguridad para espejos y accesorios antirrobo.",
+   "telefono": "+57 350 4803161",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Evectric",
+   "servicio": "Carga e instalación",
+   "ciudad": "Nacional",
+   "nota": "Cargadores portátiles y adaptadores certificados RETIE. El número del HTML anterior tenía un dígito de menos; se dejó solo la web.",
+   "telefono": "",
+   "tipo": "empresa",
+   "verificado": true,
+   "web": "https://evectric.com.co"
+  },
+  {
+   "nombre": "Wallbox Colombia",
+   "servicio": "Carga e instalación",
+   "ciudad": "Nacional",
+   "nota": "Cargador de pared; recomendado en Medellín.",
+   "telefono": "+57 322 3605911",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Luis Fernando Hurtado – instalador",
+   "servicio": "Carga e instalación",
+   "ciudad": "Medellín",
+   "nota": "Instala cargador de pared y entrega certificado RETIE.",
+   "telefono": "+57 310 3735257",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Andrés – Movilidad eléctrica EPM",
+   "servicio": "Carga e instalación",
+   "ciudad": "Medellín",
+   "nota": "Tarjeta EPM para electrolineras.",
+   "telefono": "+57 324 3517610",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Luis Gonzalo – cargador",
+   "servicio": "Carga e instalación",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 317 6175172",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Daniela Gómez Zuluaga – UPME/DIAN",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "Abogada; varios la recomiendan, rápida.",
+   "telefono": "+57 317 5159179",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Daniela – Soena (certificado UPME)",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "Consultora de eficiencia energética UPME.",
+   "telefono": "+57 317 3268221",
+   "tipo": "persona",
+   "verificado": true,
+   "alias": "Daniela Játiva – Soena"
+  },
+  {
+   "nombre": "Sanlu Energy",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "Directora comercial.",
+   "telefono": "+57 313 2776336",
+   "tipo": "empresa",
+   "verificado": true,
+   "alias": "Ingrid Rubiano – Sanlu Energy"
+  },
+  {
+   "nombre": "Incentivos Verdes",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "",
+   "telefono": "+57 310 7213690",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Incentivos Tributarios UPME",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "",
+   "telefono": "+57 324 3741474",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Juan Esteban Cardona – UPME",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "",
+   "telefono": "+57 350 5129703",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Ángela Atehortúa – certificaciones",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "~$1 M + $700.000 de la UPME.",
+   "telefono": "+57 320 7834047",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "Daniel Hernández – panelería solar",
+   "servicio": "Trámites UPME",
+   "ciudad": "Nacional",
+   "nota": "“Muy recomendado”.",
+   "telefono": "+57 314 3021942",
+   "tipo": "persona",
+   "verificado": true
+  },
+  {
+   "nombre": "EV Motrix",
+   "servicio": "Accesorios",
+   "ciudad": "Ibagué",
+   "nota": "Guardafangos y tapetes; entregan rápido.",
+   "telefono": "+57 324 3678305",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Procoverx – tapetes termoformados",
+   "servicio": "Accesorios",
+   "ciudad": "Nacional",
+   "nota": "Kit completo ~$674.000.",
+   "telefono": "+57 305 9199053",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Foxcol",
+   "servicio": "Accesorios",
+   "ciudad": "Bogotá",
+   "nota": "Tapetes para S07.",
+   "telefono": "+57 601 5085005",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Masautos",
+   "servicio": "Accesorios",
+   "ciudad": "Pereira",
+   "nota": "",
+   "telefono": "+57 310 7725963",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Juliana Cardona – Ancovi Motors",
+   "servicio": "Accesorios",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 310 8117824",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "TCMideros – tiros de arrastre",
+   "servicio": "Accesorios",
+   "ciudad": "Manizales",
+   "nota": "",
+   "telefono": "+57 315 2840700",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Software Solutions",
+   "servicio": "Accesorios",
+   "ciudad": "Sin confirmar",
+   "nota": "Módulos multimedia.",
+   "telefono": "+57 311 2044544",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Lujos el Canoso",
+   "servicio": "Accesorios",
+   "ciudad": "Sin confirmar",
+   "nota": "",
+   "telefono": "+57 312 2957713",
+   "tipo": "empresa",
+   "verificado": true
+  },
+  {
+   "nombre": "Taller Iván",
+   "servicio": "Mecánica general",
+   "ciudad": "Bogotá",
+   "nota": "7 de Agosto. Recomendado para otros carros, no Deepal.",
+   "telefono": "+57 311 5332013",
+   "tipo": "empresa",
+   "verificado": true
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+  "nota": "Catálogo de IAs. El administrador aprueba cada una cambiando \"aprobado\" a true. Las de pago vienen en false hasta que las apruebes. Nunca escribas llaves (API keys) en este archivo: cada persona pone la suya en Ajustes de IA y se guarda solo en su navegador.",
+  "actualizado": "2026-11-21",
+  "proveedores": [
+    {
+      "id": "gemini", "nombre": "Google Gemini", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "gemini",
+      "base": "https://generativelanguage.googleapis.com/v1beta",
+      "modelos": ["gemini-2.5-flash", "gemini-2.5-flash-lite"], "descubrir": true, "filtroModelos": "flash", "preferir": ["flash-lite", "flash$", "flash"],
+      "alta": "https://aistudio.google.com/apikey", "prefijos": ["AQ.", "AIza"],
+      "cupo": "Cupo diario gratuito; cambia seguido (consúltalo en ai.google.dev/gemini-api/docs/rate-limits).",
+      "privacidad": "En el nivel gratuito, Google puede usar lo que envías para mejorar sus productos.",
+      "aprobado": true
+    },
+    {
+      "id": "groq", "nombre": "Groq", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.groq.com/openai/v1",
+      "modelos": ["llama-3.3-70b-versatile", "openai/gpt-oss-20b"], "descubrir": true, "preferir": ["llama-3\\.3-70b", "gpt-oss", "llama"],
+      "alta": "https://console.groq.com/keys", "prefijos": ["gsk_"],
+      "cupo": "Muy rápida; cupo gratuito por minuto y por día.", "privacidad": "Revisa sus términos en groq.com/privacy-policy.",
+      "aprobado": true
+    },
+    {
+      "id": "mistral", "nombre": "Mistral (plan Experiment)", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.mistral.ai/v1",
+      "modelos": ["mistral-small-latest"], "descubrir": true, "preferir": ["mistral-small", "ministral", "mistral-medium"],
+      "alta": "https://console.mistral.ai/api-keys", "prefijos": [],
+      "cupo": "Plan gratuito con límites bajos; pide verificar el teléfono.", "privacidad": "En el plan gratuito, lo enviado puede usarse para entrenar.",
+      "aprobado": true
+    },
+    {
+      "id": "openrouter", "nombre": "OpenRouter (modelos :free)", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://openrouter.ai/api/v1",
+      "modelos": [], "descubrir": true, "filtroModelos": ":free$", "preferir": ["llama-3\\.3-70b", "gemma", "qwen", "deepseek", "mistral"],
+      "alta": "https://openrouter.ai/keys", "prefijos": ["sk-or-"],
+      "cupo": "Pocas consultas diarias gratis; úsala como último recurso.", "privacidad": "Algunos modelos gratuitos registran lo enviado.",
+      "aprobado": true
+    },
+    {
+      "id": "huggingface", "nombre": "Hugging Face (Inference Providers)", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://router.huggingface.co/v1",
+      "modelos": ["meta-llama/Llama-3.3-70B-Instruct", "Qwen/Qwen2.5-72B-Instruct"], "descubrir": false,
+      "alta": "https://huggingface.co/settings/tokens", "prefijos": ["hf_"],
+      "cupo": "Créditos gratuitos pequeños cada mes.", "privacidad": "Depende del proveedor que atienda la consulta.",
+      "aprobado": true
+    },
+    {
+      "id": "cerebras", "nombre": "Cerebras", "costo": "gratis", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.cerebras.ai/v1",
+      "modelos": ["llama-3.3-70b", "gpt-oss-120b"], "descubrir": true, "preferir": ["llama-3\\.3", "gpt-oss", "qwen"],
+      "alta": "https://cloud.cerebras.ai", "prefijos": ["csk-"],
+      "cupo": "Cupo diario gratuito alto.", "privacidad": "Revisa sus términos.", "nota": "No se ha comprobado que acepte llamadas desde una página web (CORS). Si falla con «No hubo conexión», desactívala.",
+      "aprobado": true
+    },
+    {
+      "id": "pollinations", "nombre": "Pollinations", "costo": "gratis", "sinClave": true, "donde": "nube", "api": "openai",
+      "base": "https://gen.pollinations.ai/v1",
+      "modelos": ["openai"], "descubrir": true, "jsonModo": false, "preferir": ["openai", "mistral", "llama"],
+      "alta": "https://enter.pollinations.ai", "prefijos": ["pk_"],
+      "cupo": "Comunitaria, lenta y sin garantía. Con llave pública gratuita (pk_) es más estable.", "privacidad": "Servicio comunitario: no envíes datos personales.",
+      "aprobado": true
+    },
+    {
+      "id": "nano", "nombre": "Gemini Nano en Chrome (sin internet)", "costo": "gratis", "sinClave": true, "donde": "equipo", "api": "nano",
+      "base": "", "modelos": ["gemini-nano"],
+      "alta": "https://developer.chrome.com/docs/ai/prompt-api", "prefijos": [],
+      "cupo": "Sin límite. Pide Chrome de escritorio reciente, ~20 GB libres y 16 GB de RAM (o tarjeta gráfica de más de 4 GB). No funciona en celulares.",
+      "privacidad": "Todo se procesa en tu computador: nada sale.",
+      "aprobado": true
+    },
+    {
+      "id": "ollama", "nombre": "Ollama (modelo en tu computador)", "costo": "gratis", "sinClave": true, "donde": "equipo", "api": "openai",
+      "base": "http://localhost:11434/v1",
+      "modelos": [], "descubrir": true, "preferir": ["qwen", "llama", "gemma", "mistral"], "sinRazonar": { "think": false },
+      "alta": "https://ollama.com/download", "prefijos": [],
+      "cupo": "Sin límite. Ideal para que el administrador procese el chat sin que salga del equipo.",
+      "privacidad": "Todo se procesa en tu computador.",
+      "nota": "Hay que permitir el origen de la página: OLLAMA_ORIGINS=https://TU-USUARIO.github.io (nunca *).",
+      "aprobado": true
+    },
+    {
+      "id": "lmstudio", "nombre": "LM Studio (modelo en tu computador)", "costo": "gratis", "sinClave": true, "donde": "equipo", "api": "openai",
+      "base": "http://localhost:1234/v1", "modelos": [], "descubrir": true, "preferir": ["qwen", "llama", "gemma"],
+      "alta": "https://lmstudio.ai", "prefijos": [], "cupo": "Sin límite.", "privacidad": "Todo se procesa en tu computador.",
+      "nota": "Activa «Enable CORS» en el servidor local de LM Studio.",
+      "aprobado": true
+    },
+    {
+      "id": "openai", "nombre": "OpenAI (ChatGPT API)", "costo": "pago", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.openai.com/v1", "modelos": [], "descubrir": true, "filtroModelos": "^gpt", "preferir": ["mini$", "nano$", "mini"],
+      "alta": "https://platform.openai.com/api-keys", "prefijos": ["sk-"],
+      "cupo": "Pago por uso; un modelo «mini» cuesta centavos de dólar por cientos de preguntas.", "privacidad": "Por defecto no entrena con lo enviado por API.",
+      "aprobado": false
+    },
+    {
+      "id": "anthropic", "nombre": "Anthropic Claude", "costo": "pago", "sinClave": false, "donde": "nube", "api": "anthropic",
+      "base": "https://api.anthropic.com/v1", "modelos": ["claude-haiku-5-5"], "descubrir": true, "preferir": ["haiku", "sonnet"],
+      "alta": "https://console.anthropic.com/settings/keys", "prefijos": ["sk-ant-"],
+      "cupo": "Pago por uso; Haiku es el más económico.", "privacidad": "Por defecto no entrena con lo enviado por API.",
+      "aprobado": false
+    },
+    {
+      "id": "deepseek", "nombre": "DeepSeek", "costo": "pago", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.deepseek.com/v1", "modelos": ["deepseek-chat"], "descubrir": false,
+      "alta": "https://platform.deepseek.com/api_keys", "prefijos": ["sk-"],
+      "cupo": "Pago por uso, muy económico.", "privacidad": "Servidores en China; revisa sus términos.",
+      "nota": "No se ha comprobado CORS desde el navegador.",
+      "aprobado": false
+    },
+    {
+      "id": "xai", "nombre": "xAI Grok", "costo": "pago", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.x.ai/v1", "modelos": [], "descubrir": true, "preferir": ["mini", "fast"],
+      "alta": "https://console.x.ai", "prefijos": ["xai-"],
+      "cupo": "Pago por uso.", "privacidad": "Revisa sus términos.", "nota": "No se ha comprobado CORS desde el navegador.",
+      "aprobado": false
+    },
+    {
+      "id": "together", "nombre": "Together AI", "costo": "pago", "sinClave": false, "donde": "nube", "api": "openai",
+      "base": "https://api.together.xyz/v1", "modelos": ["meta-llama/Llama-3.3-70B-Instruct-Turbo"], "descubrir": false,
+      "alta": "https://api.together.xyz/settings/api-keys", "prefijos": [],
+      "cupo": "Pago por uso; modelos abiertos.", "privacidad": "Revisa sus términos.",
+      "aprobado": false
+    }
+  ]
+}

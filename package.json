@@ -1,0 +1,12 @@
+{
+  "name": "manual-practico-deepal",
+  "version": "2026.11.21",
+  "private": true,
+  "type": "module",
+  "description": "PWA del Manual práctico Deepal (comunidad de propietarios en Colombia). No necesita compilar: se publica tal cual en GitHub Pages.",
+  "scripts": {
+    "servir": "python3 -m http.server 8080",
+    "test": "node --test tests/*.test.mjs",
+    "test:navegador": "node tests/navegador.mjs"
+  }
+}

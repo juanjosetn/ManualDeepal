@@ -1,0 +1,2570 @@
+{
+ "version": "2026.11.21",
+ "ultimoChat": "2026-11-21",
+ "tips": [
+  {
+   "id": "calibra-las-llantas-en-la-manana-antes-de-encend",
+   "cat": "llantas",
+   "titulo": "Calibra las llantas en la mañana, antes de encender el carro",
+   "tipo": "hacer",
+   "cuando": "Con las llantas frías: el carro lleva al menos 3 horas quieto a la sombra o ha rodado menos de 1,6 km. Revisa una vez por semana (el manual pide mínimo una vez al mes).",
+   "como": "Infla hasta el valor de la etiqueta del paral de la puerta del conductor: S05 a 41 PSI; S07 a 39 PSI (2,7 bar) según su manual.",
+   "ojo": "Después de rodar es normal ver 43–46 PSI. No le saques aire en ese momento: cuando se enfríen quedarán bajas.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "presion psi inflar inflado calibrar calibracion aire mañana frio caliente temperatura cuando",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 227)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s05-41-psi-en-las-cuatro-llantas",
+   "cat": "llantas",
+   "titulo": "S05: 41 PSI en las cuatro llantas",
+   "tipo": "hacer",
+   "cuando": "Cada vez que calibres, en la mañana antes de salir.",
+   "como": "41 PSI (unos 2,8 bar), adelante y atrás. Aplica a la REEV y a la eléctrica.",
+   "ojo": "Si en el montallantas no lo saben, muéstrales la etiqueta del paral de la puerta del conductor. Algunos dueños citan 39 PSI: la etiqueta de tu carro manda.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "Confirmado por varios dueños con la etiqueta de la puerta. No se tuvo el manual de la S05 para contrastar.",
+   "claves": "presion psi bar inflar calibrar libras etiqueta",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios (etiqueta de la puerta)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-39-psi-2-7-bar-en-frio-atras-42-psi-solo-con",
+   "cat": "llantas",
+   "titulo": "S07: 39 PSI (2,7 bar) en frío; atrás 42 PSI solo con carga completa",
+   "tipo": "hacer",
+   "cuando": "Cada vez que calibres, en frío.",
+   "como": "Rin 20×8,5J con llanta 255/45R20: 2,7 bar (39 PSI) adelante y atrás sin carga. Con el carro lleno (pasajeros y baúl), atrás 2,9 bar (42 PSI).",
+   "ojo": "Algunos dueños de S07 usan 41–42 PSI. El valor oficial es el del manual y la etiqueta del paral; si tu etiqueta dice otra cosa, manda la etiqueta.",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "Corregido: el HTML anterior decía 41–42 PSI; el manual dice 2,7 bar.",
+   "claves": "presion psi bar inflar calibrar libras etiqueta paral",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 242)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "despues-de-calibrar-rueda-unos-minutos-para-ver-",
+   "cat": "llantas",
+   "titulo": "Después de calibrar, rueda unos minutos para ver la lectura real",
+   "tipo": "hacer",
+   "cuando": "Justo después de inflar o desinflar.",
+   "como": "Sal a rodar normal. El manual dice que los valores se actualizan después de recorrer cierta distancia; un dueño reporta unos 15 minutos.",
+   "ojo": "Si la pantalla no cambia apenas calibras, no es una falla.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "tpms sensor lectura pantalla presion calibrar",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 227)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "1 propietario: ~15 min"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-el-medidor-y-la-pantalla-no-coinciden-guiate-",
+   "cat": "llantas",
+   "titulo": "Si el medidor y la pantalla no coinciden, guíate por la pantalla",
+   "tipo": "hacer",
+   "cuando": "Cada vez que calibres en una bomba o con tu compresor.",
+   "como": "Infla con el compresor y confirma en la pantalla del carro (TPMS). El manual de la S07 dice que la referencia es la lectura del TPMS.",
+   "ojo": "Los medidores de los compresores pueden marcar varios PSI de menos: un dueño vio 40 PSI en el compresor y 50 PSI en la pantalla.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "Corregido: el HTML anterior decía usar el medidor propio como referencia; el manual dice lo contrario.",
+   "claves": "manometro medidor calibrador compresor presion diferencia",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 227)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "1 propietario"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-una-llanta-baja-3-psi-o-mas-de-un-dia-a-otro-",
+   "cat": "llantas",
+   "titulo": "Si una llanta baja 3 PSI o más de un día a otro, llévala al montallantas",
+   "tipo": "hacer",
+   "cuando": "Al revisar la presión en la pantalla en la mañana.",
+   "como": "Compara las cuatro llantas. Si una sola bajó de un día a otro (ej. de 41 a 34), casi seguro está pinchada aunque no se vea bajita.",
+   "ojo": "Un dueño reporta que el testigo se enciende por debajo de unos 34 PSI. El manual advierte que el TPMS no avisa a tiempo una pérdida total (pinchazo grande): frena suave y detente poco a poco.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "pinchazo pinchada testigo alerta presion baja",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 227)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "1 propietario: testigo ~34 PSI"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "rota-alinea-y-balancea-cada-10-000-km",
+   "cat": "llantas",
+   "titulo": "Rota, alinea y balancea cada 10.000 km",
+   "tipo": "hacer",
+   "cuando": "En cada revisión de 10.000 km (va incluida la rotación).",
+   "como": "Pide rotación (el manual la indica cada 10.000 km después del primer mantenimiento), alineación y balanceo. Revisa llantas y rines cada 3.000 km por si hay chichones o cortes.",
+   "ojo": "Es pesado, de tracción trasera y con regeneración fuerte: un dueño cambió llantas a los 15.000 km por llevarlas bajas.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "rotacion alineacion balanceo desgaste llantas",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 225)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "arma-tu-kit-de-pinchazo-el-carro-no-trae-llanta-",
+   "cat": "llantas",
+   "titulo": "Arma tu kit de pinchazo: el carro no trae llanta de repuesto",
+   "tipo": "hacer",
+   "cuando": "Apenas recibas el carro, antes del primer viaje.",
+   "como": "Revisa el baúl: trae sellante y compresor. En la S05 la toma de 12 V está en el baúl y el cable no llega a las delanteras: compra una extensión de 12 V o un compresor inalámbrico. La S07 tiene además una toma de 12 V en el apoyabrazos central.",
+   "ojo": "El compresor del kit funciona máximo 10 minutos seguidos y las tomas de 12 V aguantan hasta 120 W. El sellante es de un solo uso y vence: revisa la fecha en la botella.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "repuesto dona kit despinche compresor extension 12v pinchazo",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 47)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 223)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "ante-un-pinchazo-leve-infla-y-llega-al-montallan",
+   "cat": "llantas",
+   "titulo": "Ante un pinchazo leve, infla y llega al montallantas antes de usar el sellante",
+   "tipo": "hacer",
+   "cuando": "Cuando la llanta pierde aire pero no está destrozada.",
+   "como": "Infla con el compresor a 41 PSI y maneja directo al montallantas más cercano. Si la llanta está completamente vacía, súbela con el gato antes de inflar: así el compresor infla mucho más rápido.",
+   "ojo": "Las llantas traen espuma interior (aislante de ruido): pide un montallantas con experiencia en ella. El kit solo sirve para perforaciones en la banda de rodadura de menos de 6 mm; si usas el sellante, avísale al técnico.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "sellante liquido espuma pinchazo compresor gato inflar",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 223)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "lleva-impresa-la-circular-sobre-carros-sin-llant",
+   "cat": "llantas",
+   "titulo": "Lleva impresa la circular sobre carros sin llanta de repuesto",
+   "tipo": "hacer",
+   "cuando": "Siempre en la guantera, junto con la de polarizado y la del kit de carretera.",
+   "como": "El Código de Tránsito (Ley 769 de 2002, art. 30) pide llanta de repuesto, pero una circular del Ministerio de Transporte de 2017 permite circular sin ella a los carros que no vienen diseñados para llevarla. Llévala impresa con el kit de reparación en buen estado.",
+   "ojo": "Si compras una llanta temporal (dona), que sea específica para tu modelo (medida, barrenación y centro del rin). No hay confirmación de que la de una S07 sirva en la S05.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "Corregido: es una circular, no una resolución. Se retiró la afirmación de que la dona de la S07 sirve en la S05 (sin respaldo). El número exacto de la circular no se pudo confirmar: pídelo al Ministerio de Transporte o búscalo antes de imprimir.",
+   "claves": "dona repuesto transito resolucion agente",
+   "fuentes": [
+    {
+     "tipo": "web",
+     "ref": "Vanguardia, 17-jul-2025: circular MinTransporte 2017"
+    },
+    {
+     "tipo": "chat",
+     "ref": "2 propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "en-el-montallantas-pide-cuidado-con-el-gato-y-lo",
+   "cat": "llantas",
+   "titulo": "En el montallantas, pide cuidado con el gato y los sensores",
+   "tipo": "hacer",
+   "cuando": "Cada vez que bajen una rueda.",
+   "como": "Que quiten la tapita del punto de gato antes de levantar y que tengan cuidado con el sensor de presión (TPMS) al desmontar la llanta.",
+   "ojo": "Si rotan las ruedas, pide recalibrar el TPMS para que cada posición se lea bien.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "tpms sensor gato montallantas",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "tuercas-de-rueda-m12-1-5-asiento-conico-llave-de",
+   "cat": "llantas",
+   "titulo": "Tuercas de rueda: M12 × 1,5, asiento cónico, llave de 19 mm",
+   "tipo": "hacer",
+   "cuando": "Si vas a comprar tuercas de seguridad o reponer alguna.",
+   "como": "Pide esa medida exacta y verifica el largo para que no queden flojas.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "En el chat solo un dueño menciona la llave de 19 mm; confirma la medida en el taller antes de comprar.",
+   "claves": "pernos tuercas seguridad rines medida",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "1 propietario"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-la-pantalla-muestra-la-presion-solo-en-bar-pi",
+   "cat": "llantas",
+   "titulo": "Si la pantalla muestra la presión solo en bar, pide en el taller que activen PSI",
+   "tipo": "hacer",
+   "cuando": "En la próxima revisión.",
+   "como": "A varios dueños se la habilitaron en el taller.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "unidades bar psi pantalla",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-alguien-te-hace-senas-de-que-vas-pinchado-no-",
+   "cat": "llantas",
+   "titulo": "Si alguien te hace señas de que vas pinchado, no pares ahí",
+   "tipo": "hacer",
+   "cuando": "Cuando un desconocido en la vía te avisa de un pinchazo.",
+   "como": "Mira la presión en la pantalla y, si toca parar, hazlo en una bomba o sitio concurrido.",
+   "ojo": "Hay reportes de “pinchallantas” que provocan el pinchazo y luego hacen señas.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "robo seguridad pinchazo señas",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "ajusta-el-amperaje-desde-el-menu-de-energia",
+   "cat": "carga",
+   "titulo": "Ajusta el amperaje desde el menú de Energía",
+   "tipo": "hacer",
+   "cuando": "Antes de conectar en una toma que no conoces, o si quieres que la carga dure más horas.",
+   "como": "S05: menú de Energía > tuerca arriba a la derecha > elige 8 A, 13 A o Máximo. S07: el límite viene en 32 A y se baja en la pantalla central (solo aplica a la carga lenta).",
+   "ojo": "En un toma doméstico, el manual de la S07 pide que soporte al menos 16 A. En tomas dudosas o extensiones, usa el valor más bajo.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "amperios amperaje cargador portatil viajero menu energia tuerca",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 199)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "1 propietario S05"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "cuanto-tarda-la-carga-en-casa",
+   "cat": "carga",
+   "titulo": "Cuánto tarda la carga en casa",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Reportes del grupo: Max (REEV) a 110 V/16 A ~5 % por hora; a 220 V/8 A también ~5 % por hora. E-Max a 110 V ~3 % por hora; a 220 V/32 A ~10 % por hora. Para calcular: % que te falta ÷ % por hora = horas. El manual avisa que por debajo de 220 V la potencia se limita.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "horas tiempo 110 220 voltios kw cuanto demora",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "para-cargar-a-32-a-instala-un-circuito-dedicado",
+   "cat": "carga",
+   "titulo": "Para cargar a 32 A, instala un circuito dedicado",
+   "tipo": "hacer",
+   "cuando": "Antes de comprar o instalar un cargador de pared.",
+   "como": "Contrata a un electricista o empresa que deje circuito exclusivo con breaker adecuado y entregue certificado RETIE (muchos conjuntos lo exigen).",
+   "ojo": "Un toma doméstico normal no soporta 32 A: se calienta o salta el breaker.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "instalacion retie wallbox breaker toma 32 cargador pared",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "programa-la-carga-para-quedar-en-80-90",
+   "cat": "carga",
+   "titulo": "Programa la carga para quedar en 80–90 %",
+   "tipo": "hacer",
+   "cuando": "En la carga diaria en casa.",
+   "como": "Menú de Energía o app > Carga programada > pon hora de inicio y de fin. Calcula las horas así: (90 − % actual) ÷ % que carga por hora. Ej.: de 30 % a 90 % a 10 %/h = 6 horas.",
+   "ojo": "No hay límite de % directo en todas las versiones; por eso se usa la hora de fin.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "programar limite porcentaje 80 90 horario carga programada",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "en-carga-rapida-desconecta-hacia-el-80",
+   "cat": "carga",
+   "titulo": "En carga rápida, desconecta hacia el 80 %",
+   "tipo": "hacer",
+   "cuando": "En electrolineras DC, sobre todo en viaje.",
+   "como": "Carga hasta ~80 % y sigue. Los dueños reportan para las Max (REEV) entre 50 y 80 kW de máximo según la electrolinera, y ~150 kW para las E-Max.",
+   "ojo": "Por encima de 70–80 % la potencia baja mucho, y algunas REEV cortan solas cerca del 90 %.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "Ajustado: el HTML decía 70 kW para la REEV; en el chat hay reportes de 50, 70 y 80 kW.",
+   "claves": "electrolinera dc rapida ccs2 kw",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "lleva-adaptadores-si-cargas-fuera-de-casa",
+   "cat": "carga",
+   "titulo": "Lleva adaptadores si cargas fuera de casa",
+   "tipo": "hacer",
+   "cuando": "Antes de un viaje o si usas electrolineras públicas.",
+   "como": "El carro usa Tipo 2 (AC) y CCS2 (DC). Para puntos con Tipo 1 o CCS1, compra un adaptador “dual” AC+DC con garantía y certificado RETIE.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "tipo 1 tipo 2 ccs1 ccs2 j1772 gbt adaptador electrolinera",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "verifica-en-la-pantalla-que-si-este-cargando",
+   "cat": "carga",
+   "titulo": "Verifica en la pantalla que sí esté cargando",
+   "tipo": "hacer",
+   "cuando": "Unos 5 minutos después de conectar en una electrolinera.",
+   "como": "Revisa que el % suba antes de irte.",
+   "ojo": "Hay casos en que la app de la electrolinera cobró y el carro no cargó. Y “disponible” en la app no siempre significa puesto libre.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "electrolinera cobro app terpel mubon",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "carga-de-aparcamiento-usala-solo-en-emergencia-y",
+   "cat": "carga",
+   "titulo": "Carga de aparcamiento: úsala solo en emergencia y al aire libre",
+   "tipo": "hacer",
+   "cuando": "Cuando la batería quedó baja, no hay dónde enchufar y viene una subida o un tramo largo.",
+   "como": "S05: Conducción > Carga de aparcamiento > elige el % objetivo (es el % final de la batería, no cuánto sumar) y la velocidad (empieza por la baja). La llave debe quedar dentro del carro.",
+   "ojo": "Nunca en garaje cerrado o sótano: el motor a gasolina genera gases. Tampoco como forma habitual de cargar.",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "carga estacionaria aparcamiento estacionamiento motor termico",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-la-carga-de-aparcamiento-esta-en-disputa",
+   "cat": "carga",
+   "titulo": "S07: la carga de aparcamiento está en disputa",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Un dueño de S07 Max dice que la encuentra en el menú Conducción como «Carga de aparcamiento»; otros creen que no existe en la S07. El manual de la S07 no la documenta. Búscala en tu menú y, si no aparece, pregunta en el taller.",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "disputa",
+   "verificacion": "",
+   "claves": "carga estacionaria aparcamiento",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "2 versiones contradictorias"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max: no la menciona"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "lo-que-ahorra-cargar-en-casa",
+   "cat": "carga",
+   "titulo": "Lo que ahorra cargar en casa",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Un dueño reporta ~930 km en dos meses cargando en su edificio por ~$130.000, frente a ~$320.000 en gasolina con su carro anterior.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "costo ahorro consumo pesos",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "dia-a-dia-manten-la-bateria-entre-20-y-90",
+   "cat": "bateria",
+   "titulo": "Día a día, mantén la batería entre 20 % y 90 %",
+   "tipo": "hacer",
+   "cuando": "En el uso diario en ciudad.",
+   "como": "Carga hasta 80–90 % (con carga programada) y vuelve a cargar antes de bajar del 20 %.",
+   "ojo": "Si cargas al 100 %, sal a usar el carro en menos de 24 horas. El manual de la S07 pide no dejarlo más de 7 días por debajo del 20 % y guardarlo con 40 % o más si va a estar quieto más de 3 meses.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "porcentaje cuidado vida util 80 90 20 rutina",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 207)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s05-carga-al-100-una-vez-al-mes-en-carga-lenta",
+   "cat": "bateria",
+   "titulo": "S05: carga al 100 % una vez al mes, en carga lenta",
+   "tipo": "hacer",
+   "cuando": "Una vez al mes, idealmente la noche antes de un viaje o de un día de mucho uso.",
+   "como": "Carga enchufado en casa (AC) hasta el 100 % y deja conectado ~30 minutos más. Sirve para que el sistema calibre bien el porcentaje.",
+   "ojo": "Si casi no usas el carro, mínimo cada 3 meses o 2.000 km; el mismo carro lo pide.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "bms calibrar 100 balanceo celdas lfp mes",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-e-max-electrica-dia-a-dia-al-80",
+   "cat": "bateria",
+   "titulo": "S07 E-Max (eléctrica): día a día al 80 %",
+   "tipo": "hacer",
+   "cuando": "Diario; el 100 % la noche antes de un viaje.",
+   "como": "Carga a 80 % para el uso normal y al 100 % solo antes de un viaje. La E-Max usa batería NCM de 79,47 kWh, que se cuida mejor sin quedarse quieta al 100 %.",
+   "ojo": "Esto NO aplica a la S07 Max (rango extendido): esa usa LFP, como la S05.",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [
+    "EV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "Corregido: el HTML anterior decía que toda S07 es NMC. Según el manual, la S07 Max es LFP.",
+   "claves": "nmc 80 cuidado 100 viaje",
+   "fuentes": [
+    {
+     "tipo": "web",
+     "ref": "El Carro Colombiano y Xataka: E-Max NCM 79,47 kWh"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "quimica-de-la-bateria-casi-todas-son-lfp-solo-la",
+   "cat": "bateria",
+   "titulo": "Química de la batería: casi todas son LFP; solo la S07 E-Max es NCM",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "S05 (Max y E-Max): LFP de CATL según el grupo. S07 Max (rango extendido): LFP de 31,73 kWh según su manual. S07 E-Max (eléctrica): NCM de 79,47 kWh según la prensa del lanzamiento en Colombia. Las LFP toleran bien el 100 % y necesitan llegar ahí de vez en cuando para calibrar el porcentaje.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "Corregido: el HTML anterior decía que la S07 es NMC sin distinguir versión.",
+   "claves": "lfp nmc quimica catl",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 242)"
+    },
+    {
+     "tipo": "web",
+     "ref": "El Carro Colombiano: S07 Max LFP 31,73 kWh; E-Max NCM 79,47 kWh"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "cuando-salga-el-aviso-de-cargar-con-electricidad",
+   "cat": "bateria",
+   "titulo": "Cuando salga el aviso de “cargar con electricidad”, carga enchufado al 100 %",
+   "tipo": "hacer",
+   "cuando": "Cuando aparezca el aviso (en REEV sale cada mes o mes y medio si casi no enchufas).",
+   "como": "Enchufa y carga hasta el 100 % lo antes posible.",
+   "ojo": "Mientras no lo hagas, el motor deja de subir la carga y la mantiene baja (un dueño de S07 reporta ~35 %).",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "banner mensaje aviso balanceo celdas 35",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "1 propietario S07 Max"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-el-carro-no-enciende-con-la-bateria-llena-rev",
+   "cat": "bateria",
+   "titulo": "Si el carro no enciende con la batería llena, revisa la de 12 V",
+   "tipo": "hacer",
+   "cuando": "Si la pantalla no prende o el carro no arranca aunque la batería principal tenga carga.",
+   "como": "Usa un arrancador portátil o pide asistencia; en taller cambian la de 12 V.",
+   "ojo": "Si la desconectas tú, deja el baúl abierto para poder volver a entrar. Si el carro va a estar quieto más de un mes, el manual recomienda desconectar el borne negativo de la de 12 V.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "12v bateria pequeña arrancador no enciende",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 207)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "el-porcentaje-de-salud-soh-en-pantalla-no-es-con",
+   "cat": "bateria",
+   "titulo": "El porcentaje de salud (SOH) en pantalla no es confiable",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Algunos lo ven y otros no. En un taller le dijeron a un dueño que ese indicador no mostraba el valor real.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "salud soh degradacion",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "el-motor-a-gasolina-solo-genera-electricidad",
+   "cat": "energia",
+   "titulo": "El motor a gasolina solo genera electricidad",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "En la REEV las ruedas siempre las mueve el motor eléctrico. El de gasolina solo carga la batería, por eso a veces suena con el carro quieto o a baja velocidad.",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "rango extendido como funciona termico generador",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 113)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s05-que-modo-usar-en-ciudad-carretera-y-montana",
+   "cat": "energia",
+   "titulo": "S05: qué modo usar en ciudad, carretera y montaña",
+   "tipo": "hacer",
+   "cuando": "Al salir y al cambiar de tipo de vía.",
+   "como": "Ciudad con batería sobre 30 %: Prioridad eléctrica. Carretera plana: Híbrido. Subidas largas o batería baja: Prioridad combustible / Montaña. Bajadas: Eléctrica con regeneración alta.",
+   "ojo": "En la S07 los modos se llaman distinto: mira el tip «S07: Urbano, Alta velocidad y Montaña».",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "ev hibrido combinado fuel montaña prioridad combustible que modo usar",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "cuando-enciende-el-motor-en-cada-modo-s05-softwa",
+   "cat": "energia",
+   "titulo": "Cuándo enciende el motor en cada modo (S05, software anterior)",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Prioridad eléctrica: cuando la batería baja de ~20 %. Híbrido: alrededor del 50 % (varía por versión). Prioridad combustible / Montaña: siempre, para mantener o subir la carga hasta ~80 %.",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "ev hibrido combinado fuel montaña cuando enciende",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "software-nuevo-de-la-s05-fija-el-que-quieres-man",
+   "cat": "energia",
+   "titulo": "Software nuevo de la S05: fija el % que quieres mantener en Híbrido",
+   "tipo": "hacer",
+   "cuando": "Si ya tienes la actualización (desde agosto–septiembre de 2026).",
+   "como": "En el modo Híbrido elige un % a mantener (ej. 50 % en ciudad, 80 % antes de montaña) o deja “administración inteligente”.",
+   "ojo": "El modo “Prioridad combustible” desaparece: su función ahora es Híbrido con % objetivo alto.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "actualizacion hibrido objetivo fuel desaparecio",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-usa-el-modo-montana-con-de-retencion",
+   "cat": "energia",
+   "titulo": "S07: usa el modo Montaña con % de retención",
+   "tipo": "hacer",
+   "cuando": "Antes de subidas largas o viajes.",
+   "como": "Configuración > Gestión de energía > Modo montaña, y define el «Objetivo de mantenimiento de carga» (ej. 80 %). Cuando la batería baja de ese objetivo, el generador la sube y la mantiene cerca.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "montaña retencion objetivo",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 113)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "sube-la-bateria-a-70-80-antes-de-una-subida-larg",
+   "cat": "energia",
+   "titulo": "Sube la batería a 70–80 % antes de una subida larga",
+   "tipo": "hacer",
+   "cuando": "Unos 20–30 km antes de la subida (Letras, La Línea, Alto del Trigo…).",
+   "como": "Pasa a Prioridad combustible / Montaña con tiempo para llegar a la subida con 70–80 %.",
+   "ojo": "En subida fuerte el carro consume más de lo que genera el motor: la batería baja aunque el motor esté encendido.",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "subida pendiente montaña descarga letras linea",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "usa-gasolina-al-menos-cada-15-dias",
+   "cat": "energia",
+   "titulo": "Usa gasolina al menos cada 15 días",
+   "tipo": "hacer",
+   "cuando": "Si casi siempre andas en eléctrico: cada 15 días aprox.",
+   "como": "Pon Híbrido o Prioridad combustible durante un trayecto normal.",
+   "ojo": "La gasolina se degrada en 3–6 meses. Si casi no la usas, tanquea poco en vez de llenar. El manual de la S07 pide gasolina de grado 92 o superior según la norma china GB 17930; en el grupo hay debate sobre corriente o extra: pregunta en el taller.",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "gasolina vieja sedimentos tanque recircular",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "para-saber-si-el-motor-esta-encendido-mira-la-pa",
+   "cat": "energia",
+   "titulo": "Para saber si el motor está encendido, mira la pantalla de Energía",
+   "tipo": "hacer",
+   "cuando": "Cuando dudes si el motor está generando.",
+   "como": "Abre la pantalla de Energía: muestra el flujo entre motor, batería y ruedas.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "pantalla energia flujo termico encendido",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-urbano-alta-velocidad-y-montana-sus-modos-de",
+   "cat": "energia",
+   "titulo": "S07: Urbano, Alta velocidad y Montaña (sus modos de energía)",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Configuración > Gestión de energía. Urbano: prioriza lo eléctrico y evita el generador (tiene «eléctrico forzado»). Alta velocidad: el generador mantiene la batería alta, para viajes largos. Montaña: tú fijas el % a mantener. Equivalen más o menos a Prioridad eléctrica, Híbrido y Prioridad combustible de la S05.",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "urbano alta velocidad montaña gestion de energia electrico forzado modos s07",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 113)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-activa-la-memoria-de-gestion-de-energia",
+   "cat": "energia",
+   "titulo": "S07: activa la Memoria de gestión de energía",
+   "tipo": "hacer",
+   "cuando": "Si siempre usas el mismo modo de energía.",
+   "como": "En Gestión de energía, activa «Memoria de gestión de energía».",
+   "ojo": "Si está apagada, cada vez que enciendes el carro vuelve al modo Urbano.",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "memoria modo energia urbano encendido",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 113)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "modos-de-manejo-y-modos-de-energia-son-cosas-dis",
+   "cat": "manejo",
+   "titulo": "Modos de manejo y modos de energía son cosas distintas",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Eco, Confort, Sport y Personalizado cambian la respuesta del acelerador y la regeneración. Eléctrico, Híbrido y Combustible deciden de dónde sale la energía. Se combinan entre sí.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "eco confort sport custom personalizado",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "regeneracion-alta-en-ciudad-y-bajadas-baja-en-ca",
+   "cat": "manejo",
+   "titulo": "Regeneración: alta en ciudad y bajadas, baja en carretera plana",
+   "tipo": "hacer",
+   "cuando": "Al cambiar de ciudad a carretera y antes de una bajada.",
+   "como": "Ciudad: alta (casi manejas con un solo pedal). Carretera plana: baja o media. Bajadas largas: alta. Se ajusta en el modo Personalizado.",
+   "ojo": "Al 100 % en plano frena mucho y cansa. En bajada recupera bastante (un dueño pasó de 39 % a 47 % de Bogotá a Fusagasugá), pero con la batería al 100 % la regeneración desaparece: ver el tip de bajadas.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "regeneracion one pedal frenado regenerativo bajada",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 15)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "configuracion-que-les-funciona-a-varios-duenos",
+   "cat": "manejo",
+   "titulo": "Configuración que les funciona a varios dueños",
+   "tipo": "hacer",
+   "cuando": "Si no sabes por dónde empezar.",
+   "como": "Modo Personalizado: aceleración Sport, conducción Confort, regeneración 70–80 %, energía en Combinado/Híbrido.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "personalizado configuracion recomendada",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "con-regeneracion-alta-revisa-mas-seguido-las-lla",
+   "cat": "manejo",
+   "titulo": "Con regeneración alta, revisa más seguido las llantas traseras",
+   "tipo": "hacer",
+   "cuando": "Si manejas con regeneración al 100 %: mira el desgaste cada 5.000 km.",
+   "como": "Revisa las traseras y no te saltes la rotación de 10.000 km.",
+   "ojo": "Es tracción trasera: la regeneración y el torque se concentran atrás.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "llantas traseras desgaste traccion trasera",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "pon-la-autonomia-en-wltp-para-no-llevarte-sorpre",
+   "cat": "manejo",
+   "titulo": "Pon la autonomía en WLTP para no llevarte sorpresas",
+   "tipo": "hacer",
+   "cuando": "Una sola vez, en la configuración de la pantalla.",
+   "como": "Cambia el cálculo de autonomía de NEDC a WLTP.",
+   "ojo": "NEDC muestra más km de los que realmente vas a recorrer. Algunas versiones de software todavía no traen la opción WLTP.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "autonomia nedc wltp estimado km",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "pon-la-alerta-de-colision-frontal-en-tarde",
+   "cat": "manejo",
+   "titulo": "Pon la alerta de colisión frontal en “tarde”",
+   "tipo": "hacer",
+   "cuando": "Al recibir el carro y cada vez que lo enciendas (revisa que no haya cambiado).",
+   "como": "En los ajustes de asistencias (ADAS) pon la alerta de colisión frontal en “tarde”. Algunos desactivan el frenado automático.",
+   "ojo": "Muchos reportan frenazos por motos que se cruzan o hasta por un cono, y que el ajuste vuelve solo a «temprano» al encender. Ponerlo en «tarde» reduce las falsas alarmas; apagar el frenado automático te deja sin esa protección. Si los frenazos persisten, repórtalo en garantía.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "adas frenado emergencia aeb sensibilidad frenazo alerta colision tarde temprano",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "consumo-de-referencia-en-ciudad",
+   "cat": "manejo",
+   "titulo": "Consumo de referencia en ciudad",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Un dueño reporta ~13,5 kWh/100 km en ciudad; el manual de la S07 Max declara 17,1 kWh/100 km. El aire acondicionado en clima caliente sube mucho el consumo: un dueño de S07 en Montería gastó media batería en ~60 km.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "kwh consumo eficiencia aire acondicionado",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 241)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "2 propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "despues-de-pasar-por-agua-frena-suave-varias-vec",
+   "cat": "manejo",
+   "titulo": "Después de pasar por agua, frena suave varias veces",
+   "tipo": "hacer",
+   "cuando": "Justo al salir de un charco o tramo inundado.",
+   "como": "Pasa despacio y luego frena suave 3–4 veces para secar los discos.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "agua lluvia charco frenos",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "la-noche-antes-del-viaje-bateria-al-100-y-tanque",
+   "cat": "viajes",
+   "titulo": "La noche antes del viaje: batería al 100 % y tanque lleno",
+   "tipo": "hacer",
+   "cuando": "La noche anterior a salir.",
+   "como": "Carga enchufado al 100 %, tanquea lleno y empaca el cargador viajero y los adaptadores.",
+   "ojo": "Si el viaje arranca con una bajada larga (por ejemplo, de Bogotá hacia tierra caliente), carga solo al 90–95 %: con la batería al 100 % no hay regeneración y frenas solo con los frenos.",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "viaje carretera preparar antes",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 15)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "en-la-ruta-combustible-antes-de-subir-electrico-",
+   "cat": "viajes",
+   "titulo": "En la ruta: combustible antes de subir, eléctrico al bajar",
+   "tipo": "hacer",
+   "cuando": "Unos 20–30 km antes de cada subida fuerte y al coronarla.",
+   "como": "Antes de subir: Prioridad combustible / Montaña. Al empezar a bajar: Híbrido o Eléctrico con regeneración alta.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "subida montaña letras linea fuel bajada",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "ejemplo-de-ruta-bogota-medellin",
+   "cat": "viajes",
+   "titulo": "Ejemplo de ruta Bogotá–Medellín",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Bogotá–Villeta: eléctrico. Villeta–Alto del Trigo: híbrido. Ruta del Sol: híbrido. Desde La Dorada: prioridad combustible, asegurando al menos 70 % para la subida a Medellín.",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "bogota medellin ruta la dorada villeta",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "autonomia-total-con-tanque-y-bateria-llenos",
+   "cat": "viajes",
+   "titulo": "Autonomía total con tanque y batería llenos",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Un dueño hizo Bogotá–Pasto (~825 km) y llegó con 350 km restantes: ~1.175 km en total.",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "autonomia total pasto km",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-se-acaba-la-bateria-en-la-via",
+   "cat": "viajes",
+   "titulo": "Si se acaba la batería en la vía",
+   "tipo": "hacer",
+   "cuando": "Si la batería llega a 0 %.",
+   "como": "REEV: pon Montaña / Prioridad combustible y sigue; si también te quedas sin gasolina, tanquea y el carro sigue normal. Eléctrica: no hay plan B, pide grúa de plataforma.",
+   "ojo": "En la eléctrica, planea las paradas de carga antes de salir.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "sin bateria cero gasolina grua",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "revisa-el-pico-y-placa-de-la-ciudad-de-destino",
+   "cat": "viajes",
+   "titulo": "Revisa el pico y placa de la ciudad de destino",
+   "tipo": "hacer",
+   "cuando": "Antes de cualquier viaje a otra ciudad.",
+   "como": "Consulta las reglas del destino: las excepciones no son nacionales.",
+   "ojo": "En Bogotá hay restricción de fin de semana para placas de otras ciudades.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "pico y placa permiso ciudad viaje",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "con-la-bateria-al-100-no-hay-freno-regenerativo-",
+   "cat": "viajes",
+   "titulo": "Con la batería al 100 % no hay freno regenerativo en bajada",
+   "tipo": "hacer",
+   "cuando": "Antes de una bajada larga (Bogotá–Girardot, La Línea, Letras…).",
+   "como": "Empieza la bajada con 90–95 % o menos, baja la velocidad y usa los frenos con suavidad.",
+   "ojo": "El manual advierte que la fuerza de frenado regenerativo disminuye a medida que sube la carga y desaparece al 100 %. Un dueño lo confirmó en el grupo.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "bajada descenso regeneracion 100 frenos pendiente seguridad",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 15)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "1 propietario"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s05-para-reiniciar-la-pantalla-manten-el-joystic",
+   "cat": "software",
+   "titulo": "S05: para reiniciar la pantalla, mantén el joystick derecho hacia abajo 15 segundos",
+   "tipo": "hacer",
+   "cuando": "Cuando la pantalla se congele o algo funcione raro.",
+   "como": "Con el carro detenido en un lugar seguro, mantén el joystick derecho del volante (volumen) hacia abajo 10–15 segundos hasta que salga el logo de Deepal. Suelta y espera.",
+   "ojo": "Un dueño reporta un reinicio más profundo haciendo lo mismo con los dos joysticks a la vez.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "reset reiniciar pantalla congelada tablet joystick volumen",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-pregunta-en-el-taller-la-combinacion-para-re",
+   "cat": "software",
+   "titulo": "S07: pregunta en el taller la combinación para reiniciar la pantalla",
+   "tipo": "hacer",
+   "cuando": "En la revisión de 1.000 km, antes de necesitarlo.",
+   "como": "Se comenta que son tres botones del volante a la vez (dos a la izquierda y uno a la derecha), pero nadie confirmó cuáles.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "reset reiniciar pantalla volante botones",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-sale-un-error-al-encender-apaga-espera-15-min",
+   "cat": "software",
+   "titulo": "Si sale un error al encender: apaga, espera 15 minutos y pisa el freno dos veces",
+   "tipo": "hacer",
+   "cuando": "Si al arrancar aparece un error y el carro no engrana.",
+   "como": "No toques nada más. Apaga, bájate y espera 10–15 minutos. Vuelve a entrar y pisa el freno dos veces sin tocar otra cosa.",
+   "ojo": "Si vuelve a pasar, llévalo al taller (puede ser la batería de 12 V).",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "error encendido no arranca testigos falla no engrana",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "despues-de-una-actualizacion-apaga-y-vuelve-a-pr",
+   "cat": "software",
+   "titulo": "Después de una actualización, apaga y vuelve a prender las funciones que fallen",
+   "tipo": "hacer",
+   "cuando": "Si algo deja de funcionar justo después de actualizar.",
+   "como": "Desactiva la función en los ajustes y vuelve a activarla (a varios les pasó con la carga inalámbrica).",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "actualizacion carga inalambrica falla",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s05-instala-las-actualizaciones-en-p-con-buena-s",
+   "cat": "software",
+   "titulo": "S05: instala las actualizaciones en P, con buena señal y leyendo la pantalla",
+   "tipo": "hacer",
+   "cuando": "Cuando te llegue el aviso de actualización.",
+   "como": "Con el carro parqueado, lee el aviso antes de aceptar (algunas versiones fueron beta). Si sale “actualización pausada” o error de validación, reinicia la pantalla e intenta de nuevo.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "ota actualizacion version 3.0 beta pausada",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-las-actualizaciones-se-piden-en-el-taller",
+   "cat": "software",
+   "titulo": "S07: las actualizaciones se piden en el taller",
+   "tipo": "hacer",
+   "cuando": "Si notas fallas en el HUD, espejos o pantalla.",
+   "como": "Pide la actualización en el taller. A un dueño le recuperaron el HUD y le corrigieron el velocímetro (marcaba con el carro quieto) en Morato.",
+   "ojo": "Las S07 de Vardí casi no reciben actualizaciones por internet.",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "ota actualizacion taller hud",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-la-os-2-6-0-que-circula-es-la-version-de-esp",
+   "cat": "software",
+   "titulo": "S07: la OS 2.6.0 que circula es la versión de España",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "El listado de mejoras (localización, preacondicionamiento, navegador) es de la versión europea. Varios aclaran que no aplica a la S07 de Vardí en Colombia.",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "2.6.0 changelog españa europa",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-reporta-en-garantia-espejos-hud-o-pantalla-q",
+   "cat": "software",
+   "titulo": "S07: reporta en garantía espejos, HUD o pantalla que fallen",
+   "tipo": "hacer",
+   "cuando": "Apenas aparezca la falla.",
+   "como": "Toma video y llévalo al taller. Se repiten espejos que no regresan, HUD que desaparece y pantalla congelada a kilometrajes parecidos.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "espejos hud pantalla falla garantia",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "para-netflix-o-youtube-en-la-pantalla-usa-una-ca",
+   "cat": "software",
+   "titulo": "Para Netflix o YouTube en la pantalla, usa una caja tipo Carlinkit",
+   "tipo": "hacer",
+   "cuando": "Si quieres apps de video que el carro no trae.",
+   "como": "Se conecta al puerto de CarPlay/Android Auto y funciona como un Android. Varios la usan en S05 y S07.",
+   "ojo": "En la S07 es casi la única opción, porque su multimedia es más limitada.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "netflix youtube carlinkit android tv box multimedia",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "para-guardar-un-video-de-la-camara-grabalo-con-e",
+   "cat": "software",
+   "titulo": "Para guardar un video de la cámara, grábalo con el celular de inmediato",
+   "tipo": "hacer",
+   "cuando": "Apenas pase el incidente.",
+   "como": "Abre la grabación en la pantalla y grábala con tu celular.",
+   "ojo": "Solo guarda ~40 minutos de eventos y la microSD está bloqueada en los carros de Vardí. No hay modo centinela.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "dashcam grabar video microsd centinela camara",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "para-activar-la-app-pide-primero-el-registro-del",
+   "cat": "app",
+   "titulo": "Para activar la app, pide primero el registro del carro",
+   "tipo": "hacer",
+   "cuando": "En la entrega o en los primeros días.",
+   "como": "Escribe a servicio al cliente de Deepal (WhatsApp) y pide que el asesor o jefe de taller registre tu vehículo en la plataforma. Luego vinculas el carro en la app.",
+   "ojo": "Sin ese registro no se puede vincular. A un dueño se la activaron en 2 días.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "app vincular registro formulario activacion my changan",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "usa-la-app-con-una-sola-cuenta-por-carro",
+   "cat": "app",
+   "titulo": "Usa la app con una sola cuenta por carro",
+   "tipo": "hacer",
+   "cuando": "Si tu pareja también quiere usarla.",
+   "como": "Pueden tenerla los dos, pero solo una sesión queda activa: si el otro entra, te saca.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "app usuarios cuenta esposa",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-la-bateria-se-queda-congelada-en-la-app-desvi",
+   "cat": "app",
+   "titulo": "Si la batería se queda “congelada” en la app, desvincula y vuelve a vincular",
+   "tipo": "hacer",
+   "cuando": "Si el % de batería en la app no cambia (común en Android).",
+   "como": "1) Desvincula el carro. 2) Borra caché y datos de la app. 3) Reinstálala y vuelve a vincular. 4) Reinicia la pantalla del carro.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "app bateria congelada android estatica",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "la-app-no-reemplaza-la-llave",
+   "cat": "app",
+   "titulo": "La app no reemplaza la llave",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "En Colombia sirve para control remoto y monitoreo (seguros, clima, carga programada), pero no enciende el carro sin la llave física.",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "llave bluetooth digital encender",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-sin-app-por-ahora",
+   "cat": "app",
+   "titulo": "S07: sin app por ahora",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Según una carta de Vardí a un dueño (agosto 2026), no hay app ni actualizaciones previstas para las S07 en Colombia. Las funciones remotas anunciadas en Europa no aplican aquí.",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "app s07 vardi",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "reev-o-electrica-cuenta-las-tapas",
+   "cat": "funciones",
+   "titulo": "¿REEV o eléctrica? Cuenta las tapas",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "La REEV tiene dos tapas, una a cada lado (carga y gasolina). La eléctrica (EMax) tiene una sola, del lado del pasajero.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "identificar version reev emax max tapa",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "modo-mascota-deja-el-carro-cerrado-con-aire-y-pa",
+   "cat": "funciones",
+   "titulo": "Modo mascota: deja el carro cerrado con aire y pantalla encendidos",
+   "tipo": "hacer",
+   "cuando": "Si dejas una mascota o necesitas dejar el carro bloqueado con aire.",
+   "como": "Desliza la pantalla de arriba hacia abajo y activa Modo mascota. Si no quieres aire, desliza de abajo hacia arriba y apágalo. Cierra.",
+   "ojo": "Consume ~2–3 % por hora y se apaga solo al 25 %. Los vidrios no suben solos al bloquear: súbelos antes.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "mascota aire encendido bloqueado",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-abres-con-el-control-vuelve-a-cerrar-con-el-c",
+   "cat": "funciones",
+   "titulo": "Si abres con el control, vuelve a cerrar con el control",
+   "tipo": "hacer",
+   "cuando": "Cuando abres a distancia para que alguien saque algo.",
+   "como": "Ciérralo de nuevo con el control al terminar.",
+   "ojo": "El carro no se vuelve a bloquear solo.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "seguro bloqueo automatico control",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-te-bajas-con-la-llave-apaga-el-carro",
+   "cat": "funciones",
+   "titulo": "Si te bajas con la llave, apaga el carro",
+   "tipo": "hacer",
+   "cuando": "Cada vez que te bajes y alguien se quede en el carro.",
+   "como": "Si la otra persona va a moverlo, déjale la llave. Si te la llevas, apaga el carro antes de bajarte.",
+   "ojo": "El carro no detecta que la llave salió mientras está encendido: sigue andando, pero no volverá a encender después de apagarlo.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "llave detecta encendido robo",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "guarda-la-posicion-del-asiento-con-la-puerta-cer",
+   "cat": "funciones",
+   "titulo": "Guarda la posición del asiento con la puerta cerrada",
+   "tipo": "hacer",
+   "cuando": "La primera vez que ajustes tu posición de manejo.",
+   "como": "Cierra la puerta, ajusta asiento y espejos y guarda en la memoria de conductor. Hay posiciones de conductor, alterna (otra persona) y descanso.",
+   "ojo": "A un dueño se le borró la memoria con una actualización: revísala después de actualizar.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "asiento memoria posicion espejos",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "ubica-la-apertura-mecanica-de-las-puertas-antes-",
+   "cat": "funciones",
+   "titulo": "Ubica la apertura mecánica de las puertas antes de necesitarla",
+   "tipo": "hacer",
+   "cuando": "En los primeros días con el carro.",
+   "como": "Busca en el manual la guaya de apertura mecánica de las puertas (manijas a ras). Existe en S05 y S07.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "guaya manija emergencia abrir puertas",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "s07-apagar-con-un-toque",
+   "cat": "funciones",
+   "titulo": "S07: apagar con un toque",
+   "tipo": "hacer",
+   "cuando": "Si quieres apagar el carro desde la pantalla.",
+   "como": "Menú superior > Configuración del vehículo > Apagar con un solo toque.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "apagar boton s07 configuracion",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-necesitas-grua-pide-de-plataforma",
+   "cat": "funciones",
+   "titulo": "Si necesitas grúa, pide de plataforma",
+   "tipo": "hacer",
+   "cuando": "Cuando el carro no pueda moverse por sí mismo.",
+   "como": "Pide grúa de plataforma (cama baja): el manual dice que el rescate en carretera solo se hace en camión de plataforma. Antes de subirlo, activa el Modo de remolque en la pantalla: pasa a N y suelta el freno de mano, así que hazlo en terreno plano. El gancho de arrastre viene en el kit del baúl (manual S05: pág. 213).",
+   "ojo": "No se debe arrastrar con las ruedas motrices en el piso: van conectadas a los motores. Si se pierde la tapita del bumper, reclámala.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "grua remolque arrastre plataforma tornillo",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 231)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 233)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "la-carga-inalambrica-calienta-el-celular",
+   "cat": "funciones",
+   "titulo": "La carga inalámbrica calienta el celular",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Es normal. Hay una pequeña salida de aire debajo que ayuda a refrescarlo.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "inalambrica celular calienta",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "modo-de-remolque-activalo-antes-de-que-lo-suban-",
+   "cat": "funciones",
+   "titulo": "Modo de remolque: actívalo antes de que lo suban a la grúa",
+   "tipo": "hacer",
+   "cuando": "Cuando la grúa vaya a cargar o arrastrar el carro.",
+   "como": "Pantalla central > Modo de remolque y acepta el aviso. La transmisión pasa de P a N y se suelta el freno de mano.",
+   "ojo": "Hazlo en terreno plano para que no se deslice. Sin el modo de remolque se pueden dañar piezas. En la S05 búscalo en la pantalla o pregunta en el taller.",
+   "saber": "",
+   "modelos": [
+    "S07"
+   ],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "remolque grua neutro n arrastre freno de mano",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 231)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "revisa-el-stop-trasero-cada-semana-los-primeros-",
+   "cat": "problemas",
+   "titulo": "Revisa el stop trasero cada semana los primeros meses",
+   "tipo": "hacer",
+   "cuando": "Al lavar el carro o cada semana.",
+   "como": "Busca grietas en la luz trasera. Si aparece una, toma fotos con fecha y repórtala en garantía.",
+   "ojo": "Es de los reportes más comunes; en varios casos lo cambiaron por garantía. Algunos le ponen PPF después del cambio y no ha vuelto a pasar.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "stop luz trasera grieta fisura light bar garantia",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-suena-el-baul-en-caminos-rizados-pon-cinta-de",
+   "cat": "problemas",
+   "titulo": "Si suena el baúl en caminos rizados, pon cinta de fieltro en el cierre",
+   "tipo": "hacer",
+   "cuando": "Si escuchas golpeteo atrás en vías destapadas o rizadas.",
+   "como": "Pega cinta de fieltro o espuma en el cierre del baúl o de la puerta trasera. Si sigue, repórtalo en la revisión.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "ruido baul matraca cinta puerta",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "reporta-el-ruido-de-viento-en-puertas",
+   "cat": "problemas",
+   "titulo": "Reporta el ruido de viento en puertas",
+   "tipo": "hacer",
+   "cuando": "Si lo oyes por encima de ~95 km/h.",
+   "como": "Inclúyelo en tu lista de garantía para la próxima revisión.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "ruido viento puerta",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "cambia-el-filtro-del-aire-acondicionado-cada-10-",
+   "cat": "problemas",
+   "titulo": "Cambia el filtro del aire acondicionado cada 10.000 km",
+   "tipo": "hacer",
+   "cuando": "En cada revisión de 10.000 km, o antes si huele mal (algunos lo cambian cada 5.000).",
+   "como": "Pide que lo cambien en la revisión y verifica que lo hayan hecho. Cuesta ~$35.000.",
+   "ojo": "A un dueño se lo omitieron en la revisión de 10.000 km.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "olor aire acondicionado filtro cabina",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "en-latoneria-avisa-que-el-carro-es-electrico",
+   "cat": "problemas",
+   "titulo": "En latonería, avisa que el carro es eléctrico",
+   "tipo": "hacer",
+   "cuando": "Antes de dejarlo en cualquier taller de latonería.",
+   "como": "Pide que no usen electrosoldadura sin las precauciones para vehículos eléctricos.",
+   "ojo": "La soldadura eléctrica puede afectar la batería.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "latoneria choque soldadura",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "asegura-las-lunas-de-los-espejos",
+   "cat": "problemas",
+   "titulo": "Asegura las lunas de los espejos",
+   "tipo": "hacer",
+   "cuando": "En los primeros días con el carro.",
+   "como": "Muchos las aseguran con remaches o guayas. En el Directorio hay sitios que hacen lunas temporales a medida si te las roban.",
+   "ojo": "Pregunta antes si la modificación afecta la garantía de esa pieza.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "robo espejos lunas tapas seguridad",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "pregunta-en-el-taller-antes-de-modificar-piezas",
+   "cat": "problemas",
+   "titulo": "Pregunta en el taller antes de modificar piezas",
+   "tipo": "hacer",
+   "cuando": "Antes de instalar accesorios que intervengan el carro.",
+   "como": "Confirma con el taller si afecta la garantía.",
+   "ojo": "En Morato dijeron que modificar una pieza puede afectar la garantía de esa parte (ej. kits de seguridad en espejos).",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "garantia modificaciones accesorios",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "averigua-que-cubre-el-taller-de-tu-ciudad",
+   "cat": "problemas",
+   "titulo": "Averigua qué cubre el taller de tu ciudad",
+   "tipo": "hacer",
+   "cuando": "Antes de necesitar una reparación.",
+   "como": "Pregunta si atienden alto voltaje y estructura, o solo mantenimientos.",
+   "ojo": "En algunos lugares (ej. Montería) solo hacen mantenimientos y mandan lo demás a otra ciudad.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "taller cobertura monteria alto voltaje",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "calendario-de-revisiones-por-kilometros-o-por-me",
+   "cat": "mantenimiento",
+   "titulo": "Calendario de revisiones: por kilómetros o por meses, lo que ocurra primero",
+   "tipo": "hacer",
+   "cuando": "Revisión de 1.000 km (Vardí); luego 5.000 km o 6 meses, y después cada 10.000 km o 12 meses: 15.000 km/18 meses, 25.000 km/30 meses… Lo que ocurra primero.",
+   "como": "Agenda con anticipación. La de 1.000 km dura ~45 minutos; la de 5.000 km, casi todo el día.",
+   "ojo": "Si manejas poco, la revisión toca por tiempo aunque no llegues a los kilómetros.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "Ampliado: el manual de la S07 fija también meses; el HTML anterior solo daba kilómetros.",
+   "claves": "mantenimiento revision 1000 5000 10000 15000 intervalo calendario",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 203)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "taller, septiembre de 2026"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "que-piden-en-cada-revision",
+   "cat": "mantenimiento",
+   "titulo": "Qué piden en cada revisión",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Manual S07 Max: el aceite y el filtro del motor a gasolina se cambian en cada revisión (5.000, 15.000, 25.000 km…); las bujías cada 20.000 km; el lubricante del reductor la primera vez a los 10.000 km y luego cada 60.000 km; el filtro del aire acondicionado desde los 15.000 km y cada 10.000; el líquido de frenos a los 45.000 km. En la práctica, Vardí cambia el aceite del reductor a los 5.000 km. 10.000 km: rotación de llantas, pila del control y líquidos.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "Corregido y ampliado con el plan de mantenimiento del manual de la S07. No se tuvo el manual de la S05.",
+   "claves": "aceite reductor rotacion pila control incluye",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 203)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "costos-reportados",
+   "cat": "mantenimiento",
+   "titulo": "Costos reportados",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Revisión de 5.000 km de la REEV: entre $540.000 y $700.000. Muchos tuvieron las de 1.000 y 5.000 km incluidas en la compra.",
+   "modelos": [],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "precio costo valor mantenimiento",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "agenda-por-whatsapp-o-por-la-web-de-citas",
+   "cat": "mantenimiento",
+   "titulo": "Agenda por WhatsApp o por la web de citas",
+   "tipo": "hacer",
+   "cuando": "Unas 2 semanas antes de llegar al kilometraje.",
+   "como": "WhatsApp de Deepal Colombia (citas y asignación de taller) o la página de citas web de Grupo Vardí. Los contactos están en el Directorio.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "cita agendar whatsapp vardi",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "pide-por-escrito-las-cortesias-de-la-compra",
+   "cat": "mantenimiento",
+   "titulo": "Pide por escrito las cortesías de la compra",
+   "tipo": "hacer",
+   "cuando": "Al firmar la compra o en la entrega.",
+   "como": "Si te ofrecieron revisiones gratis, SOAT u otros, pide que quede por escrito y llévalo a la revisión.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "cortesia gratis revisiones compra",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "lleva-una-lista-y-revisa-el-carro-al-recogerlo",
+   "cat": "mantenimiento",
+   "titulo": "Lleva una lista y revisa el carro al recogerlo",
+   "tipo": "hacer",
+   "cuando": "Antes de cada revisión y al recogerlo.",
+   "como": "Anota las novedades y pide un reporte de lo que hicieron. Al recoger: tuercas apretadas y la tapa de la batería de 12 V completa.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "lista novedades checklist recoger",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "usa-el-checklist-de-entrega-del-grupo",
+   "cat": "mantenimiento",
+   "titulo": "Usa el checklist de entrega del grupo",
+   "tipo": "hacer",
+   "cuando": "El día que te entreguen el carro.",
+   "como": "Está en el drive del grupo (en la descripción). Es para la S05, pero casi todo aplica a la S07. Pregunta también en qué versión de software te lo entregan.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "entrega checklist recibir drive",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "si-el-carro-va-a-estar-quieto-mucho-tiempo",
+   "cat": "mantenimiento",
+   "titulo": "Si el carro va a estar quieto mucho tiempo",
+   "tipo": "hacer",
+   "cuando": "Viajes largos sin el carro, más de un mes.",
+   "como": "Déjalo con 40 % o más de batería, en un lugar fresco, seco y sin sol directo. Más de un mes: desconecta el borne negativo de la 12 V. Infla las llantas a la presión máxima de la etiqueta y muévelo cada semana si puedes.",
+   "ojo": "No lo dejes más de 7 días por debajo del 20 %.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "almacenamiento guardar vacaciones largo tiempo quieto",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 207)"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "pide-el-certificado-upme-en-cuanto-tengas-la-fac",
+   "cat": "tramites",
+   "titulo": "Pide el certificado UPME en cuanto tengas la factura",
+   "tipo": "hacer",
+   "cuando": "Apenas tengas la factura; la UPME abre por ciclos (en 2026 cerró el 31 de mayo y reabrió el 15 de agosto).",
+   "como": "Puedes hacerlo tú en la web de la UPME o con un gestor (~$400.000 a $1.000.000 + IVA, más ~$700.000 que se pagan a la UPME).",
+   "ojo": "Si se te pasa el ciclo, toca esperar al siguiente.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "El cierre del 31 de mayo lo confirman mensajes del grupo; la reapertura del 15 de agosto no se pudo confirmar. Revisa las fechas vigentes en upme.gov.co.",
+   "claves": "upme iva renta incentivo certificado dian gestor",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios"
+    },
+    {
+     "tipo": "web",
+     "ref": "upme.gov.co › Incentivos tributarios › Vehículos eléctricos"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "consulta-con-tu-contador-antes-de-usar-el-benefi",
+   "cat": "tramites",
+   "titulo": "Consulta con tu contador antes de usar el beneficio en la renta",
+   "tipo": "hacer",
+   "cuando": "Antes de presentar la declaración.",
+   "como": "Lleva el certificado UPME al contador.",
+   "ojo": "La devolución de IVA y la deducción en renta son beneficios distintos (un dueño cita el Concepto DIAN 9040 de 2026).",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "El Concepto DIAN 9040 de 2026 lo cita un solo propietario; confírmalo con tu contador.",
+   "claves": "iva renta dian contador",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "verifica-como-aplica-el-pico-y-placa-a-tu-reev",
+   "cat": "tramites",
+   "titulo": "Verifica cómo aplica el pico y placa a tu REEV",
+   "tipo": "hacer",
+   "cuando": "Al matricular y cada vez que cambien las normas.",
+   "como": "Consulta en la secretaría de movilidad de tu ciudad.",
+   "ojo": "La excepción de los eléctricos es nacional; la de híbridos depende de cada ciudad. La REEV aparece como gasoeléctrica/híbrida en la tarjeta de propiedad.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "pico y placa exencion hibrido electrico tarjeta propiedad",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "averigua-el-descuento-de-impuesto-antes-de-matri",
+   "cat": "tramites",
+   "titulo": "Averigua el descuento de impuesto antes de matricular",
+   "tipo": "hacer",
+   "cuando": "Antes de matricular o si piensas trasladar la matrícula.",
+   "como": "Compara los descuentos para eléctricos e híbridos del departamento o ciudad.",
+   "ojo": "Cambian de un año a otro y de un sitio a otro.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "impuesto descuento matricula traslado",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "ten-impresas-las-normas-de-transito-mas-utiles",
+   "cat": "tramites",
+   "titulo": "Ten impresas las normas de tránsito más útiles",
+   "tipo": "hacer",
+   "cuando": "Siempre en la guantera.",
+   "como": "Circular de carros sin llanta de repuesto, la norma de polarizado y la del kit de carretera.",
+   "ojo": "",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "documentos resolucion transito guantera",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "polarizado-y-pelicula-de-seguridad-precios-de-re",
+   "cat": "accesorios",
+   "titulo": "Polarizado y película de seguridad: precios de referencia",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Bogotá: ~$2.000.000 por polarizado + película de seguridad en todos los vidrios (incluido el techo). Medellín: ~$2.000.000 por polarizado + PPF en farolas, stop y partes internas.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "polarizado pelicula seguridad ppf precio",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "nanoceramica-precios-de-referencia",
+   "cat": "accesorios",
+   "titulo": "Nanocerámica: precios de referencia",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Entre $350.000 (a domicilio) y $590.000.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "nanoceramica ceramico precio",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "tapetes-termoformados",
+   "cat": "accesorios",
+   "titulo": "Tapetes termoformados",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "Procoverx (kit completo ~$674.000), EV Motrix (también en Homecenter) y Foxcol para S07. Algunos usan los de Temu y les fue bien.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "tapetes termoformados baul",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "guardafangos",
+   "cat": "accesorios",
+   "titulo": "Guardafangos",
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "",
+   "saber": "EV Motrix (Ibagué) los vende y quienes los compraron dicen que calzan perfecto. También hay en AliExpress y Temu.",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "guardafangos guardabarros",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "cotiza-el-seguro-con-un-corredor-no-solo-en-el-c",
+   "cat": "accesorios",
+   "titulo": "Cotiza el seguro con un corredor, no solo en el concesionario",
+   "tipo": "hacer",
+   "cuando": "Antes de la entrega.",
+   "como": "Pide cotización a corredores (ej. Seguro Canguro, HDI). Varios consiguieron mejor precio que en el concesionario.",
+   "ojo": "Pregunta por la experiencia en reclamaciones, no solo el precio.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "reporte",
+   "verificacion": "",
+   "claves": "seguro poliza corredor precio",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  },
+  {
+   "id": "compra-un-compresor-portatil-o-una-extension-de-",
+   "cat": "accesorios",
+   "titulo": "Compra un compresor portátil o una extensión de 12 V",
+   "tipo": "hacer",
+   "cuando": "Antes del primer viaje.",
+   "como": "Un compresor inalámbrico o una extensión de 12 V para el compresor del kit.",
+   "ojo": "No hay llanta de repuesto y el cable del kit no llega a las llantas delanteras.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "consenso",
+   "verificacion": "",
+   "claves": "compresor extension 12v",
+   "fuentes": [
+    {
+     "tipo": "chat",
+     "ref": "grupo de propietarios"
+    }
+   ],
+   "actualizado": "2026-11-21"
+  }
+ ]
+}

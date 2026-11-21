@@ -1,0 +1,93 @@
+{
+ "categorias": [
+  {
+   "id": "llantas",
+   "nombre": "Llantas y rines",
+   "icono": "🛞"
+  },
+  {
+   "id": "carga",
+   "nombre": "Carga",
+   "icono": "🔌"
+  },
+  {
+   "id": "bateria",
+   "nombre": "Batería",
+   "icono": "🔋"
+  },
+  {
+   "id": "energia",
+   "nombre": "Modos de energía (REEV)",
+   "icono": "⛽"
+  },
+  {
+   "id": "manejo",
+   "nombre": "Manejo y consumo",
+   "icono": "🧭"
+  },
+  {
+   "id": "viajes",
+   "nombre": "Viajes y montaña",
+   "icono": "⛰️"
+  },
+  {
+   "id": "software",
+   "nombre": "Pantalla y software",
+   "icono": "🖥️"
+  },
+  {
+   "id": "app",
+   "nombre": "App",
+   "icono": "📱"
+  },
+  {
+   "id": "funciones",
+   "nombre": "Funciones útiles",
+   "icono": "🔧"
+  },
+  {
+   "id": "problemas",
+   "nombre": "Problemas comunes",
+   "icono": "⚠️"
+  },
+  {
+   "id": "mantenimiento",
+   "nombre": "Mantenimiento y taller",
+   "icono": "🧰"
+  },
+  {
+   "id": "tramites",
+   "nombre": "Trámites e incentivos",
+   "icono": "📄"
+  },
+  {
+   "id": "accesorios",
+   "nombre": "Accesorios y protección",
+   "icono": "🛡️"
+  }
+ ],
+ "modelos": [
+  {
+   "id": "S05",
+   "nombre": "Deepal S05"
+  },
+  {
+   "id": "S07",
+   "nombre": "Deepal S07"
+  }
+ ],
+ "motores": [
+  {
+   "id": "REEV",
+   "nombre": "Rango extendido",
+   "corto": "Rango ext.",
+   "alias": "Max · REEV"
+  },
+  {
+   "id": "EV",
+   "nombre": "Eléctrico",
+   "corto": "Eléctrico",
+   "alias": "E-Max · EV"
+  }
+ ]
+}
