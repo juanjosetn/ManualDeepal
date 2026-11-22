@@ -24,10 +24,11 @@ Ve en orden. Cada lección toma de 30 a 60 minutos.
 - **Comprueba:** recarga la página; tu texto aparece abajo.
 
 ## Lección 2 · CSS: la ropa
-- **Idea clave:** un *selector* (`.boton`, `#q`) escoge elementos y les aplica reglas. Las *variables* (`--marca`) guardan un color en un solo lugar. `@media` cambia el diseño según la pantalla (eso es «responsivo»).
-- **Mira:** `css/app.css`, el bloque `:root` (colores) y los bloques `@media (max-width: 719px)` (celular) y `prefers-color-scheme: dark` (modo oscuro).
-- **Ejercicio:** cambia `--marca: #0E5866;` por otro color (por ejemplo `#7B1FA2`).
-- **Comprueba:** los botones y las pestañas cambian de color. Achica la ventana: las pestañas pasan abajo.
+- **Idea clave:** un *selector* (`.boton`, `#q`) escoge elementos y les aplica reglas. Las *variables* (`--ambar`, `--niebla`) guardan un color en un solo lugar: es el «sistema de diseño» de la app. `@media` cambia el diseño según la pantalla (eso es «responsivo»). Un *eje variable* de la fuente (`font-stretch`) la hace más ancha o más angosta sin cargar otra fuente.
+- **Mira:** `css/app.css`: el bloque `:root` (tema claro), `:root[data-tema="oscuro"]` (tema oscuro), `.portada h1` (titular ancho, `font-stretch: 125%`) y `@media (max-width: 719px)` (celular).
+- **Ejercicio:** cambia `--ambar: #8F5B10;` por otro color (por ejemplo `#2F5DA8`) y `font-stretch: 125%` del titular por `100%`.
+- **Comprueba:** la línea de energía, la pestaña activa y el tip abierto cambian de color; el titular se vuelve angosto. Achica la ventana: las pestañas pasan abajo. Devuelve los valores.
+- **Extra — íconos SVG:** abre `js/iconos.js`. Cada ícono es un dibujo de pocas líneas en una cuadrícula de 24×24. Cambia `TRAZO` de `1.25` a `2` y mira cómo todos engruesan a la vez: por eso se ven como una familia.
 
 ## Lección 3 · JSON: los datos
 - **Idea clave:** JSON es texto con una forma estricta: `{ "clave": "valor" }`, listas con `[ ]`, comillas dobles y comas entre elementos. Una coma de más o de menos lo rompe.
@@ -68,8 +69,8 @@ Ve en orden. Cada lección toma de 30 a 60 minutos.
 
 ## Lección 9 · PWA: una página que se instala y funciona sin internet
 - **Idea clave:** el *manifiesto* (`manifest.webmanifest`) dice nombre, íconos y colores para instalarla. El *service worker* (`sw.js`) es un ayudante que guarda una copia de los archivos y responde cuando no hay internet.
-- **Mira:** `sw.js`: la lista `APP`, la estrategia `primeroRed` (para los datos) y `primeroCache` (para el código).
-- **Ejercicio:** cambia algo del CSS y sube la `VERSION` en `sw.js`.
+- **Mira:** `js/version.js` (la versión, en un solo lugar) y `sw.js`: la lista `APP`, la estrategia `primeroRed` (para los datos) y `primeroCache` (para el código).
+- **Ejercicio:** cambia algo del CSS y sube la versión en `js/version.js` (por ejemplo, de `.00cl` a `.01cl` al final). Mira también cómo `sw.js` la toma con `importScripts`.
 - **Comprueba:** con la app abierta, aparece el aviso «Hay una versión nueva… Actualizar».
 
 ## Lección 10 · Seguridad y privacidad
@@ -87,7 +88,7 @@ Ve en orden. Cada lección toma de 30 a 60 minutos.
 ## Lección 12 · Git y GitHub
 - **Idea clave:** Git guarda la historia de cada cambio (*commit*). GitHub es el sitio donde vive esa historia y, con GitHub Pages, publica la página.
 - **Mira:** `PUBLICAR.md`.
-- **Ejercicio:** edita en GitHub `config/sitio.json` y agrega tu nombre en los créditos de administración.
+- **Ejercicio:** edita en GitHub `config/sitio.json` y cambia el texto del rol de alguno de los créditos.
 - **Comprueba:** en la pestaña *History* del archivo ves tu commit; en 2 minutos el sitio muestra tu nombre.
 
 ---

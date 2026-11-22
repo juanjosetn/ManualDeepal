@@ -1,6 +1,6 @@
 # Informe de verificación del Manual práctico Deepal
 
-**Fecha:** 21 de noviembre de 2026 · **Versión de datos:** 2026.11.21
+**Fecha:** 21 de noviembre de 2026 · **Versión de datos:** 2026.11.21 · **Versión de la app:** ver `js/version.js`
 
 ## 1. Qué se revisó y contra qué
 
@@ -70,3 +70,45 @@ Cada árbitro atacó la app y los datos desde su especialidad. Abajo, lo que enc
 2. **Crédito a Miguel:** en el chat se menciona «el manual práctico de la comunidad que subió Miguel». Si ese contenido es la base del HTML, conviene darle crédito junto a Alejandro Urreta.
 3. **Confirmar con el taller** los datos de la S05 que solo vienen del chat (41 PSI, menú de amperaje, reinicio con joystick).
 4. **Aprobar las IAs de pago** (ver `IAS.md`).
+
+## 5. Revisión de la versión v01.01 (logo y versionado)
+
+> **Autorrevisión, no independiente:** los perfiles los aplicó quien hizo los cambios, en una pasada aparte, con pruebas que se corrieron de verdad.
+
+| Perfil | Ataque | Hallazgo | Gravedad | Estado |
+|---|---|---|---|---|
+| Ingeniería de sistemas | «Si solo cambia `js/version.js`, ¿todos los celulares se enteran?» | Safari y la caché HTTP de GitHub Pages (10 min) podían dejar el service worker viejo o guardar archivos viejos en la copia sin conexión | Alta | ✅ `sw.js?v=VERSION` con `updateViaCache: 'none'` y `cache: 'reload'` al instalar |
+| Usuario sin experiencia | «¿Sabe qué versión tiene y qué subir?» | — | — | ✅ Versión al pie; `LEEME.md` con la lista exacta de archivos; `PUBLICAR.md` parte 10 |
+| Diseño e interacción | Cabecera en 390/820/1024/1280/1440 px, claro y oscuro | En 390 px la aclaración «no oficial» se cortaba; en oscuro el logo gris perdía contraste | Media | ✅ Texto en dos líneas en el celular; logo aclarado en oscuro |
+| Seguridad y privacidad | «¿El SVG puede ejecutar código? ¿Hay datos reales en la entrega?» | SVG sin scripts ni enlaces externos, verificado por huella SHA-256; los datos de prueba son ficticios | — | ✅ Adecuado |
+| Release manager | «¿El ZIP limpio corre todo en verde?» | — | — | ✅ Ver LEEME |
+| Gestión de configuración | «¿Queda otra cadena de versión suelta?» | Un comentario en `js/app.js` traía el número completo | Baja | ✅ Quitado; el árbitro lo revisa en cada corrida |
+| Marca (Changan/Deepal) | «¿El logo hace pasar la app por oficial?» | El logo va junto a «Manual práctico» y «no oficial»; el aviso del pie aclara que la marca es de su titular; el ícono de la app instalada sigue siendo genérico | Media | ✅ Mitigado; ver decisión 5 |
+
+### Decisión adicional para el administrador
+5. **Ícono de la app instalada:** sigue siendo el genérico (libro con rayo). Ponerle el logo de Deepal haría que en la pantalla del celular parezca la app oficial de la marca; por eso no se cambió sin consultarte.
+
+## 6. Revisión de la versión v02 (rediseño): árbitros de UI/UX y de diseño gráfico
+
+> **Autorrevisión, no independiente:** los dos árbitros los aplicó quien hizo el rediseño, en una pasada aparte, con capturas reales en 5 anchos (390, 820, 1024, 1280 y 1440 px), en claro y oscuro, y con el script `tests/arbitro-v02-00.mjs`.
+
+**Pregunta del árbitro de UI/UX:** «¿La persona encuentra su respuesta más rápido y con menos ruido que antes, con una mano, de día o de noche?»
+**Pregunta del árbitro de diseño gráfico:** «¿Cada elemento visual pertenece a un mismo sistema (color, tipo, trazo) y hay un solo protagonista?»
+
+| Árbitro | Hallazgo (verificado en captura o prueba) | Gravedad | Estado |
+|---|---|---|---|
+| Diseño gráfico | Emojis de distintos estilos en categorías, pestañas y panel de admin: rompían la sobriedad y se veían distinto en cada celular | Alta | ✅ Set propio de íconos SVG de 1,25 px; ningún emoji en la interfaz (lo revisa el árbitro) |
+| Diseño gráfico | Fuente del sistema: la app se veía distinta en cada equipo y sin personalidad | Media | ✅ Archivo alojada en la app; titular ancho que dialoga con el logotipo |
+| Diseño gráfico | Acento ámbar con contraste 4,2:1 sobre el fondo claro (bajo AA) | Media | ✅ Ámbar ajustado a #8F5B10 (4,9:1) |
+| UI/UX | En el celular, el tablero de categorías y la fila de pestañas mostraban lo mismo dos veces | Media | ✅ Las pestañas se ocultan mientras se ve el tablero |
+| UI/UX | Filtros de modelo y motor en dos filas en el celular | Baja | ✅ Una sola fila deslizable |
+| UI/UX | Al buscar, el titular grande empujaba los resultados hacia abajo | Media | ✅ El titular se recoge con transición al escribir |
+| UI/UX | El total aparecía repetido («108 tips» en la línea y en texto) | Baja | ✅ Solo en la línea de energía; el lector de pantalla lo sigue escuchando |
+| UI/UX | En el computador, el directorio quedaba apretado en la columna del riel | Alta | ✅ Corregido antes de entregar; el árbitro mide el ancho del contenido |
+| UI/UX | El tema seguía al del sistema; el administrador pidió claro por defecto | Media | ✅ Claro por defecto, botón para oscuro, se recuerda |
+
+**Revisado y correcto:** contraste AA de texto principal (13,9:1), secundario (≥ 5,3:1) y acento en ambos temas; áreas de toque de 44 px en pestañas, botones y tablero; sin desbordamiento horizontal en los 5 anchos; foco visible en ámbar; «reducir movimiento» apaga todas las transiciones; transiciones de apertura y cambio de sección solo en respuesta a una acción, salvo la carga inicial de la línea de energía (el único movimiento automático); créditos completos en el pie y en la ventana, que se cierra con Escape.
+
+**Sugerencias que no se aplicaron (decide el administrador):**
+- Usar el logo de Deepal como ícono de la app instalada (ver decisión 5).
+- Agregar fotos propias de los carros del grupo en la portada. Requiere permiso de los dueños y aumentaría el peso de la app.

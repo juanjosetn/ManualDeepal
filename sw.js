@@ -1,25 +1,31 @@
 // =====================================================================
 // sw.js — "Service worker": un ayudante que vive en el navegador y
 // guarda una copia de la app para que funcione SIN INTERNET.
-// LECCIÓN: cada vez que cambies código (html, css, js), sube VERSION.
-// Así el celular sabe que hay versión nueva y muestra «Actualizar».
+// LECCIÓN: la versión NO se escribe aquí: viene de js/version.js.
+// Cada vez que cambies código (html, css, js), sube la versión allá.
+// El navegador revisa también los archivos de importScripts, así que
+// al cambiar js/version.js detecta la versión nueva y muestra «Actualizar».
 // Los datos (data/*.json) siempre se piden primero a internet, para que
 // los tips nuevos lleguen sin cambiar la versión.
 // =====================================================================
-const VERSION = '2026.11.21-1';
+importScripts('js/version.js');
+const VERSION = self.APP_VERSION;
 const CACHE_APP = `deepal-app-${VERSION}`;
 const CACHE_DATOS = 'deepal-datos';
 const APP = [
   './', 'index.html', 'css/app.css', 'manifest.webmanifest',
-  'js/app.js', 'js/texto.js', 'js/buscador.js', 'js/ia.js', 'js/admin.js', 'js/chat.js',
-  'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png',
+  'js/version.js', 'js/tema.js', 'js/iconos.js', 'js/app.js', 'js/texto.js', 'js/buscador.js', 'js/ia.js', 'js/admin.js', 'js/chat.js',
+  'fonts/archivo-latin.woff2', 'icons/logo-deepal.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png',
 ];
 const DATOS = ['data/tips.json', 'data/directorio.json', 'data/catalogos.json', 'config/sitio.json', 'config/ia.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
-    await (await caches.open(CACHE_APP)).addAll(APP);
-    await (await caches.open(CACHE_DATOS)).addAll(DATOS);
+    // cache: 'reload' pide cada archivo al servidor y no a la caché del navegador
+    // (si no, la copia sin conexión podría quedar con archivos de la versión anterior).
+    const frescos = (lista) => lista.map((u) => new Request(u, { cache: 'reload' }));
+    await (await caches.open(CACHE_APP)).addAll(frescos(APP));
+    await (await caches.open(CACHE_DATOS)).addAll(frescos(DATOS));
   })());
 });
 

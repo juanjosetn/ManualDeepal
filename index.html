@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--
   LECCIÓN 1 · HTML = la estructura (los "huesos") de la página.
-  Este archivo casi no tiene contenido: los tips llegan desde data/tips.json
-  y los pinta js/app.js. Así, para actualizar el manual no hay que tocar
-  código, solo los datos.
+  Casi no tiene contenido: los tips llegan desde data/tips.json y los
+  pinta js/app.js. Los íconos se dibujan con js/iconos.js (atributo
+  data-icono). Así, para actualizar el manual no hay que tocar código.
 -->
 <html lang="es-CO">
 <head>
@@ -11,51 +11,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Manual práctico Deepal · S05 · S07</title>
   <meta name="description" content="Tips verificados de la comunidad de propietarios Deepal en Colombia: llantas, carga, batería, modos de energía, mantenimiento y directorio.">
-  <meta name="theme-color" content="#0E5866" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0B1F24" media="(prefers-color-scheme: dark)">
-  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ECEFF0">
+  <meta name="color-scheme" content="light">
   <!-- Seguridad: solo se ejecuta código de este mismo sitio (protege contra inyección de scripts) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https: http://localhost:11434 http://localhost:1234; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <!-- PWA: el "manifiesto" le dice al celular cómo instalar la app -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https: http://localhost:11434 http://localhost:1234; object-src 'none'; base-uri 'self'; form-action 'self'">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Manual Deepal">
+  <!-- La fuente vive en la app (funciona sin internet); se precarga para que no "salte" el texto -->
+  <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/app.css">
+  <script src="js/version.js"></script>
+  <script src="js/tema.js"></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
 
   <header class="cabecera">
     <div class="envoltura arriba">
-      <a class="marca" href="#tips" aria-label="Inicio del manual">
-        <img src="icons/icon-192.png" alt="" width="36" height="36">
-        <span><strong id="tituloSitio">Manual práctico Deepal</strong><small id="subtituloSitio">Tips de la comunidad de propietarios en Colombia</small></span>
+      <a class="marca" href="#tips">
+        <img id="logoSitio" class="logo" src="icons/logo-deepal.svg" alt="Deepal" width="112" height="30">
+        <span class="titulo-sitio"><strong id="tituloSitio">Manual práctico</strong><small id="subtituloSitio">Comunidad de propietarios en Colombia, no oficial</small></span>
       </a>
-      <button id="btnInstalar" class="boton secundario" hidden>Instalar app</button>
+      <nav class="pestanas" aria-label="Secciones">
+        <a href="#tips" data-vista="tips"><span data-icono="libro" data-tam="22"></span><span>Tips</span></a>
+        <a href="#directorio" data-vista="directorio"><span data-icono="contactos" data-tam="22"></span><span>Directorio</span></a>
+        <a href="#preguntar" data-vista="preguntar"><span data-icono="conversar" data-tam="22"></span><span>Preguntar</span></a>
+      </nav>
+      <div class="herramientas">
+        <button id="btnInstalar" class="boton-icono con-texto" type="button" hidden><span data-icono="instalar"></span><span>Instalar</span></button>
+        <button id="btnCreditos" class="boton-icono" type="button" aria-label="Créditos" aria-haspopup="dialog"><span data-icono="creditos"></span></button>
+        <button id="btnTema" class="boton-icono" type="button" aria-label="Cambiar a tema oscuro" aria-pressed="false"><span data-icono="tema"></span></button>
+      </div>
     </div>
-
-    <nav class="envoltura pestanas" aria-label="Secciones">
-      <a href="#tips" data-vista="tips"><span aria-hidden="true">📘</span> Tips</a>
-      <a href="#directorio" data-vista="directorio"><span aria-hidden="true">📇</span> Directorio</a>
-      <a href="#preguntar" data-vista="preguntar"><span aria-hidden="true">💬</span> Preguntar</a>
-    </nav>
-
   </header>
 
-  <!-- Solo la barra de búsqueda se queda fija arriba al bajar: así queda más espacio para leer -->
+  <section class="portada envoltura" id="portada" aria-labelledby="tituloPortada">
+    <h1 id="tituloPortada">¿Qué necesitas saber de tu Deepal?</h1>
+  </section>
+
+  <!-- Solo esta barra se queda fija al bajar: buscador y línea de energía -->
   <div class="barra-busqueda">
     <div class="envoltura buscador" role="search">
       <label for="q" class="oculto">Buscar en el manual</label>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="lupa" data-icono="buscar"></span>
       <input id="q" type="search" enterkeyhint="search" autocomplete="off" spellcheck="false"
-             placeholder="Busca: presión llantas, carga, reiniciar pantalla…" aria-describedby="ayudaBusqueda">
-      <button id="limpiar" class="limpiar" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+             placeholder="Presión de llantas, carga, reiniciar pantalla…" aria-describedby="ayudaBusqueda">
+      <button id="limpiar" class="limpiar" type="button" aria-label="Borrar búsqueda" hidden><span data-icono="cerrar"></span></button>
+    </div>
+    <div class="envoltura energia" aria-hidden="true">
+      <div class="pista"><div class="carga" id="lineaEnergia"></div></div>
+      <span class="cuenta" id="cuentaEnergia"></span>
     </div>
     <p id="ayudaBusqueda" class="envoltura ayuda" aria-live="polite"></p>
-
   </div>
+
   <div class="zona-filtros">
     <div id="filtrosTips" class="envoltura filtros">
       <div class="segmento" role="group" aria-labelledby="lblModelo"><span id="lblModelo">Modelo</span><div class="opciones" data-k="modelo"></div></div>
@@ -69,56 +81,68 @@
   </div>
 
   <div id="avisoActualizacion" class="aviso-actualizacion" role="status" hidden>
-    Hay una versión nueva del manual. <button id="btnActualizar" class="boton">Actualizar</button>
+    <span>Hay una versión nueva del manual.</span> <button id="btnActualizar" class="boton mini">Actualizar</button>
   </div>
   <div id="avisoSinConexion" class="aviso-conexion" role="status" hidden>Sin conexión: estás viendo la copia guardada en tu equipo.</div>
 
-  <main id="contenido" class="envoltura" tabindex="-1">
-    <section id="vistaTips" aria-labelledby="estadoTips">
-      <p id="estadoTips" class="estado"></p>
-      <div id="listaTips"></div>
-    </section>
+  <div class="envoltura disposicion">
+    <aside id="riel" class="riel" aria-label="Categorías"></aside>
 
-    <section id="vistaDirectorio" hidden aria-labelledby="estadoDir">
-      <p class="nota">Contactos que los propietarios compartieron en el grupo. Son recomendaciones de usuarios, no avales: confirma precios y disponibilidad antes de ir.</p>
-      <p id="estadoDir" class="estado"></p>
-      <div id="listaDir"></div>
-    </section>
+    <main id="contenido" tabindex="-1">
+      <section id="vistaTips" aria-labelledby="estadoTips">
+        <p id="estadoTips" class="estado"></p>
+        <div id="listaTips"></div>
+      </section>
 
-    <section id="vistaPreguntar" hidden aria-labelledby="tituloPreguntar">
-      <h2 id="tituloPreguntar">Pregúntale al manual</h2>
-      <form id="formPregunta" class="pregunta">
-        <label for="pregunta">Escribe tu pregunta como se la harías al grupo</label>
-        <textarea id="pregunta" rows="3" maxlength="500" placeholder="Ej.: ¿A cuánto inflo las llantas de la S07?"></textarea>
-        <div class="fila-botones">
-          <button class="boton" type="submit">Preguntar</button>
-          <span class="pequeno">No escribas tu nombre, placa ni teléfono: la pregunta puede ir a una IA en internet.</span>
+      <section id="vistaDirectorio" hidden aria-labelledby="estadoDir">
+        <p class="nota">Contactos que los propietarios compartieron en el grupo. Son recomendaciones de usuarios, no avales: confirma precios y disponibilidad antes de ir.</p>
+        <p id="estadoDir" class="estado"></p>
+        <div id="listaDir"></div>
+      </section>
+
+      <section id="vistaPreguntar" hidden aria-labelledby="tituloPreguntar">
+        <h2 id="tituloPreguntar" class="titulo-vista">Pregúntale al manual</h2>
+        <form id="formPregunta" class="pregunta">
+          <label for="pregunta">Escribe tu pregunta como se la harías al grupo</label>
+          <textarea id="pregunta" rows="3" maxlength="500" placeholder="¿A cuánto inflo las llantas de la S07?"></textarea>
+          <div class="fila-botones">
+            <button class="boton" type="submit"><span data-icono="buscar" data-tam="18"></span><span>Preguntar</span></button>
+            <span class="pequeno">No escribas tu nombre, placa ni teléfono: la pregunta puede ir a una IA en internet.</span>
+          </div>
+        </form>
+        <div id="respuesta" aria-live="polite"></div>
+        <details id="ajustesIA" class="panel">
+          <summary><span data-icono="ajustes"></span><span>Ajustes de IA (opcional)</span></summary>
+          <div id="panelIA"></div>
+        </details>
+      </section>
+
+      <section id="vistaAdmin" hidden aria-labelledby="tituloAdmin"></section>
+
+      <footer class="pie">
+        <div class="leyenda" aria-label="Qué tan confiable es cada tip">
+          <span class="conf oficial"><span data-icono="oficial" data-tam="16"></span>Manual oficial</span>
+          <span class="conf consenso"><span data-icono="consenso" data-tam="16"></span>Varios propietarios lo confirman</span>
+          <span class="conf reporte"><span data-icono="reporte" data-tam="16"></span>Pocos reportes o sin confirmar</span>
+          <span class="conf disputa"><span data-icono="disputa" data-tam="16"></span>Hay versiones contradictorias</span>
         </div>
-      </form>
-      <div id="respuesta" aria-live="polite"></div>
-      <details id="ajustesIA" class="panel">
-        <summary>⚙️ Ajustes de IA (opcional)</summary>
-        <div id="panelIA"></div>
-      </details>
-    </section>
+        <p id="aviso"></p>
+        <p>«Rango ext.» es la versión Max (REEV) y «Eléctrico» la versión E-Max. Las actualizaciones de software pueden cambiar algunos comportamientos.</p>
+        <div id="creditos" class="creditos"></div>
+        <p class="pequeno version"><strong id="versionApp"></strong><span id="versionDatos"></span><a href="#admin">Administrar</a><a href="https://github.com" id="enlaceRepo" hidden>Código</a></p>
+      </footer>
+    </main>
+  </div>
 
-    <section id="vistaAdmin" hidden aria-labelledby="tituloAdmin"></section>
+  <dialog id="dlgCreditos" class="dialogo" aria-labelledby="tituloCreditos">
+    <div class="dialogo-cabeza">
+      <h2 id="tituloCreditos">Créditos</h2>
+      <button class="boton-icono" type="button" data-cerrar aria-label="Cerrar créditos"><span data-icono="cerrar"></span></button>
+    </div>
+    <dl id="listaCreditos" class="lista-creditos"></dl>
+    <p class="pequeno">Hecho por y para la comunidad de propietarios Deepal en Colombia. No es una app oficial de Deepal, Changan ni Grupo Vardí.</p>
+  </dialog>
 
-    <footer class="pie">
-      <div class="leyenda" aria-label="Qué tan confiable es cada tip">
-        <span class="conf oficial"><i></i>Manual oficial</span>
-        <span class="conf consenso"><i></i>Varios propietarios lo confirman</span>
-        <span class="conf reporte"><i></i>Pocos reportes o sin confirmar</span>
-        <span class="conf disputa"><i></i>Hay versiones contradictorias</span>
-      </div>
-      <p id="aviso"></p>
-      <p>«Rango ext.» = versión Max (REEV). «Eléctrico» = versión E-Max. Las actualizaciones de software pueden cambiar algunos comportamientos.</p>
-      <p id="creditos" class="creditos"></p>
-      <p class="pequeno"><span id="versionDatos"></span> · <a href="#admin">Administrar</a> · <a href="https://github.com" id="enlaceRepo" hidden>Código</a></p>
-    </footer>
-  </main>
-
-  <!-- LECCIÓN: type="module" permite usar import/export entre archivos .js -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

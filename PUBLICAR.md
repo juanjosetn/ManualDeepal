@@ -65,7 +65,7 @@ Tiempo estimado: 20 a 30 minutos la primera vez.
 2. Clic en el **lápiz** (Edit this file).
 3. Cambia lo que necesites. Respeta las comillas y las comas:
    - En `"github"`, pon tu usuario y el nombre del repositorio: `"usuario": "tu-usuario", "repositorio": "manual-deepal"`.
-   - En `"creditos"` puedes poner tu nombre en «Administración y actualizaciones». **No quites el crédito de Alejandro Urreta.**
+   - En `"creditos"` ya están Alejandro Urreta, Miguel Rodríguez, Miguel Vargas y El profe Juan Tapia (ProEduLab, www.impulso.click). Puedes agregar otros con la misma forma. **No quites a ninguno.** Se ven en el pie y en el botón pequeño de créditos (la medalla, arriba a la derecha).
    - `"ocultarPersonasNaturales": true` oculta del directorio los números de personas (asesores, abogadas…) y deja solo empresas. Mira la nota de privacidad en `VERIFICACION.md`.
 4. Clic en **Commit changes…** › escribe una nota › **Commit changes**.
 5. En 1 a 3 minutos el sitio se actualiza solo.
@@ -74,9 +74,9 @@ Tiempo estimado: 20 a 30 minutos la primera vez.
 
 - **Android (Chrome):** abre el enlace › menú ⋮ › **Instalar aplicación** (o «Agregar a pantalla principal»).
 - **iPhone (Safari):** abre el enlace › botón **Compartir** (cuadrado con flecha) › **Agregar a inicio**.
-- **Computador (Chrome/Edge):** aparece el botón **Instalar app** arriba, o el ícono de instalar en la barra de direcciones.
+- **Computador (Chrome/Edge):** aparece el botón **Instalar** arriba, o el ícono de instalar en la barra de direcciones.
 
-Después de abrirla una vez con internet, la app funciona **sin conexión** (en un parqueadero subterráneo, por ejemplo).
+Después de abrirla una vez con internet, la app funciona **sin conexión** (en un parqueadero subterráneo, por ejemplo). Arranca en **tema claro**; el botón del círculo medio relleno cambia al **oscuro** y la app lo recuerda.
 
 Comparte el enlace en el grupo de WhatsApp: se ve con título y descripción.
 
@@ -117,10 +117,19 @@ En el panel de administrador, **paso 6**, marca las IAs que quieres ofrecer, **D
 
 ## Parte 10 · Subir una versión nueva del código
 
-Si te entrego archivos nuevos de `js`, `css` o `index.html`:
-1. Súbelos a su carpeta con **Add file › Upload files**.
-2. Abre `sw.js` con el lápiz y cambia la línea `const VERSION = '…'` (por ejemplo `'2026.12.05-1'`). Así los celulares saben que hay versión nueva y muestran el aviso **«Actualizar»**.
-3. **Commit changes**.
+Cada entrega trae un número de versión con la forma **vXX.YY.ZZcl** (la versión actual aparece al pie de la página):
+- **XX** cambia con un rediseño o algo que cambia la forma de los datos.
+- **YY** cambia con funciones nuevas o correcciones de fondo.
+- **ZZ** cambia con ajustes pequeños.
+
+La versión se escribe en **un solo lugar**: `js/version.js`. De ahí la toman el pie de la página y la copia sin conexión. Cuando te entregue una versión nueva:
+1. Lee el `LEEME.md` de la entrega: trae la lista exacta de archivos **creados** y **modificados**.
+2. Sube solo esos archivos a su carpeta con **Add file › Upload files** (GitHub reemplaza los que tienen el mismo nombre). Si es más fácil, sube todo de nuevo: no se pierde nada.
+3. **Commit changes** con una nota como `Versión` seguida del número que trae el LEEME.
+4. En 1 a 3 minutos, quien tenga la app instalada verá el aviso **«Hay una versión nueva… Actualizar»**. Revisa el número al pie de la página.
+
+> Si cambias algo tú mismo en `js`, `css` o `index.html`, sube también el número en `js/version.js` (normalmente las dos últimas cifras: de `…00cl` a `…01cl`) y anótalo en `docs/CHANGELOG.md`. Si no lo subes, los celulares que ya tienen la app no se enteran del cambio.
+> Los tips (`data/tips.json`) **no** necesitan cambio de versión: se actualizan solos.
 
 ## Problemas frecuentes
 
@@ -129,7 +138,7 @@ Si te entrego archivos nuevos de `js`, `css` o `index.html`:
 | Error 404 al abrir el enlace | Espera 3 minutos. Revisa que `index.html` esté en la raíz y que Pages esté en **main / (root)**. |
 | El celular muestra la versión vieja | Cierra la app y ábrela de nuevo; aparecerá «Actualizar». Los datos (tips) se actualizan solos al abrir con internet. |
 | «No se pudieron cargar los datos» | Algún `.json` quedó mal escrito (falta una coma o una comilla). En GitHub abre el archivo y, en **History**, vuelve a la versión anterior. |
-| El botón «Instalar app» no aparece | En iPhone se instala desde Compartir › Agregar a inicio. En Android, desde el menú ⋮. |
+| El botón «Instalar» no aparece | En iPhone se instala desde Compartir › Agregar a inicio. En Android, desde el menú ⋮. |
 | La IA dice «No hubo conexión» | Ese proveedor no permite llamadas desde páginas web (CORS) o no hay internet. Usa otra en Ajustes de IA. |
 
 ## Ver el sitio en tu computador antes de publicar (opcional)

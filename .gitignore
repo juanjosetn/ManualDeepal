@@ -1,0 +1,12 @@
+# Nunca subir el chat ni datos personales: el repositorio es público
+*.txt
+*.zip
+*.vcf
+!tests/fixtures/*.txt
+!tests/fixtures/*.zip
+!tests/fixtures/*.vcf
+chats/
+# Herramientas
+node_modules/
+.DS_Store
+Thumbs.db
