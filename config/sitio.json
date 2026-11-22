@@ -7,7 +7,12 @@
     "archivo": "icons/logo-deepal.svg",
     "texto": "Deepal"
   },
-  "comunidad": "Comunidad de propietarios Deepal en Colombia (grupo de WhatsApp «General»)",
+  "comunidad": {
+    "servicio": "",
+    "umbralBajo": 2,
+    "minimoParaBajar": 3,
+    "nota": "Pega en «servicio» la dirección /exec de la implementación del Apps Script (ver COMUNIDAD.md). Vacío = estrellas y formularios ocultos. umbralBajo: promedio igual o menor pasa a «Calificación baja». minimoParaBajar: calificaciones mínimas antes de bajar a alguien (evita que una sola persona esconda un negocio)."
+  },
   "aviso": "Son experiencias de usuarios, no información oficial de Deepal, Changan ni Grupo Vardí. Ante cualquier duda, mandan el manual del vehículo, la etiqueta del carro y el taller autorizado. Deepal y su logotipo son marcas de su titular; aquí se usan solo para identificar los vehículos de los que habla la comunidad.",
   "creditos": [
     {

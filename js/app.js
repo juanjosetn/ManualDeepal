@@ -11,6 +11,7 @@ import { escaparHTML as esc, antirrebote } from './texto.js';
 import { crearBuscador, resaltar, MIN_LETRAS } from './buscador.js';
 import * as IA from './ia.js';
 import { icono, ponerIconos } from './iconos.js';
+import { crearComunidad } from './comunidad.js';
 
 const $ = (id) => document.getElementById(id);
 const PREF = 'deepal-manual';
@@ -18,11 +19,13 @@ const PREF = 'deepal-manual';
 export const VERSION = globalThis.APP_VERSION || 'sin versión';
 
 // ---------- Estado ----------
-const estado = { vista: 'tips', q: '', modelo: 'all', motor: 'all', cat: 'all', ciudad: 'all', servicio: 'all' };
+const estado = { vista: 'tips', q: '', modelo: 'all', motor: 'all', cat: 'all', ciudad: 'all', servicio: 'all', abiertas: new Set() };
 try { Object.assign(estado, JSON.parse(localStorage.getItem(PREF) || '{}')); estado.q = ''; } catch { /* sin almacenamiento */ }
 const guardar = () => { try { localStorage.setItem(PREF, JSON.stringify({ modelo: estado.modelo, motor: estado.motor })); } catch { /* nada */ } };
 
 let SITIO, CAT, TIPS, DIR, buscaTips, buscaDir;
+/** Servicio de calificaciones (Apps Script) y su último resumen. */
+let COM = crearComunidad(''), RESUMEN = { contactos: {} };
 const CATS = {};
 
 // ---------- 1. Cargar datos ----------
@@ -50,6 +53,7 @@ async function iniciar() {
   buscaDir = crearBuscador(DIR.contactos, { nombre: 5, alias: 4, servicio: 3, ciudad: 3, nota: 2 });
 
   pintarMarco();
+  iniciarComunidad();
   estado.q = $('q').value; $('limpiar').hidden = !estado.q;
   window.addEventListener('hashchange', enrutar);
   enrutar();
@@ -82,6 +86,11 @@ function pintarMarco() {
   $('chipsCategorias').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; elegirCategoria(b.dataset.v); });
   $('riel').addEventListener('click', (e) => { const b = e.target.closest('button[data-v]'); if (!b) return; elegirCategoria(b.dataset.v); });
   $('chipsCiudad').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; estado.ciudad = b.dataset.v; pintar(); });
+  // Recuerda qué ciudades abriste para que sigan abiertas al buscar o filtrar ('toggle' no burbujea: se escucha en captura)
+  $('listaDir').addEventListener('toggle', (e) => {
+    const c = e.target.dataset?.ciudad; if (!c) return;
+    if (e.target.open) estado.abiertas.add(c); else estado.abiertas.delete(c);
+  }, true);
   $('chipsServicio').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; estado.servicio = b.dataset.v; pintar(); });
 
 }
@@ -189,7 +198,7 @@ function enrutarAhora() {
   $('chipsCategorias').hidden = vista !== 'tips';
   $('filtrosDirectorio').hidden = vista !== 'directorio';
   $('q').placeholder = vista === 'directorio' ? 'Polarizado, seguros, UPME, Morato…' : 'Presión de llantas, carga, reiniciar pantalla…';
-  if (vista === 'admin') { import('./admin.js').then((m) => m.abrirAdmin({ SITIO, CAT, TIPS, DIR, IA })).catch((e) => { $('vistaAdmin').innerHTML = `<p class="vacio">No se pudo abrir el panel: ${esc(e.message)}</p>`; }); }
+  if (vista === 'admin') { import('./admin.js').then((m) => m.abrirAdmin({ SITIO, CAT, TIPS, DIR, IA, COM })).catch((e) => { $('vistaAdmin').innerHTML = `<p class="vacio">No se pudo abrir el panel: ${esc(e.message)}</p>`; }); }
   pintar();
   if (tipId) abrirTip(tipId); else window.scrollTo(0, 0);
 }
@@ -323,6 +332,7 @@ function abrirTip(id) {
 }
 
 // ---------- Directorio ----------
+const nombreCiudad = (c) => (c === 'Nacional' ? 'Nacional / virtual' : c === 'Sin confirmar' ? 'Ciudad sin confirmar' : c);
 const ORDEN_CIUDADES = ['Bogotá', 'Medellín', 'Barranquilla', 'Cali', 'Bucaramanga', 'Manizales', 'Pereira', 'Ibagué', 'Nacional', 'Sin confirmar'];
 function pasaDir(d, saltar) {
   if (saltar !== 'ciudad' && estado.ciudad !== 'all') {
@@ -352,18 +362,215 @@ function pintarDirectorio() {
     const wa = dig.length === 12 && dig.startsWith('573') ? `<a class="wa" href="https://wa.me/${dig}" target="_blank" rel="noopener" aria-label="WhatsApp a ${esc(d.nombre)}">${icono('whatsapp')}</a>` : '';
     const tel = dig ? `<a href="tel:+${dig}" aria-label="Llamar a ${esc(d.nombre)}">${icono('telefono')}</a>` : '';
     const web = d.web && /^https:\/\//.test(d.web) ? `<a href="${esc(d.web)}" target="_blank" rel="noopener" aria-label="Página web de ${esc(d.nombre)}">${icono('web')}</a>` : '';
-    return `<div class="contacto"><div class="nm">${hl(d.nombre)}${d.alias ? ` <span class="pequeno">(${hl(d.alias)})</span>` : ''}</div><div class="acts">${wa}${tel}${web}</div>` +
-      `<div class="meta"><span>${esc(d.ciudad === 'Nacional' ? 'Nacional / virtual' : d.ciudad)}</span>${d.telefono ? `<span>${esc(d.telefono)}</span>` : ''}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}</div>`;
+    const ya = COM.activa && calificados().includes(d.id);
+    const calificar = COM.activa && d.id ? `<button type="button" class="calificar${ya ? ' hecha' : ''}" data-calificar="${esc(d.id)}" aria-label="${ya ? 'Cambiar mi calificación de' : 'Calificar a'} ${esc(d.nombre)}" title="${ya ? 'Cambiar mi calificación' : 'Calificar'}">${icono(ya ? 'estrellaLlena' : 'estrella')}</button>` : '';
+    return `<article class="contacto"><div class="nm">${hl(d.nombre)}${d.alias ? ` <span class="pequeno">(${hl(d.alias)})</span>` : ''}</div><div class="acts">${wa}${tel}${web}${calificar}</div>` +
+      `<div class="meta"><span>${esc(nombreCiudad(d.ciudad))}</span>${d.telefono ? `<span>${esc(d.telefono)}</span>` : ''}${valoracion(d)}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}${opinionesDe(d)}</article>`;
   };
+  // Desde la 2.1: los de calificación baja salen de la lista principal y los mejores van arriba.
+  const principales = vis.filter(({ d }) => !esBajo(d));
+  const bajos = vis.filter(({ d }) => esBajo(d));
+  // sort() es estable: si dos tienen el mismo puntaje, queda primero el que ya iba primero
+  // (en una búsqueda, el más parecido a lo que escribiste).
+  const mejoresPrimero = (a, b) => puntaje(b.d) - puntaje(a.d);
   let h = '';
-  if (buscando) h = `<div class="lista">${vis.map(fila).join('')}</div>`;
-  else for (const s of servicios) {
-    const items = vis.filter(({ d }) => d.servicio === s).sort((a, b) => (ORDEN_CIUDADES.indexOf(a.d.ciudad) + 1 || 50) - (ORDEN_CIUDADES.indexOf(b.d.ciudad) + 1 || 50));
-    if (items.length) h += `<section class="cat"><div class="cabeza-cat"><h2>${esc(s)}</h2><span class="n">${items.length}</span></div><div class="lista">${items.map(fila).join('')}</div></section>`;
+  if (buscando) h = `<div class="fichas">${[...principales].sort(mejoresPrimero).map(fila).join('')}</div>`;
+  else {
+    // Primero por ciudad, luego por tipo de servicio, y dentro de cada servicio los mejores arriba.
+    // Cada ciudad es una sección plegable: así 89 contactos no quedan amontonados en una sola lista.
+    // Se abre sola si la elegiste en los filtros, si filtraste por servicio o si quedan pocos contactos.
+    const ciudadesVis = ciudades.filter((c) => principales.some(({ d }) => d.ciudad === c));
+    const abrirTodas = estado.servicio !== 'all' || principales.length <= 12;
+    for (const c of ciudadesVis) {
+      const deCiudad = principales.filter(({ d }) => d.ciudad === c);
+      let grupos = '';
+      const resumenServicios = [];
+      for (const sv of servicios) {
+        const items = deCiudad.filter(({ d }) => d.servicio === sv).sort(mejoresPrimero);
+        if (!items.length) continue;
+        resumenServicios.push(`${sv} ${items.length}`);
+        grupos += `<section class="subcat"><h3 class="cabeza-subcat">${esc(sv)}<span class="n">${items.length}</span></h3><div class="fichas">${items.map(fila).join('')}</div></section>`;
+      }
+      const abierta = abrirTodas || estado.ciudad === c || estado.abiertas.has(c);
+      h += `<details class="ciudad" data-ciudad="${esc(c)}"${abierta ? ' open' : ''}><summary><span class="titulo-ciudad"><span class="nombre">${esc(nombreCiudad(c))}</span><span class="servicios-ciudad">${esc(resumenServicios.join(', '))}</span></span><span class="n">${deCiudad.length}</span>${icono('flecha', 18, 'flecha-ciudad')}</summary>${grupos}</details>`;
+    }
+  }
+  if (bajos.length) {
+    h += `<details class="bajos"><summary>${icono('estrella', 18)}<span>Calificación baja</span><span class="n">${bajos.length}</span></summary>` +
+      `<p class="pequeno">Promedio de ${numero(UMBRAL_BAJO())} estrellas o menos con al menos ${MINIMO_PARA_BAJAR()} calificaciones. Siguen aquí para que puedas consultarlos y, si mejoran, vuelven solos a la lista principal.</p>` +
+      `<div class="fichas">${[...bajos].sort(mejoresPrimero).map(fila).join('')}</div></details>`;
   }
   if (!vis.length) h = '<div class="vacio">No hay contactos con esa búsqueda y filtros.</div>';
   $('listaDir').innerHTML = h;
   $('estadoDir').textContent = !buscando && estado.ciudad !== 'all' && estado.ciudad !== 'Nacional' ? 'Incluye los contactos nacionales o virtuales.' : '';
+}
+
+// ---------- Comunidad: estrellas, opiniones y solicitudes ----------
+// Reglas de orden (se pueden cambiar en config/sitio.json → comunidad).
+const UMBRAL_BAJO = () => SITIO.comunidad?.umbralBajo ?? 2;          // promedio igual o menor: «Calificación baja»
+const MINIMO_PARA_BAJAR = () => SITIO.comunidad?.minimoParaBajar ?? 3; // calificaciones necesarias antes de bajar a alguien
+const PREVIO = 3.5, PESO_PREVIO = 2; // promedio «prudente»: cada negocio arranca con 2 votos imaginarios de 3,5
+
+/** ¿Este contacto va a la sección «Calificación baja»? */
+function esBajo(d) {
+  const r = RESUMEN.contactos[d.id];
+  return !!(COM.activa && r && r.n >= MINIMO_PARA_BAJAR() && r.promedio <= UMBRAL_BAJO());
+}
+
+/**
+ * Puntaje para ordenar (promedio bayesiano). Ejemplo: un solo 5 da (5 + 2×3,5) / 3 = 4,0;
+ * veinte votos con promedio 4,8 dan (96 + 7) / 22 ≈ 4,68. Así gana quien tiene más votos buenos.
+ * Sin calificaciones = 3,5: queda por debajo de los bien calificados y por encima de los malos.
+ */
+function puntaje(d) {
+  const r = COM.activa ? RESUMEN.contactos[d.id] : null;
+  return r ? (r.promedio * r.n + PREVIO * PESO_PREVIO) / (r.n + PESO_PREVIO) : PREVIO;
+}
+
+const CALIFICADOS = 'deepal-calificados';
+const calificados = () => { try { return JSON.parse(localStorage.getItem(CALIFICADOS) || '[]'); } catch { return []; } };
+const numero = (x) => x.toLocaleString('es-CO', { maximumFractionDigits: 1 });
+
+/** Estrellas de 0 a 5 (llenas hasta el promedio redondeado), con texto para el lector de pantalla. */
+function estrellas(promedio, tam = 16) {
+  const llenas = Math.round(promedio);
+  return `<span class="estrellas" role="img" aria-label="${numero(promedio)} de 5 estrellas">${[1, 2, 3, 4, 5].map((i) => icono(i <= llenas ? 'estrellaLlena' : 'estrella', tam, i <= llenas ? 'llena' : '')).join('')}</span>`;
+}
+
+/** Una línea discreta: estrella, promedio y cuántos calificaron. Nada si aún no hay calificaciones. */
+function valoracion(d) {
+  const r = COM.activa && d.id ? RESUMEN.contactos[d.id] : null;
+  if (!r) return '';
+  const rec = r.recomiendan ? `, ${Math.round((r.recomiendan / r.n) * 100)} % lo recomienda` : '';
+  return `<span class="valoracion" role="img" aria-label="${numero(r.promedio)} de 5 estrellas, ${r.n} ${r.n === 1 ? 'calificación' : 'calificaciones'}${rec}">${icono('estrellaLlena', 15, 'llena')}<b>${numero(r.promedio)}</b><span>(${r.n})</span></span>`;
+}
+
+/** Opiniones publicadas, plegadas: solo ocupan espacio si las abres. */
+function opinionesDe(d) {
+  const r = COM.activa && d.id ? RESUMEN.contactos[d.id] : null;
+  if (!r?.opiniones?.length) return '';
+  const rec = (x) => (x === 'si' ? ', lo recomienda' : x === 'no' ? ', no lo recomienda' : x === 'reservas' ? ', con reservas' : '');
+  return `<details class="opiniones"><summary>Opiniones (${r.opiniones.length})</summary><ul>${r.opiniones.map((o) => `<li>${estrellas(o.e, 13)}<p>${esc(o.t)}</p><span class="pequeno">${esc(o.f)}${rec(o.r)}</span></li>`).join('')}</ul></details>`;
+}
+
+async function cargarResumen() {
+  try {
+    RESUMEN = await COM.resumen();
+    if (estado.vista === 'directorio') pintarDirectorio();
+  } catch { /* sin resumen: el directorio funciona igual */ }
+}
+
+function iniciarComunidad() {
+  COM = crearComunidad(SITIO.comunidad?.servicio);
+  $('accionesDirectorio').hidden = !COM.activa;
+  if (!COM.activa) return;
+  cargarResumen();
+  $('listaDir').addEventListener('click', (e) => { const b = e.target.closest('[data-calificar]'); if (b) abrirCalificar(b.dataset.calificar, b); });
+  $('btnAparecer').addEventListener('click', (e) => abrirAparecer(e.currentTarget));
+  for (const id of ['dlgCalificar', 'dlgAparecer']) {
+    const d = $(id);
+    d.addEventListener('click', (e) => { if (e.target === d || e.target.closest('[data-cerrar]')) d.close(); });
+    d.addEventListener('close', () => { d._origen?.focus?.(); });
+  }
+  // Estrellas: se iluminan hasta la elegida (o la que está bajo el dedo o el mouse)
+  const caja = document.querySelector('.estrellas-opciones');
+  const textos = ['', 'Muy mal', 'Mal', 'Regular', 'Bien', 'Excelente'];
+  // Solo se cambia una clase (el relleno lo pone el CSS). Reemplazar el SVG bajo el puntero
+  // rompía el clic: el navegador perdía el elemento entre presionar y soltar.
+  const pintarEstrellas = (n) => caja.querySelectorAll('label').forEach((l, i) => { l.classList.toggle('llena', i < n); });
+  const elegida = () => +($('formCalificar').estrellas.value || 0);
+  caja.addEventListener('change', () => { pintarEstrellas(elegida()); $('textoEstrellas').textContent = `${elegida()} de 5: ${textos[elegida()]}`; });
+  caja.addEventListener('mouseover', (e) => { const l = e.target.closest('label'); if (l) pintarEstrellas(+$(l.htmlFor).value); });
+  caja.addEventListener('mouseleave', () => pintarEstrellas(elegida()));
+  $('calComentario').addEventListener('input', (e) => { $('cuentaComentario').textContent = `${e.target.value.length}/500`; });
+  $('formCalificar').addEventListener('submit', enviarCalificacion);
+  $('formAparecer').addEventListener('submit', enviarSolicitud);
+  $('dlgCalificar')._pintarEstrellas = pintarEstrellas;
+}
+
+function prepararDialogo(dlg, form, estadoEl, origen) {
+  form.reset();
+  form.querySelectorAll('[aria-invalid]').forEach((x) => x.removeAttribute('aria-invalid'));
+  estadoEl.textContent = ''; estadoEl.className = 'estado-form';
+  const sinRed = !navigator.onLine;
+  form.querySelector('[type="submit"]').disabled = sinRed;
+  if (sinRed) { estadoEl.textContent = 'Necesitas conexión a internet para enviar esto.'; estadoEl.classList.add('mal'); }
+  dlg._origen = origen;
+  dlg.showModal();
+}
+
+function abrirCalificar(id, origen) {
+  const d = DIR.contactos.find((x) => x.id === id);
+  if (!d) return;
+  const dlg = $('dlgCalificar'), form = $('formCalificar');
+  prepararDialogo(dlg, form, $('estadoCalificar'), origen);
+  dlg.dataset.contacto = id;
+  $('tituloCalificar').textContent = `Calificar a ${d.nombre}`;
+  $('calificarNombre').textContent = `${d.servicio}, ${d.ciudad === 'Nacional' ? 'nacional o virtual' : d.ciudad}`;
+  $('textoEstrellas').textContent = 'Elige de 1 a 5 estrellas.';
+  $('cuentaComentario').textContent = '0/500';
+  dlg._pintarEstrellas(0);
+  form.querySelector('input[name="estrellas"]').focus();
+}
+
+async function enviarCalificacion(e) {
+  e.preventDefault();
+  const form = e.target, dlg = $('dlgCalificar'), est = $('estadoCalificar');
+  const estrellasElegidas = +(form.estrellas.value || 0);
+  if (!estrellasElegidas) { est.textContent = 'Elige de 1 a 5 estrellas.'; est.className = 'estado-form mal'; form.querySelector('input[name="estrellas"]').focus(); return; }
+  const boton = form.querySelector('[type="submit"]'); boton.disabled = true;
+  est.textContent = 'Enviando…'; est.className = 'estado-form';
+  const comentario = form.comentario.value.trim();
+  try {
+    await COM.calificar({ contactoId: dlg.dataset.contacto, estrellas: estrellasElegidas, recomienda: form.recomienda.value || '', comentario, sitio: form.sitio.value });
+    const lista = calificados(); if (!lista.includes(dlg.dataset.contacto)) { lista.push(dlg.dataset.contacto); try { localStorage.setItem(CALIFICADOS, JSON.stringify(lista)); } catch { /* nada */ } }
+    // Mensaje igual para todas las calificaciones: no promete que cuente ni que se publique
+    // (las de 1 estrella se guardan pero no cuentan; las opiniones pasan por revisión).
+    est.textContent = `¡Gracias! Recibimos tu calificación.${comentario ? ' Las opiniones se publican después de que el administrador las revise.' : ''}`;
+    est.className = 'estado-form ok';
+    await cargarResumen();
+    setTimeout(() => { if (dlg.open) dlg.close(); }, 2200);
+  } catch (err) {
+    est.textContent = err.message; est.className = 'estado-form mal';
+  } finally { boton.disabled = false; }
+}
+
+function abrirAparecer(origen) {
+  const lista = (id, valores) => { $(id).innerHTML = [...new Set(valores)].map((v) => `<option value="${esc(v)}"></option>`).join(''); };
+  lista('listaServicios', DIR.contactos.map((d) => d.servicio));
+  lista('listaCiudades', DIR.contactos.map((d) => d.ciudad).filter((c) => !['Nacional', 'Sin confirmar'].includes(c)));
+  prepararDialogo($('dlgAparecer'), $('formAparecer'), $('estadoAparecer'), origen);
+  $('apNegocio').focus();
+}
+
+/** Revisa en el navegador lo mismo que revisa el servidor, para avisar antes de enviar. */
+function validarSolicitud(f) {
+  const errores = [];
+  const marcar = (campo, ok, msj) => { campo.toggleAttribute('aria-invalid', !ok); if (!ok) errores.push([campo, msj]); };
+  marcar(f.negocio, f.negocio.value.trim().length >= 2, 'Escribe el nombre del negocio o de la persona.');
+  marcar(f.servicio, f.servicio.value.trim().length >= 2, 'Escribe el servicio que ofreces.');
+  marcar(f.ciudad, f.ciudad.value.trim().length >= 2, 'Escribe la ciudad.');
+  const dig = f.telefono.value.replace(/\D/g, '');
+  marcar(f.telefono, dig.length >= 7 && dig.length <= 13, 'Escribe un teléfono o WhatsApp válido.');
+  marcar(f.web, !f.web.value.trim() || /^https:\/\/\S+\.\S+$/.test(f.web.value.trim()), 'La página web debe empezar por https://');
+  marcar(f.autoriza, f.autoriza.checked, 'Debes autorizar la publicación de los datos.');
+  return errores;
+}
+
+async function enviarSolicitud(e) {
+  e.preventDefault();
+  const f = e.target, est = $('estadoAparecer');
+  const errores = validarSolicitud(f);
+  if (errores.length) { est.textContent = errores.map((x) => x[1]).join(' '); est.className = 'estado-form mal'; errores[0][0].focus(); return; }
+  const boton = f.querySelector('[type="submit"]'); boton.disabled = true;
+  est.textContent = 'Enviando…'; est.className = 'estado-form';
+  try {
+    const v = (n) => f[n].value.trim();
+    await COM.solicitar({ negocio: v('negocio'), servicio: v('servicio'), ciudad: v('ciudad'), telefono: v('telefono'), web: v('web'), descripcion: v('descripcion'), solicitante: v('solicitante'), contactoSolicitante: v('contactoSolicitante'), autoriza: f.autoriza.checked, sitio: f.sitio.value });
+    f.reset();
+    est.textContent = 'Recibimos tu solicitud. El administrador la revisará antes de publicarla.'; est.className = 'estado-form ok';
+  } catch (err) { est.textContent = err.message; est.className = 'estado-form mal'; }
+  finally { boton.disabled = false; }
 }
 
 // ---------- Preguntar ----------

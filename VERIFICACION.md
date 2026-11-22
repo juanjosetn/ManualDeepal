@@ -112,3 +112,40 @@ Cada árbitro atacó la app y los datos desde su especialidad. Abajo, lo que enc
 **Sugerencias que no se aplicaron (decide el administrador):**
 - Usar el logo de Deepal como ícono de la app instalada (ver decisión 5).
 - Agregar fotos propias de los carros del grupo en la portada. Requiere permiso de los dueños y aumentaría el peso de la app.
+
+## 7. Revisión de la versión v02.01 (estrellas, opiniones, «Quiero aparecer», orden por ciudad)
+
+> **Autorrevisión, no independiente:** los perfiles los aplicó quien hizo la versión, en una pasada aparte, con la app real en Playwright (390, 820, 1280 y 1440 px, claro y oscuro) y el Apps Script respondido por el simulador. Perfiles: ingeniería de sistemas, propietario sin experiencia, diseño e interacción, seguridad y privacidad, más los árbitros de dominio de Apps Script (AppSec, administrador de Workspace, confiabilidad, protección de datos).
+
+| Perfil | Hallazgo (reproducido) | Gravedad | Estado |
+|---|---|---|---|
+| Propietario | El directorio con 89 contactos en una sola lista y «Sin calificaciones todavía» + «Calificar» repetido en cada fila se veía amontonado (lo reportó el administrador) | Alta | ✅ Ciudades plegables, subtítulos por servicio, fichas con aire, estrella como botón redondo junto a WhatsApp y llamada, y nada escrito cuando no hay calificaciones |
+| Sistemas | Tocar una estrella del formulario no la marcaba: el código cambiaba el dibujo bajo el dedo y el navegador perdía el clic | Alta | ✅ Ahora solo cambia una clase y el relleno lo pone el CSS; lo prueba el árbitro |
+| Sistemas | Un teléfono «+57…» volvía de la hoja como «'+57…» (la comilla que evita fórmulas) y así habría quedado publicado | Alta | ✅ Se quita al leer (`sinComilla_`); prueba en `gas.test.mjs` y en el árbitro |
+| Seguridad | Con la regla «2 estrellas o menos baja», un competidor podía esconder un negocio con una sola calificación | Alta | ✅ Mínimo de 3 calificaciones, promedio prudente y, en el panel, «Revisar calificaciones» con «No contar» |
+| Diseño | En el celular, el botón «Cancelar» del formulario quedaba cortado fuera de la pantalla | Media | ✅ Ventanas con desplazamiento propio y título más compacto en celular |
+| Sistemas | Los contactos agregados desde un .vcf no tenían id, así que nunca se habrían podido calificar | Media | ✅ `idContacto` crea un id único al agregar (desde .vcf o desde una solicitud) |
+| Sistemas | «Agregar al directorio» creaba el borrador antes de que respondiera el servidor: un reintento lo duplicaba | Baja | ✅ Primero responde el servidor, luego se crea el borrador |
+
+**Revisado y correcto:** opiniones con HTML se muestran como texto (probado con `<img onerror>`); el envío es texto plano sin preflight de CORS; la clave del panel no queda en el navegador; la dirección del servicio solo se acepta si es de `script.google.com/macros/s/…/exec`; sin servicio configurado no se llama a ningún servidor; sin internet el formulario lo dice y no deja enviar; el directorio sigue funcionando si el servicio está caído; solo `doGet` y `doPost` atienden por la web (las funciones internas terminan en `_` y `configurar` solo corre desde el editor); manifiesto V8 con alcance solo de la hoja propia; frenos por ventana fija; escritura de la fila 1.001 probada.
+
+**Riesgos que se aceptan al encender las estrellas:**
+- El «una calificación por celular» se basa en un identificador guardado en el navegador: quien borre los datos del navegador puede calificar otra vez. Lo frenan el límite por hora, el mínimo de 3 y tu revisión en el panel.
+- La dirección `/exec` es pública (debe serlo para que el manual la use). Solo acepta calificaciones y solicitudes con límites; la moderación exige la clave.
+- Al autorizar, Google muestra «aplicación no verificada»: es normal para un programa propio.
+- El historial de versiones de la hoja guarda lo que se borre; si alguien pide supresión de sus datos, hay que depurarlo a mano (ver COMUNIDAD.md).
+
+**Decisiones para el administrador:** cambiar `umbralBajo` o `minimoParaBajar` en `config/sitio.json`; decidir si se publican opiniones negativas con nombre del negocio (hoy sí, después de revisarlas, porque son experiencias de servicio y no de personas).
+
+## 8. Revisión de la versión v02.01.01 (las calificaciones de 1 estrella no cuentan)
+
+> **Autorrevisión, no independiente.**
+
+| Perfil | Hallazgo | Gravedad | Estado |
+|---|---|---|---|
+| Sistemas | La regla debía vivir en un solo lugar: si se aplicaba solo en el navegador, el panel y el resumen público no coincidirían | Media | ✅ Solo en el servidor (`ESTRELLAS_MINIMAS_QUE_CUENTAN` y `cuenta_`); el navegador recibe el resumen ya filtrado |
+| Propietario | El mensaje «Tu calificación ya cuenta» habría sido falso para quien da 1 estrella | Media | ✅ Mensaje igual para todos: «Recibimos tu calificación» |
+| Administrador | Una opinión de 1 estrella publicada habría mostrado una estrella que no cuenta | Media | ✅ El servidor no deja publicar su texto; el panel solo ofrece «Archivar» |
+| Seguridad | ¿Alguien puede hundir un negocio con «unos»? | — | ✅ Ya no: no cuentan. Para bajar a «Calificación baja» hacen falta al menos 3 calificaciones de 2 estrellas |
+
+**Consecuencia para decidir:** con `umbralBajo` en 2, ahora un negocio solo baja si **todas** sus calificaciones que cuentan son de 2 estrellas (2 es la más baja que cuenta). Si prefieres que bajen también los que tienen, por ejemplo, 2, 2 y 3, cambia `"umbralBajo": 2` por `"umbralBajo": 2.5` en `config/sitio.json` (con punto, no coma).

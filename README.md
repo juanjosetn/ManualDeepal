@@ -17,7 +17,8 @@ Aplicación web progresiva (PWA) con los aprendizajes de la **comunidad de propi
 - **Filtros** por modelo (S05/S07), motor (rango extendido / eléctrico) y categoría.
 - **Nivel de confianza** en cada tip: Manual oficial · Varios lo confirman · Pocos reportes · En disputa, con su fuente.
 - **Preguntar**: responde con los tips del manual; con una IA activada redacta la respuesta y enlaza los tips.
-- **Directorio** con WhatsApp y llamada en un toque.
+- **Directorio** por ciudad y tipo de servicio, en fichas plegables, con WhatsApp y llamada en un toque.
+- **Estrellas y opiniones** de los propietarios (los mejor calificados arriba; los de 2 estrellas o menos, en una sección aparte) y formulario **«Quiero aparecer en el directorio»**. Se encienden con [COMUNIDAD.md](COMUNIDAD.md).
 - **Panel de administrador** (`#admin`) para convertir el chat exportado de WhatsApp en tips nuevos, sin que el chat salga del navegador.
 - Diseño «Cabina»: tipografía Archivo alojada en la app, íconos SVG propios de trazo fino, línea de energía que muestra cuántos tips encuentras, tablero de categorías en el celular y riel lateral en el computador.
 - Instalable, **sin conexión**, tema claro (predeterminado) y oscuro, accesible (teclado, lector de pantalla, contraste AA, botones de 44 px, respeta «reducir movimiento»).
@@ -37,17 +38,20 @@ Aplicación web progresiva (PWA) con los aprendizajes de la **comunidad de propi
 | `js/ia.js` | IAs en cascada, llaves por usuario |
 | `js/chat.js` | Lector del chat de WhatsApp (.zip/.txt), anonimizador, candidatos |
 | `js/admin.js` | Panel del administrador |
+| `js/comunidad.js` | Habla con el servicio de calificaciones y solicitudes |
+| `apps-script/` | Servidor gratuito en Google Apps Script (se pega en una hoja de Google; ver COMUNIDAD.md) |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Lo que la hace PWA. En `icons/` van el logo (`logo-deepal.svg`) y el ícono de la app (`icono-app.svg`: emblema de Deepal en trazo fino con un libro pequeño) |
 | `herramientas/generar-iconos.mjs` | Genera el ícono de la app y sus PNG a partir del logo (`npm run iconos`) |
 | `data/tips.json` | **Los tips** (lo que más se actualiza) |
 | `data/directorio.json` | Contactos |
 | `data/catalogos.json` | Categorías (con el nombre de su ícono), modelos y motores (agregar un modelo nuevo = editar aquí) |
-| `config/sitio.json` | Nombre, créditos, opciones de privacidad, repositorio |
+| `config/sitio.json` | Nombre, créditos, opciones de privacidad, repositorio y dirección del servicio de calificaciones |
 | `config/ia.json` | IAs disponibles y cuáles están aprobadas |
 | `tests/` | Pruebas automáticas |
 
 ## Documentos
 - **[PUBLICAR.md](PUBLICAR.md)** — paso a paso para publicar en GitHub, desde cero.
+- **[COMUNIDAD.md](COMUNIDAD.md)** — encender estrellas, opiniones y «Quiero aparecer» (hoja de Google + Apps Script).
 - **[VERIFICACION.md](VERIFICACION.md)** — qué se corrigió y por qué (con 7 árbitros adversariales).
 - **[IAS.md](IAS.md)** — lista de IAs para aprobar.
 - **[APRENDE.md](APRENDE.md)** — curso de programación usando esta app.

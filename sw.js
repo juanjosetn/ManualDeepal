@@ -14,7 +14,7 @@ const CACHE_APP = `deepal-app-${VERSION}`;
 const CACHE_DATOS = 'deepal-datos';
 const APP = [
   './', 'index.html', 'css/app.css', 'manifest.webmanifest',
-  'js/version.js', 'js/tema.js', 'js/iconos.js', 'js/app.js', 'js/texto.js', 'js/buscador.js', 'js/ia.js', 'js/admin.js', 'js/chat.js',
+  'js/version.js', 'js/tema.js', 'js/iconos.js', 'js/app.js', 'js/texto.js', 'js/buscador.js', 'js/ia.js', 'js/admin.js', 'js/chat.js', 'js/comunidad.js',
   'fonts/archivo-latin.woff2', 'icons/logo-deepal.svg', 'icons/icono-app.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png',
 ];
 const DATOS = ['data/tips.json', 'data/directorio.json', 'data/catalogos.json', 'config/sitio.json', 'config/ia.json'];
@@ -70,7 +70,7 @@ self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== location.origin) return; // las IAs y WhatsApp van directo a internet
+  if (url.origin !== location.origin) return; // las IAs, WhatsApp y el servicio de calificaciones van directo a internet
   if (/\/(data|config)\/[^/]+\.json$/.test(url.pathname)) { e.respondWith(primeroRed(req)); return; }
   if (req.mode === 'navigate') { e.respondWith(caches.match('index.html').then((r) => r || fetch(req))); return; }
   e.respondWith(primeroCache(req));

@@ -97,6 +97,10 @@
 
       <section id="vistaDirectorio" hidden aria-labelledby="estadoDir">
         <p class="nota">Contactos que los propietarios compartieron en el grupo. Son recomendaciones de usuarios, no avales: confirma precios y disponibilidad antes de ir.</p>
+        <div id="accionesDirectorio" class="acciones-directorio" hidden>
+          <button id="btnAparecer" class="boton secundario" type="button" aria-haspopup="dialog"><span data-icono="agregar" data-tam="18"></span><span>Quiero aparecer en el directorio</span></button>
+          <p class="pequeno">Las estrellas las dan los propietarios. Las opiniones se publican después de revisarlas.</p>
+        </div>
         <p id="estadoDir" class="estado"></p>
         <div id="listaDir"></div>
       </section>
@@ -142,6 +146,74 @@
     </div>
     <dl id="listaCreditos" class="lista-creditos"></dl>
     <p class="pequeno">Hecho por y para la comunidad de propietarios Deepal en Colombia. No es una app oficial de Deepal, Changan ni Grupo Vardí.</p>
+  </dialog>
+
+  <dialog id="dlgCalificar" class="dialogo" aria-labelledby="tituloCalificar">
+    <form id="formCalificar" method="dialog" novalidate>
+      <div class="dialogo-cabeza">
+        <h2 id="tituloCalificar">Calificar</h2>
+        <button class="boton-icono" type="button" data-cerrar aria-label="Cerrar"><span data-icono="cerrar"></span></button>
+      </div>
+      <p id="calificarNombre" class="pequeno"></p>
+      <fieldset class="estrellas-input">
+        <legend>¿Cómo te fue? <span class="requerido">(obligatorio)</span></legend>
+        <div class="estrellas-opciones">
+          <input type="radio" name="estrellas" id="est1" value="1"><label for="est1" aria-label="1 estrella, muy mal"><span data-icono="estrella" data-tam="32"></span></label>
+          <input type="radio" name="estrellas" id="est2" value="2"><label for="est2" aria-label="2 estrellas, mal"><span data-icono="estrella" data-tam="32"></span></label>
+          <input type="radio" name="estrellas" id="est3" value="3"><label for="est3" aria-label="3 estrellas, regular"><span data-icono="estrella" data-tam="32"></span></label>
+          <input type="radio" name="estrellas" id="est4" value="4"><label for="est4" aria-label="4 estrellas, bien"><span data-icono="estrella" data-tam="32"></span></label>
+          <input type="radio" name="estrellas" id="est5" value="5"><label for="est5" aria-label="5 estrellas, excelente"><span data-icono="estrella" data-tam="32"></span></label>
+        </div>
+        <p class="pequeno" id="textoEstrellas" aria-live="polite">Elige de 1 a 5 estrellas.</p>
+      </fieldset>
+      <fieldset class="opciones-recomienda">
+        <legend>¿Lo recomiendas?</legend>
+        <label><input type="radio" name="recomienda" value="si"> Sí</label>
+        <label><input type="radio" name="recomienda" value="reservas"> Con reservas</label>
+        <label><input type="radio" name="recomienda" value="no"> No</label>
+      </fieldset>
+      <div class="campo">
+        <label for="calComentario">Tu opinión (opcional)</label>
+        <textarea id="calComentario" name="comentario" rows="3" maxlength="500" aria-describedby="ayudaComentario"></textarea>
+        <span id="ayudaComentario" class="pequeno">Se publica después de revisarla. Habla del servicio, no de las personas, y no incluyas placas, cédulas ni teléfonos. <span id="cuentaComentario">0/500</span></span>
+      </div>
+      <div class="oculto" aria-hidden="true"><label for="calSitio">No llenar</label><input id="calSitio" name="sitio" tabindex="-1" autocomplete="off"></div>
+      <p id="estadoCalificar" class="estado-form" role="status"></p>
+      <div class="fila-botones">
+        <button class="boton" type="submit" value="enviar"><span data-icono="estrella" data-tam="18"></span><span>Enviar calificación</span></button>
+        <button class="boton secundario" type="button" data-cerrar>Cancelar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlgAparecer" class="dialogo" aria-labelledby="tituloAparecer">
+    <form id="formAparecer" method="dialog" novalidate>
+      <div class="dialogo-cabeza">
+        <h2 id="tituloAparecer">Aparecer en el directorio</h2>
+        <button class="boton-icono" type="button" data-cerrar aria-label="Cerrar"><span data-icono="cerrar"></span></button>
+      </div>
+      <p class="pequeno">Para talleres, asesores y servicios relacionados con los Deepal. El administrador revisa cada solicitud antes de publicarla.</p>
+      <div class="rejilla">
+        <div class="campo"><label for="apNegocio">Negocio o nombre <span class="requerido">(obligatorio)</span></label><input id="apNegocio" name="negocio" maxlength="80" autocomplete="organization" required></div>
+        <div class="campo"><label for="apServicio">Servicio <span class="requerido">(obligatorio)</span></label><input id="apServicio" name="servicio" maxlength="60" list="listaServicios" required></div>
+        <div class="campo"><label for="apCiudad">Ciudad <span class="requerido">(obligatorio)</span></label><input id="apCiudad" name="ciudad" maxlength="40" list="listaCiudades" autocomplete="address-level2" required></div>
+        <div class="campo"><label for="apTelefono">WhatsApp o teléfono <span class="requerido">(obligatorio)</span></label><input id="apTelefono" name="telefono" type="tel" maxlength="20" autocomplete="tel" placeholder="+57 300 000 0000" required></div>
+      </div>
+      <div class="campo"><label for="apWeb">Página web o red social (opcional)</label><input id="apWeb" name="web" type="url" maxlength="120" placeholder="https://"></div>
+      <div class="campo"><label for="apDescripcion">¿Qué ofreces? (máximo 200 caracteres)</label><textarea id="apDescripcion" name="descripcion" rows="2" maxlength="200"></textarea></div>
+      <div class="rejilla">
+        <div class="campo"><label for="apSolicitante">Tu nombre (opcional, no se publica)</label><input id="apSolicitante" name="solicitante" maxlength="60" autocomplete="name"></div>
+        <div class="campo"><label for="apContacto">Tu WhatsApp para verificar (opcional, no se publica)</label><input id="apContacto" name="contactoSolicitante" type="tel" maxlength="20"></div>
+      </div>
+      <label class="autoriza"><input type="checkbox" id="apAutoriza" name="autoriza" required> <span>Autorizo que el negocio, el servicio, la ciudad, el teléfono, la web y la descripción se publiquen en el Manual práctico Deepal, un sitio público de la comunidad de propietarios, para que me contacten. Puedo pedir que los retiren cuando quiera escribiéndole al administrador (Ley 1581 de 2012).</span></label>
+      <datalist id="listaServicios"></datalist><datalist id="listaCiudades"></datalist>
+      <div class="oculto" aria-hidden="true"><label for="apSitio">No llenar</label><input id="apSitio" name="sitio" tabindex="-1" autocomplete="off"></div>
+      <p id="estadoAparecer" class="estado-form" role="status"></p>
+      <div class="fila-botones">
+        <button class="boton" type="submit" value="enviar"><span data-icono="agregar" data-tam="18"></span><span>Enviar solicitud</span></button>
+        <button class="boton secundario" type="button" data-cerrar>Cancelar</button>
+      </div>
+    </form>
   </dialog>
 
   <script type="module" src="js/app.js"></script>

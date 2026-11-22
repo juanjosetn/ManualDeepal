@@ -82,7 +82,20 @@ export function abrirAdmin(c) {
     </div></details>
   </div>
 
-  <div class="paso"><h3>6. IAs aprobadas</h3>
+  <div class="paso" id="pasoComunidad"><h3>6. Opiniones, calificaciones y solicitudes</h3>
+    <div id="comunidadInactiva" class="pequeno" hidden>Las estrellas y el formulario «Quiero aparecer» están apagados. Para encenderlos sigue <strong>COMUNIDAD.md</strong> y pega la dirección /exec en <code>config/sitio.json</code>.</div>
+    <div id="comunidadActiva" hidden>
+      <p class="pequeno">Escribe la clave que pusiste al ejecutar «configurar» en Apps Script. No se guarda: se borra al cerrar la pestaña.</p>
+      <div class="fila-clave"><label for="claveCom" class="oculto">Clave de administración</label><input id="claveCom" type="password" autocomplete="off" placeholder="Clave de administración">
+      <button class="boton mini" id="btnPendientes" type="button">Ver pendientes</button></div>
+      <p id="estadoCom" class="pequeno" aria-live="polite"></p>
+      <div id="listaOpiniones"></div>
+      <div id="listaSolicitudes"></div>
+      <div id="listaBajos"></div>
+    </div>
+  </div>
+
+  <div class="paso"><h3>7. IAs aprobadas</h3>
     <p class="pequeno">Marca las IAs que quieres ofrecer en la app y descarga <code>config/ia.json</code> para subirlo. Las de pago vienen sin aprobar.</p>
     <div id="tablaIA"></div>
     <button class="boton" id="btnDescIA" type="button">Descargar ia.json</button>
@@ -98,6 +111,7 @@ export function abrirAdmin(c) {
   $('btnDescIA').addEventListener('click', descargarIA);
   pintarTablaIA();
   pintarBorradores();
+  iniciarModeracion();
 }
 
 // window.confirm bloquea pruebas automáticas; se puede reemplazar en pruebas
@@ -293,9 +307,123 @@ function pintarVcf() {
     const b = e.target.closest('button'); if (!b) return;
     const tr = b.closest('tr'); const v = nuevos[+tr.dataset.i];
     const bo = leerBorr();
-    bo.contactos.push({ nombre: v.nombre, servicio: tr.querySelector('select').value, ciudad: tr.querySelector('input').value.trim() || 'Sin confirmar', nota: v.empresa || '', telefono: v.telefono, tipo: 'empresa', verificado: false, ...(v.web ? { web: v.web } : {}) });
+    const ciudadV = tr.querySelector('input').value.trim() || 'Sin confirmar';
+    bo.contactos.push({ id: idContacto(v.nombre, ciudadV), nombre: v.nombre, servicio: tr.querySelector('select').value, ciudad: ciudadV, nota: v.empresa || '', telefono: v.telefono, tipo: 'empresa', verificado: false, ...(v.web ? { web: v.web } : {}) });
     guardarBorr(bo); b.textContent = 'Agregado'; b.disabled = true;
   };
+}
+
+/**
+ * Identificador estable de un contacto (nombre + ciudad en minúsculas y sin tildes).
+ * Las estrellas se guardan con este id: si cambias el nombre después, conserva el id.
+ */
+export function idContacto(nombre, ciudad, usados = [...(ctx?.DIR.contactos || []), ...leerBorr().contactos].map((c) => c.id)) {
+  const base = slug(`${nombre}-${ciudad}`).slice(0, 70) || 'contacto';
+  let id = base, n = 2;
+  while (usados.includes(id)) id = `${base}-${n++}`;
+  return id;
+}
+
+// ---------- Moderación (opiniones, solicitudes, calificación baja) ----------
+const ESTADOS = { pendiente: 'Pendiente', publicado: 'Publicada', sin_comentario: 'Solo estrellas', rechazado: 'Rechazada' };
+const nombreDe = (id) => ctx.DIR.contactos.find((c) => c.id === id)?.nombre || id;
+const fechaCorta = (iso) => String(iso || '').slice(0, 16).replace('T', ' ');
+const estrellasTexto = (n) => `${'★'.repeat(n)}${'☆'.repeat(5 - n)}`;
+
+function iniciarModeracion() {
+  const activa = !!ctx.COM?.activa;
+  $('comunidadInactiva').hidden = activa;
+  $('comunidadActiva').hidden = !activa;
+  if (!activa) return;
+  $('btnPendientes').addEventListener('click', cargarPendientes);
+  $('claveCom').addEventListener('keydown', (e) => { if (e.key === 'Enter') cargarPendientes(); });
+  $('pasoComunidad').addEventListener('click', accionModeracion);
+}
+
+const clave = () => $('claveCom').value;
+
+async function cargarPendientes() {
+  const est = $('estadoCom');
+  if (clave().length < 12) { est.textContent = 'La clave tiene al menos 12 caracteres.'; return; }
+  est.textContent = 'Consultando…';
+  try {
+    const [p, r] = await Promise.all([ctx.COM.adminPendientes(clave()), ctx.COM.resumen().catch(() => ({ contactos: {} }))]);
+    pintarOpiniones(p.opiniones);
+    pintarSolicitudes(p.solicitudes);
+    pintarBajos(r);
+    est.textContent = `${p.opiniones.length} ${p.opiniones.length === 1 ? 'opinión' : 'opiniones'} y ${p.solicitudes.length} ${p.solicitudes.length === 1 ? 'solicitud' : 'solicitudes'} por revisar.`;
+  } catch (e) { est.textContent = e.message; }
+}
+
+function pintarOpiniones(lista) {
+  $('listaOpiniones').innerHTML = `<h4>Opiniones por revisar</h4>` + (!lista.length ? '<p class="pequeno">No hay opiniones nuevas.</p>'
+    : `<table><thead><tr><th>Contacto</th><th>Opinión</th><th></th></tr></thead><tbody>${lista.map((o) => `<tr data-req="${esc(o.reqId)}">
+      <td>${esc(nombreDe(o.contactoId))}<br><span class="pequeno">${esc(fechaCorta(o.fecha))}</span></td>
+      <td><span aria-label="${o.estrellas} de 5">${estrellasTexto(o.estrellas)}</span> ${o.recomienda ? `<span class="pequeno">(recomienda: ${esc(o.recomienda)})</span>` : ''}<br>${esc(o.comentario)}</td>
+      <td class="fila-botones">${o.cuenta === false
+        // 1 estrella: no cuenta ni se publica; solo se lee y se archiva (puede revelar un problema real)
+        ? `<span class="pequeno">1 estrella: no cuenta ni se publica.</span> <button class="boton secundario mini" type="button" data-moderar="opinion" data-estado="rechazado">Archivar</button>`
+        : `<button class="boton mini" type="button" data-moderar="opinion" data-estado="publicado">Publicar</button>
+      <button class="boton secundario mini" type="button" data-moderar="opinion" data-estado="sin_comentario">Quitar solo el texto</button>
+      <button class="boton secundario mini" type="button" data-moderar="opinion" data-estado="rechazado">Rechazar todo</button>`}</td></tr>`).join('')}</tbody></table>`);
+}
+
+let SOLICITUDES = [];
+function pintarSolicitudes(lista) {
+  SOLICITUDES = lista;
+  const servicios = [...new Set(ctx.DIR.contactos.map((d) => d.servicio))];
+  $('listaSolicitudes').innerHTML = `<h4>Solicitudes para aparecer</h4>` + (!lista.length ? '<p class="pequeno">No hay solicitudes nuevas.</p>'
+    : `<table><thead><tr><th>Negocio</th><th>Servicio y ciudad</th><th></th></tr></thead><tbody>${lista.map((x) => `<tr data-req="${esc(x.reqId)}">
+      <td><strong>${esc(x.negocio)}</strong><br><span class="pequeno">${esc(x.telefono)}${x.web ? ` · ${esc(x.web)}` : ''}</span><br>${esc(x.descripcion)}
+        <br><span class="pequeno">Envió: ${esc(x.solicitante || 'sin nombre')} ${esc(x.contactoSolicitante || '')} · ${esc(fechaCorta(x.fecha))} · autoriza: ${esc(x.autoriza)}</span></td>
+      <td><label class="oculto" for="sv-${esc(x.reqId)}">Servicio</label><select id="sv-${esc(x.reqId)}">${[...new Set([...servicios, x.servicio])].map((s) => `<option ${s === x.servicio ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select>
+        <label class="oculto" for="cd-${esc(x.reqId)}">Ciudad</label><input id="cd-${esc(x.reqId)}" value="${esc(x.ciudad)}" size="12"></td>
+      <td class="fila-botones"><button class="boton mini" type="button" data-moderar="solicitud" data-estado="agregada">Agregar al directorio</button>
+      <button class="boton secundario mini" type="button" data-moderar="solicitud" data-estado="rechazada">Rechazar</button></td></tr>`).join('')}</tbody></table>`);
+}
+
+function pintarBajos(resumen) {
+  const umbral = ctx.SITIO.comunidad?.umbralBajo ?? 2, minimo = ctx.SITIO.comunidad?.minimoParaBajar ?? 3;
+  const bajos = Object.entries(resumen.contactos || {}).filter(([, r]) => r.n >= minimo && r.promedio <= umbral);
+  $('listaBajos').innerHTML = `<h4>En «Calificación baja»</h4><p class="pequeno">Antes de dejarlos ahí, revisa que las calificaciones no vengan de una sola persona (por ejemplo, muchas el mismo día).</p>` +
+    (!bajos.length ? '<p class="pequeno">Ningún contacto está en calificación baja.</p>'
+      : `<ul>${bajos.map(([id, r]) => `<li>${esc(nombreDe(id))}: ${String(r.promedio).replace('.', ',')} con ${r.n} calificaciones <button class="boton secundario mini" type="button" data-revisar="${esc(id)}">Revisar calificaciones</button><div id="rev-${esc(id)}"></div></li>`).join('')}</ul>`);
+}
+
+async function revisarCalificaciones(id) {
+  const caja = document.getElementById(`rev-${id}`);
+  caja.textContent = 'Consultando…';
+  try {
+    const lista = await ctx.COM.adminCalificaciones(clave(), id);
+    caja.innerHTML = `<table><tbody>${lista.map((o) => `<tr data-req="${esc(o.reqId)}" data-con-texto="${o.comentario ? '1' : ''}"><td>${esc(fechaCorta(o.fecha))}</td><td>${estrellasTexto(o.estrellas)}</td><td>${esc(o.comentario)}</td><td>${esc(ESTADOS[o.estado] || o.estado)}</td>
+      <td>${o.cuenta === false ? '<span class="pequeno">1 estrella: no cuenta</span>' : o.estado === 'rechazado'
+        ? `<button class="boton secundario mini" type="button" data-moderar="opinion" data-estado="${o.comentario ? 'publicado' : 'sin_comentario'}">Volver a contar</button>`
+        : '<button class="boton secundario mini" type="button" data-moderar="opinion" data-estado="rechazado">No contar</button>'}</td></tr>`).join('')}</tbody></table>`;
+  } catch (e) { caja.textContent = e.message; }
+}
+
+async function accionModeracion(e) {
+  const rev = e.target.closest('[data-revisar]');
+  if (rev) { revisarCalificaciones(rev.dataset.revisar); return; }
+  const b = e.target.closest('[data-moderar]'); if (!b) return;
+  const tr = b.closest('tr'), reqId = tr.dataset.req, { moderar: tipo, estado } = b.dataset;
+  tr.querySelectorAll('button').forEach((x) => { x.disabled = true; });
+  try {
+    // Primero el servidor; solo si respondió bien se crea el borrador (así un reintento no lo duplica).
+    await ctx.COM.adminModerar(clave(), tipo, reqId, estado);
+    if (tipo === 'solicitud' && estado === 'agregada') {
+      const x = SOLICITUDES.find((s) => s.reqId === reqId);
+      const servicio = document.getElementById(`sv-${reqId}`).value, ciudad = document.getElementById(`cd-${reqId}`).value.trim() || 'Sin confirmar';
+      const bo = leerBorr();
+      bo.contactos.push({ id: idContacto(x.negocio, ciudad), nombre: x.negocio, servicio, ciudad, nota: x.descripcion || '', telefono: x.telefono, tipo: 'empresa', verificado: false, ...(/^https:\/\//.test(x.web || '') ? { web: x.web } : {}) });
+      guardarBorr(bo);
+    }
+    const hecho = { publicado: 'Publicada', sin_comentario: 'Texto quitado', rechazado: 'Rechazada', agregada: 'Agregada a cambios pendientes (paso 5)', rechazada: 'Rechazada' }[estado];
+    tr.lastElementChild.textContent = hecho;
+  } catch (err) {
+    tr.querySelectorAll('button').forEach((x) => { x.disabled = false; });
+    $('estadoCom').textContent = err.message;
+  }
 }
 
 // ---------- Borradores y exportación ----------

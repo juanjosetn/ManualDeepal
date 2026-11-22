@@ -239,6 +239,74 @@ mark { background: var(--marcado); color: inherit; border-radius: 3px; padding: 
 .acts { display: flex; gap: 6px; grid-row: 1 / 3; grid-column: 2; }
 .acts a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hilo-fuerte); color: var(--grafito); text-decoration: none; transition: border-color var(--rapido), color var(--rapido); }
 .acts a:hover { border-color: var(--ambar); color: var(--ambar); }
+/* Desde la 2.1: ciudades plegables → tipo de servicio → fichas con aire entre sí */
+details.ciudad { border-bottom: 1px solid var(--hilo-fuerte); }
+details.ciudad:first-of-type { border-top: 1px solid var(--hilo-fuerte); margin-top: 26px; }
+details.ciudad > summary { display: flex; align-items: center; gap: 14px; padding: 18px 2px; min-height: 64px; cursor: pointer; list-style: none; }
+details.ciudad > summary::-webkit-details-marker { display: none; }
+.titulo-ciudad { display: grid; gap: 3px; min-width: 0; }
+.titulo-ciudad .nombre { font-size: 1.28rem; font-weight: 500; font-stretch: 112%; line-height: 1.2; }
+.servicios-ciudad { font-size: .84rem; color: var(--titanio); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+details.ciudad[open] .servicios-ciudad { display: none; }
+details.ciudad > summary .n { margin-left: auto; font-size: .84rem; color: var(--titanio); font-variant-numeric: tabular-nums; }
+.flecha-ciudad { flex: none; color: var(--titanio); transform: rotate(90deg); transition: transform var(--medio) var(--curva); }
+details.ciudad[open] .flecha-ciudad { transform: rotate(-90deg); }
+details.ciudad > summary:hover .nombre { color: var(--ambar); }
+section.subcat { padding: 4px 0 22px; }
+.cabeza-subcat { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 12px; font-size: .98rem; font-weight: 500; font-stretch: 104%; color: var(--titanio); }
+.cabeza-subcat .n { font-size: .8rem; font-weight: 400; font-variant-numeric: tabular-nums; }
+/* Fichas: una columna en el celular, dos o tres en pantallas anchas */
+.fichas { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); margin-top: 14px; }
+.fichas .contacto { display: flex; flex-direction: column; align-items: stretch; text-align: left; gap: 4px; background: var(--lamina); border: 1px solid var(--hilo); border-radius: 16px; padding: 16px 16px 14px 18px; }
+.fichas .contacto .nm { font-size: 1.02rem; }
+.fichas .contacto .nt { margin-top: 6px; }
+/* Botones al pie de la ficha, alineados entre fichas vecinas: el nombre nunca queda apretado */
+.fichas .contacto .acts { order: 10; margin-top: auto; padding-top: 14px; grid-row: auto; grid-column: auto; }
+.fichas .contacto .opiniones { order: 9; }
+.fichas .contacto .nt { color: var(--titanio); }
+.acts .calificar { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hilo-fuerte); background: transparent; color: var(--grafito); cursor: pointer; transition: border-color var(--rapido), color var(--rapido); }
+.acts .calificar:hover, .acts .calificar.hecha { border-color: var(--ambar); color: var(--ambar); }
+.valoracion { display: inline-flex; align-items: center; gap: 4px; color: var(--grafito); }
+.valoracion .llena { color: var(--ambar); }
+.valoracion b { font-weight: 500; }
+.valoracion span { color: var(--titanio); }
+.estrellas { display: inline-flex; gap: 1px; color: var(--hilo-fuerte); }
+.estrellas .llena { color: var(--ambar); }
+.opiniones { grid-column: 1 / -1; margin-top: 8px; font-size: .9rem; }
+.opiniones summary { cursor: pointer; color: var(--titanio); min-height: 32px; display: inline-flex; align-items: center; text-decoration: underline; text-decoration-color: var(--hilo-fuerte); text-underline-offset: 3px; }
+.opiniones ul { list-style: none; margin: 6px 0 0; padding: 0 0 0 12px; border-left: 1px solid var(--hilo-fuerte); display: grid; gap: 12px; }
+.opiniones p { margin: 3px 0; max-width: 65ch; }
+details.bajos { margin-top: 40px; border-top: 1px solid var(--hilo-fuerte); }
+details.bajos > summary { display: flex; align-items: center; gap: 10px; min-height: 56px; cursor: pointer; color: var(--titanio); list-style: none; }
+details.bajos > summary::-webkit-details-marker { display: none; }
+details.bajos > summary .n { margin-left: auto; font-size: .82rem; font-variant-numeric: tabular-nums; }
+details.bajos .contacto { opacity: .85; }
+.acciones-directorio { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px; }
+/* Formularios de calificar y aparecer */
+.dialogo form { display: grid; gap: 4px; }
+.dialogo fieldset { border: 0; padding: 0; margin: 10px 0 12px; }
+.dialogo legend { font-size: .86rem; font-weight: 500; margin-bottom: 6px; padding: 0; }
+.requerido { font-weight: 400; color: var(--titanio); }
+.estrellas-opciones { display: flex; gap: 2px; }
+.estrellas-opciones input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.estrellas-opciones label { display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center; border-radius: 12px; color: var(--hilo-fuerte); cursor: pointer; transition: color var(--rapido), transform var(--rapido); }
+.estrellas-opciones label.llena { color: var(--ambar); }
+.estrellas-opciones label.llena path { fill: currentColor; }
+.estrellas-opciones label:active { transform: scale(.92); }
+.estrellas-opciones input:focus-visible + label { outline: 2px solid var(--ambar); outline-offset: 2px; }
+.opciones-recomienda { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.opciones-recomienda legend { width: 100%; }
+.opciones-recomienda label, .autoriza { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+.autoriza { align-items: flex-start; font-size: .88rem; line-height: 1.45; }
+.autoriza input { margin-top: 3px; width: 18px; height: 18px; flex: none; }
+.dialogo input[type="radio"], .dialogo input[type="checkbox"] { accent-color: var(--ambar); }
+.campo [aria-invalid] { border-color: var(--disputa); }
+.dialogo .rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+@media (max-width: 520px) { .dialogo .rejilla { grid-template-columns: 1fr; } .dialogo { padding: 20px 18px; } #dlgCalificar h2, #dlgAparecer h2 { font-size: 1.32rem; line-height: 1.2; } }
+.dialogo:has(#formAparecer) { width: min(640px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); }
+.estado-form { min-height: 1.4em; margin: 6px 0 4px; font-size: .9rem; }
+.estado-form.ok { color: var(--consenso); } .estado-form.mal { color: var(--disputa); }
+@media (prefers-reduced-motion: reduce) { .estrellas-opciones label { transition: none; } }
 .nota { border-left: 2px solid var(--hilo-fuerte); padding: 4px 0 4px 14px; margin-top: 22px; font-size: .92rem; color: var(--titanio); max-width: 72ch; }
 
 /* ---------- Preguntar e IA ---------- */
@@ -279,7 +347,7 @@ mark { background: var(--marcado); color: inherit; border-radius: 3px; padding: 
 .creditos span strong { color: var(--grafito); font-weight: 500; }
 .version { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
 .version strong { color: var(--grafito); font-weight: 500; font-variant-numeric: tabular-nums; }
-.dialogo { width: min(560px, calc(100vw - 32px)); border: 0; border-radius: 20px; padding: 24px 26px 22px; background: var(--lamina); color: var(--grafito); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .45); }
+.dialogo { max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; width: min(560px, calc(100vw - 32px)); border: 0; border-radius: 20px; padding: 24px 26px 22px; background: var(--lamina); color: var(--grafito); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .45); }
 .dialogo::backdrop { background: rgba(15, 20, 23, .42); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .dialogo[open] { animation: aparecer var(--medio) var(--curva); }
 @keyframes aparecer { from { opacity: 0; transform: translateY(10px) scale(.985); } }

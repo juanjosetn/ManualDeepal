@@ -131,6 +131,9 @@ La versión se escribe en **un solo lugar**: `js/version.js`. De ahí la toman e
 > Si cambias algo tú mismo en `js`, `css` o `index.html`, sube también el número en `js/version.js` (normalmente las dos últimas cifras: de `…00cl` a `…01cl`) y anótalo en `docs/CHANGELOG.md`. Si no lo subes, los celulares que ya tienen la app no se enteran del cambio.
 > Los tips (`data/tips.json`) **no** necesitan cambio de versión: se actualizan solos.
 
+## Parte 11 · Estrellas, opiniones y «Quiero aparecer» (opcional)
+Se encienden aparte, con una hoja de Google: sigue **[COMUNIDAD.md](COMUNIDAD.md)**. Al final solo cambias una línea de `config/sitio.json` y la subes como en la parte 10.
+
 ## Problemas frecuentes
 
 | Problema | Solución |

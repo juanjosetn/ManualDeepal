@@ -51,6 +51,9 @@ const P = {
   mantenimiento: '<path d="M14.7 5.3a4 4 0 0 0-5 5.1L4.2 15.9a1.8 1.8 0 0 0 2.6 2.6l5.5-5.5a4 4 0 0 0 5.1-5l-2.6 2.6-2.1-.5-.5-2.1Z"/>',
   tramites: '<path d="M7 3h7l4 4v14H7Z"/><path d="M14 3v4h4M9.5 12h6M9.5 15.5h6"/>',
   accesorios: '<path d="M12 3.5 18.5 6v5c0 4.3-2.7 7.6-6.5 9.5C8.2 18.6 5.5 15.3 5.5 11V6Z"/>',
+  estrella: '<path d="m12 3.6 2.5 5.3 5.8.7-4.3 4 1.1 5.7L12 16.5l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7Z"/>',
+  estrellaLlena: '<path d="m12 3.6 2.5 5.3 5.8.7-4.3 4 1.1 5.7L12 16.5l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7Z" fill="currentColor"/>',
+  agregar: '<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>',
   creditos: '<circle cx="12" cy="9" r="5.5"/><path d="m9 13.8-1.5 6.7 4.5-2.3 4.5 2.3-1.5-6.7"/>',
   categoria: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
 };

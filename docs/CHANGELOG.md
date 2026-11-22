@@ -2,6 +2,46 @@
 
 Formato de versión **vXX.YY.ZZcl** — XX: rediseño o cambio que rompe datos · YY: funciones nuevas o correcciones de fondo · ZZ: ajustes menores. La más reciente va arriba.
 
+## v02.01.01cl — 22 de noviembre de 2026
+
+### Cambiado
+- **Las calificaciones de 1 estrella no cuentan** (decisión del administrador: suelen venir de un mal momento o de una retaliación individual). Se reciben y quedan en la hoja para que el administrador las lea, pero no entran al promedio, al orden de los «mejores arriba» ni a «Calificación baja», y su texto no se publica.
+- En el panel, la opinión de 1 estrella dice «no cuenta ni se publica» y solo trae el botón **Archivar**.
+- El mensaje al calificar ahora es el mismo para todos: «¡Gracias! Recibimos tu calificación.» (antes decía «ya cuenta», que no sería cierto con 1 estrella).
+- El servicio de Apps Script pasa a la versión 1.1.0. **Si ya lo habías publicado**, pega el `Codigo.gs` nuevo y usa «Gestionar implementaciones › Nueva versión» (la dirección `/exec` no cambia).
+
+### Pruebas
+- Script árbitro `tests/arbitro-v02-01-01.mjs`: 17 afirmaciones. Contra v02.01.00cl pasan 4 y fallan 13; contra esta versión pasan las 17.
+- `tests/mutaciones-v02-01-01.mjs`: 5 defectos sembrados, los 5 detectados.
+- Una prueba nueva en `tests/gas.test.mjs` (14 en total).
+- **Pruebas tocadas** (cambio legítimo de la regla): en `tests/gas.test.mjs`, la prueba de «Revisar calificaciones» usa 2 y 3 estrellas en vez de 1 y 2; en `tests/arbitro-v02-01.mjs`, la «calificación baja» se siembra con 2 estrellas en vez de 1.
+
+## v02.01.00cl — 22 de noviembre de 2026
+
+### Nuevo
+- **Estrellas y opiniones en el directorio.** Cada ficha tiene una estrella para calificar de 1 a 5, decir si lo recomiendas y dejar una opinión. Las estrellas cuentan de inmediato; el texto se publica cuando el administrador lo aprueba. Cada celular califica una vez por negocio (si vuelve, cambia su calificación).
+- **«Quiero aparecer en el directorio»:** formulario con negocio, servicio, ciudad, WhatsApp, web y descripción, con autorización para publicar los datos (Ley 1581 de 2012). Llega al administrador para revisión; si lo configura, también le llega un correo.
+- **Calificación baja:** un negocio con promedio de 2 estrellas o menos y al menos 3 calificaciones sale de la lista principal y pasa a una sección plegada al final. Si mejora, vuelve solo. Los dos números se cambian en `config/sitio.json`.
+- **Panel del administrador, paso 6 «Opiniones, calificaciones y solicitudes»:** publicar, quitar solo el texto o rechazar opiniones; «Agregar al directorio» desde una solicitud (queda en cambios pendientes); revisar todas las calificaciones de un negocio en calificación baja y «No contar» las sospechosas.
+- Servidor gratuito en Google Apps Script con una hoja de Google (`apps-script/`), y la guía **COMUNIDAD.md** para encenderlo paso a paso. Mientras no se configure, el manual se ve como antes.
+
+### Interfaz
+- **Directorio organizado por ciudad y tipo de servicio.** Cada ciudad es una sección plegable que resume sus servicios; adentro, subtítulos por servicio y **los mejor calificados arriba**.
+- **Nada amontonado:** cada contacto es una ficha con aire alrededor (una columna en el celular, dos o tres en el computador), botones al pie y las estrellas en una sola línea discreta («4,3 (3)»). Las opiniones van plegadas dentro de la ficha.
+- Al elegir una ciudad en los filtros, su sección se abre sola; las que abras se recuerdan mientras buscas.
+- Al buscar, los resultados salen en fichas, los mejor calificados primero.
+
+### Seguridad y privacidad
+- Las opiniones se revisan antes de publicarse y el servidor tapa teléfonos, correos y placas que alguien escriba.
+- La clave del administrador no se guarda en ningún lado: el servidor guarda solo su huella. Cinco intentos fallidos bloquean 15 minutos.
+- Frenos por hora contra abusos, campo trampa para robots y textos que empiezan por `=`, `+`, `-` o `@` guardados como texto (no como fórmula).
+- Para que una sola persona no esconda un negocio, hace falta un mínimo de 3 calificaciones antes de bajarlo; el orden usa un promedio prudente (un 5 con un solo voto no supera a un 4,8 con veinte).
+
+### Pruebas
+- `tests/gas.test.mjs` (13 pruebas) con un simulador del Apps Script que falla como Sheets real (fila 1.001, bloqueo ocupado, cupos por ventana fija).
+- Script árbitro `tests/arbitro-v02-01.mjs` con el Apps Script simulado dentro del navegador: 73 afirmaciones. Contra v02.00.01cl pasan 4 de 30 que alcanza a recorrer (las demás no pueden ni empezar); contra esta versión pasan las 73.
+- `tests/mutaciones-v02-01.mjs`: 14 defectos sembrados, los 14 detectados.
+
 ## v02.00.01cl — 21 de noviembre de 2026
 
 ### Diseño

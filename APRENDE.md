@@ -91,6 +91,25 @@ Ve en orden. Cada lección toma de 30 a 60 minutos.
 - **Ejercicio:** edita en GitHub `config/sitio.json` y cambia el texto del rol de alguno de los créditos.
 - **Comprueba:** en la pestaña *History* del archivo ves tu commit; en 2 minutos el sitio muestra tu nombre.
 
+## Lección 13 · Formularios: pedir datos sin frustrar
+- **Idea clave:** un formulario bueno dice qué es obligatorio, avisa el error junto al campo y **no borra lo escrito** si algo falla. El navegador revisa primero (rápido); el servidor revisa otra vez (porque el navegador se puede engañar).
+- **Mira:** en `index.html` el formulario `#formAparecer`; en `js/app.js` la función `validarSolicitud` y en `apps-script/Codigo.gs` la función `solicitar_`: verás las **mismas reglas** en los dos lados.
+- **Ejercicio:** abre «Quiero aparecer», escribe una web que empiece por `http://` y envía.
+- **Comprueba:** el aviso dice que debe empezar por `https://` y el campo queda marcado (`aria-invalid`), que el lector de pantalla también anuncia.
+
+## Lección 14 · Un servidor gratis: Google Apps Script
+- **Idea clave:** GitHub solo entrega archivos. Para **guardar** lo que la gente envía hace falta un servidor. Apps Script es JavaScript que corre en Google y escribe en una hoja. La página le habla con `fetch` y recibe **JSON** con la forma `{ ok, data }` o `{ ok:false, error }`.
+- **Mira:** `doGet` y `doPost` en `Codigo.gs`. Fíjate en tres trucos: `LockService` (si dos personas envían a la vez, una espera su turno), `reqId` (si llega dos veces lo mismo, no se duplica: eso se llama *idempotente*) y la **huella** de la clave (`huella_`): se guarda un resumen SHA-256, nunca la clave.
+- **Ejercicio:** en la terminal, `node --test tests/gas.test.mjs`. Ese archivo prueba el servidor **sin Google**, con un simulador (`tests/gas-simulador.mjs`).
+- **Comprueba:** pasan las 13 pruebas. Abre la que se llama «idempotente» y lee cómo lo verifica.
+
+## Lección 15 · Ordenar con justicia: el promedio prudente
+- **Idea clave:** ordenar solo por promedio es injusto: un negocio con **un** voto de 5 quedaría encima de otro con **veinte** votos de 4,8. El promedio prudente (bayesiano) suma a todos unos votos imaginarios de 3,5: `(promedio × votos + 3,5 × 2) / (votos + 2)`.
+- **Mira:** la función `puntaje` en `js/app.js` y `esBajo` (cuándo un negocio pasa a «Calificación baja»).
+- **Ejercicio:** calcula a mano: un voto de 5 → (5 + 7) / 3 = 4,0. Veinte votos de 4,8 → (96 + 7) / 22 ≈ 4,68.
+- **Además:** las calificaciones de 1 estrella no entran a la cuenta (función `cuenta_` en `apps-script/Codigo.gs`). Es una regla de negocio que vive en **un solo lugar**: si mañana se decide otra cosa, se cambia un número.
+- **Comprueba:** el segundo queda arriba. Luego cambia en `config/sitio.json` `"minimoParaBajar": 3` por `1` y piensa qué pasaría si un competidor deja una sola calificación de 1 estrella (por eso viene en 3).
+
 ---
 
 ### Lo que viene después
