@@ -8,7 +8,7 @@
     "texto": "Deepal"
   },
   "comunidad": {
-    "servicio": "",
+    "servicio": "https://script.google.com/macros/s/AKfycbyufnuvwdFEz0Vtj_nTJnBDnOC6vRGLx_kC8SyZWTnutWS89mL0MPORjv9rkaCbY4Q/exec",
     "umbralBajo": 2,
     "minimoParaBajar": 3,
     "nota": "Pega en «servicio» la dirección /exec de la implementación del Apps Script (ver COMUNIDAD.md). Vacío = estrellas y formularios ocultos. umbralBajo: promedio igual o menor pasa a «Calificación baja». minimoParaBajar: calificaciones mínimas antes de bajar a alguien (evita que una sola persona esconda un negocio)."
