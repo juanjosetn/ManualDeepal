@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo recuperar el IVA de tu carro eléctrico o híbrido · Guía interactiva</title>
+<meta name="description" content="Guía paso a paso, con checklist y seguimiento, para solicitar ante la DIAN la devolución del IVA de un vehículo eléctrico o híbrido. Ley 1715 de 2014 · Concepto DIAN 000673 de 2026.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101418; --panel:#171C22; --panel2:#1F262E; --line-d:#2C3641;
+  --paper:#EDF0EC; --card:#FFFFFF; --text:#171C20; --muted:#5D6871; --hair:#D7DCD6;
+  --charge:#0F7A55; --charge-lite:#3ECF96; --charge-soft:#E2F2EA;
+  --amber:#8A5E00; --amber-bg:#FCF2DC; --amber-line:#E0A93A;
+  --red:#9C2118; --red-bg:#FAEAE7; --red-line:#C4574B;
+  --blue:#26489F; --blue-bg:#E9EEFA; --blue-line:#5C7BD6;
+  --green-line:#3E9E77;
+  --sans:"Bricolage Grotesque","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --r:14px; --rs:9px;
+  --shadow:0 1px 0 rgba(16,20,24,.04), 0 10px 30px -18px rgba(16,20,24,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--text);
+  font-family:var(--serif); font-size:17px; line-height:1.62;
+  font-feature-settings:"kern","liga";
+  overflow-wrap:break-word;
+}
+h1,h2,h3,h4,.ui,button,input,select,table,label,.eyebrow{font-family:var(--sans)}
+a{color:#0C5F43; text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{color:#0A4B35}
+:focus-visible{outline:3px solid var(--charge-lite); outline-offset:2px; border-radius:4px}
+img{max-width:100%}
+
+/* ─────────── Instrument bar ─────────── */
+.rail{
+  position:sticky; top:0; z-index:60; background:var(--panel); color:#EDF1F4;
+  border-bottom:1px solid var(--line-d);
+  padding:10px max(14px,env(safe-area-inset-left)) 10px max(14px,env(safe-area-inset-right));
+}
+.rail-in{max-width:1220px; margin:0 auto; display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.brandmark{display:flex; align-items:center; gap:10px; min-width:0}
+.brandmark b{font-weight:700; font-size:15px; letter-spacing:-.01em; white-space:nowrap}
+.brandmark span{color:#8D9AA6; font-size:12.5px; font-family:var(--sans); white-space:nowrap}
+.plug{width:26px;height:26px;flex:0 0 26px}
+.meter{flex:1 1 320px; min-width:220px; display:flex; align-items:center; gap:12px}
+.cells{display:flex; gap:4px; flex:1; height:16px}
+.cell{
+  flex:1; background:#2A333D; border-radius:3px; position:relative; overflow:hidden;
+  border:1px solid #37424E;
+}
+.cell i{
+  position:absolute; inset:0; transform-origin:left center; transform:scaleX(0);
+  background:linear-gradient(90deg,var(--charge),var(--charge-lite));
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.cell.on i{transform:scaleX(1)}
+.cell.part i{transform:scaleX(var(--p,0))}
+.pct{font-family:var(--sans); font-weight:700; font-size:15px; font-variant-numeric:tabular-nums; min-width:44px; text-align:right}
+.rail-actions{display:flex; gap:8px; flex-wrap:wrap}
+
+/* ─────────── Buttons ─────────── */
+button{font:inherit; font-family:var(--sans); cursor:pointer; border-radius:999px; border:1px solid transparent; transition:background .15s,border-color .15s,color .15s,transform .08s}
+button:active{transform:translateY(1px)}
+.btn{background:var(--charge); color:#fff; border-color:var(--charge); padding:8px 16px; font-size:14px; font-weight:600}
+.btn:hover{background:#0C6647}
+.btn-ghost{background:transparent; color:#C6D2DA; border-color:#3A4550; padding:7px 14px; font-size:13.5px; font-weight:500}
+.btn-ghost:hover{background:#242D36; color:#fff}
+.btn-line{background:var(--card); color:var(--text); border-color:var(--hair); padding:9px 16px; font-size:14px; font-weight:600}
+.btn-line:hover{border-color:#9AA69D; background:#F7F9F6}
+.btn-sm{padding:6px 13px; font-size:13px}
+
+/* ─────────── Shell ─────────── */
+.shell{max-width:1220px; margin:0 auto; padding:0 max(14px,env(safe-area-inset-left)) 90px max(14px,env(safe-area-inset-right))}
+.cols{display:grid; grid-template-columns:1fr; gap:0}
+@media (min-width:1024px){
+  .cols{grid-template-columns:236px minmax(0,1fr); gap:44px; align-items:start}
+}
+
+/* ─────────── Step nav ─────────── */
+.nav{position:sticky; top:57px; z-index:50; background:var(--paper); padding:10px 0; margin:0 -14px; border-bottom:1px solid var(--hair)}
+.nav-scroll{display:flex; gap:6px; overflow-x:auto; padding:0 14px 2px; scrollbar-width:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.navbtn{
+  flex:0 0 auto; display:flex; align-items:center; gap:8px; background:var(--card); color:var(--muted);
+  border:1px solid var(--hair); border-radius:999px; padding:7px 14px; font-size:13.5px; font-weight:600; white-space:nowrap;
+}
+.navbtn .dot{width:8px;height:8px;border-radius:50%;background:#C9D0C8;flex:0 0 8px}
+.navbtn.done .dot{background:var(--charge)}
+.navbtn.active{background:var(--ink); color:#fff; border-color:var(--ink)}
+.navbtn.active .dot{background:var(--charge-lite)}
+.navbtn.locked{opacity:.62}
+@media (min-width:1024px){
+  .nav{position:sticky; top:81px; background:transparent; border:0; margin:0; padding:26px 0 0}
+  .nav-scroll{flex-direction:column; overflow:visible; padding:0; gap:3px}
+  .navbtn{width:100%; border-radius:10px; border-color:transparent; background:transparent; padding:9px 12px}
+  .navbtn:hover{background:#E3E8E2}
+  .navbtn.active{background:var(--ink)}
+  .nav-note{margin-top:16px; font-family:var(--sans); font-size:12px; color:var(--muted); line-height:1.45; padding:0 12px}
+}
+
+/* ─────────── Hero ─────────── */
+.hero{background:var(--ink); color:#EDF1F4; border-radius:0 0 var(--r) var(--r); margin:0 -14px 28px; padding:44px 24px 34px; position:relative; overflow:hidden}
+@media (min-width:1024px){.hero{margin:0 0 34px; border-radius:var(--r); padding:56px 52px 44px}}
+.hero:before{
+  content:""; position:absolute; right:-90px; top:-120px; width:420px; height:420px; border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, rgba(62,207,150,.20), rgba(62,207,150,0) 62%);
+}
+.hero>*{position:relative}
+.eyebrow{font-size:12.5px; letter-spacing:.06em; color:#8CE0BC; font-weight:600; margin:0 0 14px}
+.hero h1{font-size:clamp(30px,6.2vw,54px); line-height:1.03; letter-spacing:-.028em; font-weight:800; margin:0 0 16px; max-width:16ch}
+.hero p{max-width:56ch; color:#B7C3CC; font-size:17px; margin:0 0 10px}
+.hero .norm{font-family:var(--sans); font-size:14px; color:#8D9AA6}
+.hero-cta{margin-top:26px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.hero-meta{margin-top:30px; padding-top:18px; border-top:1px solid #262F38; font-family:var(--sans); font-size:13px; color:#8D9AA6; display:flex; gap:22px; flex-wrap:wrap}
+
+/* ─────────── Sections ─────────── */
+section.step{display:none; padding-top:26px; animation:in .3s ease both}
+section.step.show{display:block}
+@keyframes in{from{opacity:0; transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+.step-head{margin:0 0 26px}
+.step-kicker{font-family:var(--sans); font-size:13px; font-weight:700; color:var(--charge); margin:0 0 6px; letter-spacing:.02em}
+.step-head h2{font-size:clamp(25px,4.6vw,38px); line-height:1.08; letter-spacing:-.022em; font-weight:700; margin:0 0 10px}
+.step-head .lede{color:var(--muted); font-size:17.5px; margin:0; max-width:62ch}
+h3{font-size:19px; font-weight:700; letter-spacing:-.012em; margin:34px 0 12px}
+h4{font-size:15.5px; font-weight:700; margin:22px 0 8px}
+p{margin:0 0 14px; max-width:72ch}
+ul.plain{margin:0 0 16px; padding-left:20px; max-width:72ch}
+ul.plain li{margin-bottom:7px}
+.small{font-size:14.5px; color:var(--muted)}
+hr.rule{border:0; border-top:1px solid var(--hair); margin:34px 0}
+
+/* ─────────── Callouts ─────────── */
+.note{border-left:3px solid var(--green-line); background:var(--charge-soft); border-radius:0 var(--rs) var(--rs) 0; padding:15px 18px; margin:0 0 16px; max-width:74ch}
+.note h5{font-family:var(--sans); font-size:14.5px; font-weight:700; margin:0 0 6px; color:#0B5C41}
+.note p{margin:0 0 8px; font-size:15.5px}
+.note p:last-child{margin:0}
+.note.warn{border-color:var(--amber-line); background:var(--amber-bg)} .note.warn h5{color:var(--amber)}
+.note.crit{border-color:var(--red-line); background:var(--red-bg)} .note.crit h5{color:var(--red)}
+.note.info{border-color:var(--blue-line); background:var(--blue-bg)} .note.info h5{color:var(--blue)}
+
+/* ─────────── Tables ─────────── */
+.tw{overflow-x:auto; margin:0 0 20px; border:1px solid var(--hair); border-radius:var(--rs); background:var(--card); -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; min-width:520px; font-family:var(--sans); font-size:14.5px}
+table.narrow{min-width:420px}
+th{background:var(--ink); color:#EDF1F4; text-align:left; font-weight:600; padding:11px 14px; font-size:13.5px; vertical-align:bottom}
+td{padding:11px 14px; border-top:1px solid var(--hair); vertical-align:top; line-height:1.5}
+tbody tr:nth-child(even) td{background:#FAFBFA}
+td b, th b{font-weight:700}
+.cas{font-variant-numeric:tabular-nums; font-weight:700; white-space:nowrap}
+
+/* ─────────── Model text blocks ─────────── */
+.model{background:var(--card); border:1px solid var(--hair); border-radius:var(--rs); overflow:hidden; margin:0 0 20px}
+.model-top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid var(--hair); background:#F7F9F6; flex-wrap:wrap}
+.model-top h5{font-family:var(--sans); font-size:14.5px; font-weight:700; margin:0}
+.model pre{margin:0; padding:18px 16px; font-family:var(--serif); font-size:15px; line-height:1.62; white-space:pre-wrap; overflow-wrap:anywhere}
+
+/* ─────────── Checklist ─────────── */
+.checkwrap{margin:38px 0 0; border:1px solid var(--hair); border-radius:var(--r); background:var(--card); overflow:hidden; box-shadow:var(--shadow)}
+.checkwrap header{padding:16px 18px 14px; border-bottom:1px solid var(--hair); background:linear-gradient(180deg,#F7F9F6,#fff)}
+.checkwrap header h3{margin:0 0 4px; font-size:17px}
+.checkwrap header p{margin:0; font-family:var(--sans); font-size:13.5px; color:var(--muted)}
+.items{list-style:none; margin:0; padding:6px 0}
+.items li{display:flex; gap:12px; align-items:flex-start; padding:11px 18px; border-bottom:1px solid #F0F2EF}
+.items li:last-child{border-bottom:0}
+.items li.locked{opacity:.45}
+.items li.ok{background:#F6FBF8}
+.items input[type=checkbox]{
+  appearance:none; -webkit-appearance:none; width:22px; height:22px; flex:0 0 22px; margin:1px 0 0;
+  border:1.5px solid #B5BEB6; border-radius:6px; background:#fff; cursor:pointer; position:relative;
+}
+.items input[type=checkbox]:checked{background:var(--charge); border-color:var(--charge)}
+.items input[type=checkbox]:checked:after{
+  content:""; position:absolute; left:7px; top:3px; width:5px; height:10px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(42deg);
+}
+.items input[type=checkbox]:disabled{cursor:not-allowed; background:#F1F3F0}
+.items label{font-family:var(--sans); font-size:15px; line-height:1.45; cursor:pointer; flex:1}
+.items li.locked label{cursor:not-allowed}
+.stamp{font-family:var(--sans); font-size:12px; color:var(--charge); font-weight:600; white-space:nowrap; padding-top:3px}
+.checkfoot{padding:16px 18px; border-top:1px solid var(--hair); background:#F7F9F6; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end}
+.field{display:flex; flex-direction:column; gap:5px}
+.field label{font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--muted)}
+input[type=text],input[type=date],input[type=time],input[type=number],select,textarea{
+  font-family:var(--sans); font-size:14.5px; padding:9px 11px; border:1px solid var(--hair);
+  border-radius:8px; background:#fff; color:var(--text); min-width:0; width:100%;
+}
+input:disabled{background:#F1F3F0; color:#9AA29B}
+.state-pill{font-family:var(--sans); font-size:12.5px; font-weight:700; padding:5px 11px; border-radius:999px; background:#EEF0ED; color:var(--muted)}
+.state-pill.ok{background:var(--charge-soft); color:#0B5C41}
+
+/* ─────────── Data panel ─────────── */
+.grid2{display:grid; grid-template-columns:1fr; gap:12px}
+@media (min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}}
+details.panel{border:1px solid var(--hair); border-radius:var(--r); background:var(--card); margin:0 0 22px; overflow:hidden}
+details.panel>summary{list-style:none; cursor:pointer; padding:15px 18px; font-family:var(--sans); font-weight:700; font-size:15.5px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+details.panel>summary::-webkit-details-marker{display:none}
+details.panel>summary:after{content:"+"; font-size:20px; color:var(--muted); font-weight:400; line-height:1}
+details.panel[open]>summary:after{content:"–"}
+details.panel[open]>summary{border-bottom:1px solid var(--hair)}
+.panel-body{padding:18px}
+
+/* ─────────── Tooltip ─────────── */
+.tt{border-bottom:1.5px dotted var(--charge); cursor:help; background:none; border-radius:0; padding:0; color:inherit; font:inherit; border-left:0;border-right:0;border-top:0}
+.tt:after{content:"?"; display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; margin-left:4px; border-radius:50%; background:var(--charge); color:#fff; font-family:var(--sans); font-size:10px; font-weight:700; vertical-align:2px}
+#tip{
+  position:fixed; z-index:200; max-width:min(320px,calc(100vw - 24px)); background:var(--ink); color:#E7ECEF;
+  font-family:var(--sans); font-size:13.5px; line-height:1.5; padding:11px 13px; border-radius:10px;
+  box-shadow:0 16px 40px -14px rgba(0,0,0,.55); opacity:0; pointer-events:none; transform:translateY(4px); transition:opacity .12s,transform .12s;
+}
+#tip.on{opacity:1; transform:none}
+
+/* ─────────── Tracker ─────────── */
+.tracker{border:1px solid var(--hair); border-radius:var(--r); background:var(--card); padding:18px; margin:0 0 22px}
+.bigstat{font-family:var(--sans); font-size:clamp(34px,9vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums; margin:0}
+.bigstat small{display:block; font-size:13px; font-weight:600; color:var(--muted); letter-spacing:0; margin-top:8px}
+
+/* ─────────── Footer ─────────── */
+.foot{margin-top:60px; border-top:1px solid var(--hair); padding-top:26px; font-family:var(--sans); font-size:13.5px; color:var(--muted)}
+.foot strong{color:var(--text)}
+.toast{position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); background:var(--ink); color:#fff; font-family:var(--sans); font-size:14px; padding:12px 20px; border-radius:999px; opacity:0; pointer-events:none; transition:.22s; z-index:300}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.skip{position:absolute; left:-9999px}
+.skip:focus{left:8px; top:8px; z-index:400; background:#fff; padding:10px 14px; border-radius:8px}
+
+@media print{
+  .rail,.nav,.hero-cta,.checkfoot,.rail-actions,.toast{display:none!important}
+  section.step{display:block!important; break-before:page}
+  body{background:#fff}
+  .hero{background:#fff;color:#000;border:1px solid #ccc}
+  .hero h1,.hero p,.eyebrow{color:#000}
+  details.panel{border:0} details.panel>summary{display:none} .panel-body{padding:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ══════════════ INSTRUMENT BAR ══════════════ -->
+<div class="rail">
+  <div class="rail-in">
+    <div class="brandmark">
+      <svg class="plug" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M8 3v5M16 3v5" stroke="#3ECF96" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 8h14v3a7 7 0 0 1-7 7 7 7 0 0 1-7-7V8Z" stroke="#3ECF96" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M12 18v3" stroke="#3ECF96" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <b>Devolución de IVA</b><br><span>Vehículo eléctrico o híbrido</span>
+      </div>
+    </div>
+    <div class="meter">
+      <div class="cells" id="cells" role="img" aria-label="Avance del trámite"></div>
+      <div class="pct" id="pct">0%</div>
+    </div>
+    <div class="rail-actions">
+      <button class="btn-ghost" id="btnResume">Mi paso actual</button>
+      <button class="btn-ghost" id="btnBackup">Copia de seguridad</button>
+      <button class="btn-ghost" id="btnReset">Reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+<div class="cols">
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav class="nav" aria-label="Pasos del trámite">
+    <div class="nav-scroll" id="nav"></div>
+    <p class="nav-note">Los pasos se habilitan en orden. Puedes leer cualquiera cuando quieras; marcar solo se activa cuando llegas allí.</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ══════════════ 0 · INICIO ══════════════ -->
+  <section class="step show" id="s-0" data-step="0">
+    <div class="hero">
+      <p class="eyebrow">Guía fácil · paso a paso</p>
+      <h1>Cómo recuperar el IVA de tu carro eléctrico o híbrido</h1>
+      <p>Compraste un carro eléctrico o híbrido nuevo y pagaste IVA. La ley dice que ese IVA no lo debías pagar — puedes pedir que te lo devuelvan.</p>
+      <p class="norm">Ley 1715 de 2014 · Concepto DIAN 000673 de 2026. Una guía sencilla, escrita para que cualquier persona pueda hacer el trámite sin contador y sin intermediarios.</p>
+      <div class="hero-cta">
+        <button class="btn" id="btnStart">Empezar por el Paso 1</button>
+        <button class="btn-ghost" data-goto="anexos">Ver los modelos de cartas</button>
+      </div>
+      <div class="hero-meta">
+        <span>Versión 5.4 · 22 de junio de 2026</span>
+        <span>Basada en la experiencia real de personas que ya lo hicieron · 2026</span>
+      </div>
+    </div>
+
+    <div class="note crit">
+      <h5>Lee esto primero</h5>
+      <p>Este procedimiento no garantiza el éxito, pero es exactamente lo que sirvió para radicar la solicitud ante la DIAN y empezar a contar los 50 días hábiles de respuesta. La DIAN puede pedir cosas adicionales y cada caso es distinto. Tómalo como una guía amistosa, no como asesoría legal.</p>
+    </div>
+
+    <h3>¿De qué se trata? (en palabras simples)</h3>
+    <p><b>¿Por qué te lo cobraron entonces?</b> Porque cuando compraste, el concesionario no sabía si ibas a tramitar el certificado de la UPME. Por eso te facturó con IVA. Una vez sacas ese certificado, ese IVA pasa a ser un «pago de lo no debido» <button class="tt" data-tip="Es la figura legal para cuando le pagaste al Estado algo que no tenía causa legal. No es un saldo a favor ni un pago en exceso: por eso en el Formulario 010 el concepto es el código 3."></button> y la DIAN te lo devuelve.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:30%">Pregunta</th><th>Respuesta corta</th></tr></thead>
+        <tbody>
+          <tr><td>¿Quién puede pedirlo?</td><td>Personas naturales y jurídicas que compraron un carro eléctrico (BEV) o híbrido (HEV/PHEV) nuevo. Esta guía está enfocada en personas naturales para uso personal. Los <b>mild hybrid (MHEV) no están incluidos</b>. <button class="tt" data-tip="MHEV es el híbrido ligero: tiene un motor eléctrico pequeño que solo asiste al motor de gasolina y nunca mueve el carro por sí solo. La UPME lo excluye expresamente de los incentivos."></button></td></tr>
+          <tr><td>¿Y si ya vendí el vehículo?</td><td>Conservas el derecho. Si fuiste el primer comprador del vehículo nuevo (a tu nombre se facturó y pagaste el IVA), puedes pedir la devolución aunque ya lo hayas vendido, dentro de los 5 años.</td></tr>
+          <tr><td>¿Esto es seguro?</td><td>Sí. El trámite es real, gratuito y lo haces tú directamente. No contrates intermediarios que prometan resultados garantizados o inmediatos.</td></tr>
+          <tr><td>¿Cuánto me devuelven?</td><td>El IVA pagado (el <b>5%</b> del precio sin IVA del vehículo). En pesos puede ser bastante.</td></tr>
+          <tr><td>¿Cuánto cuesta el trámite?</td><td>Es gratis ante la DIAN. Lo único que pagas es la tarifa del certificado de la UPME, que se calcula según el valor del vehículo.</td></tr>
+          <tr><td>¿Hasta cuándo puedo pedirlo?</td><td>Hasta 5 años después de la fecha de la factura de compra.</td></tr>
+          <tr><td>¿Cuánto se demora la DIAN?</td><td>50 días hábiles desde que radicas (Art. 855 E.T.). <button class="tt" data-tip="Hábiles significa que no cuentan sábados, domingos ni festivos. En la práctica son unos dos meses y medio de calendario. El Paso 5 te lleva la cuenta automáticamente."></button></td></tr>
+          <tr><td>¿Necesito contador o abogado?</td><td>No para la devolución del IVA: la declaración juramentada que tú firmas reemplaza al contador. Solo se recomienda contador para la deducción del 50% en renta (Formulario 210).</td></tr>
+          <tr><td>¿Y si la DIAN «inadmite»?</td><td>Un Auto Inadmisorio no es un rechazo: corrige lo señalado y radica de nuevo toda la solicitud (los 9 documentos), dentro del mes siguiente al quinto día tras la notificación.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <h5>Bono extra</h5>
+      <p>Con el mismo certificado UPME también puedes deducir el <b>50%</b> del valor del carro en tu declaración de renta (Formulario 210, casilla «Otras deducciones imputables»). Esto sí necesita contador y es aparte de la devolución del IVA.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Dos herramientas que te ahorran trabajo</h5>
+      <p>1) <a href="https://www.youtube.com/watch?v=K_9ZtMpy-bE" target="_blank" rel="noopener">Video que explica el proceso de la UPME (YouTube)</a>. &nbsp; 2) <a href="https://cyoung.github.io/dian-010-upme/" target="_blank" rel="noopener">Herramienta gratuita para diligenciar el Formulario 010</a>, que además genera la declaración juramentada (Anexo D). No guarda datos personales: todo se queda en tu navegador.</p>
+    </div>
+
+    <h3>Referencia legal (por si te la piden)</h3>
+    <p class="small">Concepto DIAN No. 000673-int-0063 del 16 de enero de 2026 — Subdirección de Recaudo.</p>
+    <div class="tw">
+      <table class="narrow">
+        <thead><tr><th style="width:44%">Norma</th><th>Para qué sirve</th></tr></thead>
+        <tbody>
+          <tr><td>Ley 1715 de 2014, Art. 12</td><td>Exclusión del IVA por Gestión Eficiente de la Energía</td></tr>
+          <tr><td>Ley 1715 de 2014, Art. 11</td><td>Deducción del 50% del valor en renta</td></tr>
+          <tr><td>Resolución 000400 de 2026</td><td>Ventana continua de solicitudes (1 feb – 15 dic)</td></tr>
+          <tr><td>Decreto 1625/2016, Art. 1.3.1.12.24</td><td>Reglamenta la exclusión y el procedimiento de devolución</td></tr>
+          <tr><td>Concepto DIAN 013853/2025</td><td>Reconoce a los híbridos como medida de GEE</td></tr>
+          <tr><td>Art. 855 E.T.</td><td>50 días hábiles para que la DIAN resuelva</td></tr>
+          <tr><td>Art. 2536 Código Civil</td><td>Prescripción de 5 años para pedir la devolución</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="panel">
+      <summary>Control de versiones</summary>
+      <div class="panel-body">
+        <p class="small">La versión más reciente es la que aparece en la portada y en el pie de página. Antes de usar la guía, verifica que tengas la más nueva.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:74px">Versión</th><th style="width:96px">Fecha</th><th>Cambios principales</th></tr></thead>
+            <tbody>
+              <tr><td class="cas">4.3</td><td>Anterior</td><td>Versión base del documento (formato PDF).</td></tr>
+              <tr><td class="cas">5.0</td><td>6 jun 2026</td><td>Reescritura en lenguaje sencillo, correcciones del Formulario 010, ciclos UPME actualizados a ventana continua (Resolución 000400 de 2026), checklist de 9 documentos, herramienta y video de apoyo, y reglas de cita de la DIAN. Aclaración: la casilla 53 (período) = 1; en casillas 45 y 60 el tipo de documento es CC o NIT con su código (13/31); el total puede incluir el INC cuando el vehículo lo tiene.</td></tr>
+              <tr><td class="cas">5.1</td><td>9 jun 2026</td><td>Casilla 20 indica «13 si es Cédula (CC) · 31 si es NIT»; recordatorio de verificar bancos con convenio DIAN; casillas de identificación «cópiala del RUT tal cual»; nota de no diligenciar casillas de más; colores de la tabla de partida unificados; pasos UPME reubicados en el Paso 1.</td></tr>
+              <tr><td class="cas">5.2</td><td>10 jun 2026</td><td>Se precisa que todo se envía desde el correo del RUT (si se usa otro, la DIAN inadmite); nota de atención al agendar la cita; radicado UPME en formato VEH_GEEXXXX.</td></tr>
+              <tr><td class="cas">5.3</td><td>11 jun 2026</td><td>Optimización de diseño: cajas de tips agrupadas, espaciado uniforme, tabla de partida compactada, preguntas frecuentes unificadas y referencias de página para navegar más rápido.</td></tr>
+              <tr><td class="cas">5.4</td><td>22 jun 2026</td><td>Corrección del Formulario 010: casilla 53 (período) unificada a SIEMPRE 1 para todos los casos; casilla 50 confirmada como «Beneficio tributario UPME IVA Excluido Ley 1715 de 2014». En el Paso 1 (UPME) se retira la mención a «Tesla precargados» para que la guía aplique a cualquier vehículo eléctrico o híbrido.</td></tr>
+              <tr><td class="cas">5.4-h</td><td>2026</td><td><b>Versión HTML interactiva.</b> Mismo contenido de la 5.4, con una corrección verificada contra el instructivo oficial del Formato 010: en la <b>casilla 2 (Concepto) el código es 3</b>, no 6. Se añaden, como información complementaria, las dos rutas de radicación, el límite de 20 MB por correo, el horario de envío, la regla de TIDIS sobre 1.000 UVT, el formato oficial del asunto y enlaces oficiales de consulta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel" id="misdatos">
+      <summary>Mis datos (se usan para llenar los modelos de cartas)</summary>
+      <div class="panel-body">
+        <p class="small">Todo esto se guarda solo en este navegador, en tu dispositivo. Nada se envía a ningún servidor. Lo que dejes vacío aparecerá como <code>[campo]</code> en los documentos que descargues.</p>
+        <h4>Tus datos personales (tal como están en el RUT)</h4>
+        <div class="grid2">
+          <div class="field"><label for="d_nombre">Nombre completo</label><input type="text" id="d_nombre" data-d="nombre" placeholder="JUAN JOSÉ TAPIA GÓMEZ"></div>
+          <div class="field"><label for="d_cedula">Cédula (sin puntos)</label><input type="text" id="d_cedula" data-d="cedula" inputmode="numeric" placeholder="79123456"></div>
+          <div class="field"><label for="d_dir">Dirección (igual al RUT)</label><input type="text" id="d_dir" data-d="direccion"></div>
+          <div class="field"><label for="d_correo">Correo registrado en el RUT</label><input type="text" id="d_correo" data-d="correo" inputmode="email"></div>
+          <div class="field"><label for="d_ciudad">Ciudad</label><input type="text" id="d_ciudad" data-d="ciudad" placeholder="Bogotá D.C."></div>
+          <div class="field"><label for="d_depto">Departamento</label><input type="text" id="d_depto" data-d="departamento"></div>
+        </div>
+        <h4>Seccional y cuenta bancaria</h4>
+        <div class="grid2">
+          <div class="field"><label for="d_secc">Dirección Seccional <button class="tt" data-tip="Es la oficina de la DIAN que te corresponde. Aparece en tu RUT. Cópiala tal cual, porque la carta y el Formulario 010 deben coincidir con ella."></button></label><input type="text" id="d_secc" data-d="seccional" placeholder="Bogotá"></div>
+          <div class="field"><label for="d_buzon">Buzón de la seccional</label><input type="text" id="d_buzon" data-d="buzon"></div>
+          <div class="field"><label for="d_banco">Banco</label><input type="text" id="d_banco" data-d="banco"></div>
+          <div class="field"><label for="d_nitbanco">NIT del banco</label><input type="text" id="d_nitbanco" data-d="nitBanco"></div>
+          <div class="field"><label for="d_tipocta">Tipo de cuenta</label><select id="d_tipocta" data-d="tipoCuenta"><option value="">—</option><option>Ahorros</option><option>Corriente</option></select></div>
+          <div class="field"><label for="d_numcta">Número de cuenta</label><input type="text" id="d_numcta" data-d="numeroCuenta" inputmode="numeric"></div>
+        </div>
+        <h4>Vehículo y factura</h4>
+        <div class="grid2">
+          <div class="field"><label for="d_marca">Marca</label><input type="text" id="d_marca" data-d="marca"></div>
+          <div class="field"><label for="d_modelo">Modelo / línea</label><input type="text" id="d_modelo" data-d="modelo"></div>
+          <div class="field"><label for="d_anio">Año</label><input type="text" id="d_anio" data-d="anio" inputmode="numeric"></div>
+          <div class="field"><label for="d_vin">VIN / chasis</label><input type="text" id="d_vin" data-d="vin"></div>
+          <div class="field"><label for="d_conc">Concesionario</label><input type="text" id="d_conc" data-d="concesionario"></div>
+          <div class="field"><label for="d_nitconc">NIT del concesionario</label><input type="text" id="d_nitconc" data-d="nitConcesionario"></div>
+          <div class="field"><label for="d_fact">Número de factura (con prefijo)</label><input type="text" id="d_fact" data-d="factura" placeholder="01ME218"></div>
+          <div class="field"><label for="d_fechafact">Fecha de la factura</label><input type="date" id="d_fechafact" data-d="fechaFactura"></div>
+          <div class="field" style="grid-column:1/-1"><label for="d_cufe">CUFE de la factura <button class="tt" data-tip="Código Único de Factura Electrónica: la cadena larga de letras y números que identifica tu factura ante la DIAN. Aparece en el PDF de la factura, normalmente al pie o junto al código QR."></button></label><input type="text" id="d_cufe" data-d="cufe"></div>
+        </div>
+        <h4>Valores</h4>
+        <div class="grid2">
+          <div class="field"><label for="d_sin">Valor sin IVA ($)</label><input type="text" id="d_sin" data-d="valorSinIva" inputmode="numeric"></div>
+          <div class="field"><label for="d_iva">IVA pagado ($) <span class="small">— se calcula al 5%</span></label><input type="text" id="d_iva" data-d="valorIva" inputmode="numeric"></div>
+          <div class="field"><label for="d_inc">INC, si el vehículo lo tiene ($)</label><input type="text" id="d_inc" data-d="valorInc" inputmode="numeric"></div>
+          <div class="field"><label for="d_total">Total factura ($)</label><input type="text" id="d_total" data-d="valorTotal" inputmode="numeric"></div>
+        </div>
+        <p class="small" id="uvtNote" style="margin-top:12px"></p>
+        <h4>Certificado UPME y cita</h4>
+        <div class="grid2">
+          <div class="field"><label for="d_radupme">Radicado UPME</label><input type="text" id="d_radupme" data-d="radicadoUpme" placeholder="VEH_GEE1234"></div>
+          <div class="field"><label for="d_fupme">Fecha del certificado UPME</label><input type="date" id="d_fupme" data-d="fechaUpme"></div>
+          <div class="field"><label for="d_codcita">Código de cita (si aplica)</label><input type="text" id="d_codcita" data-d="codigoCita"></div>
+          <div class="field"><label for="d_fcita">Fecha y hora de la cita</label><input type="text" id="d_fcita" data-d="fechaCita" placeholder="14/10/2026 a las 9:00 a. m."></div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ══════════════ 1 · UPME ══════════════ -->
+  <section class="step" id="s-1" data-step="1">
+    <div class="step-head">
+      <p class="step-kicker">Paso 1 de 5</p>
+      <h2>Saca el Certificado UPME</h2>
+      <p class="lede">Es el primer requisito y todo es en línea, a través del Sistema Único de Usuarios (SUU). La plataforma te guía sola.</p>
+    </div>
+
+    <h3>Antes de empezar, ten a la mano</h3>
+    <ul class="plain">
+      <li>Factura electrónica de compra del vehículo — o, como mínimo, el valor del vehículo con y sin IVA.</li>
+      <li>Cédula de ciudadanía.</li>
+      <li>RUT.</li>
+    </ul>
+
+    <h3>Cómo hacerlo, paso a paso</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:26%">Pasos</th><th>Qué haces</th></tr></thead>
+        <tbody>
+          <tr><td>1. Regístrate en el SUU</td><td>Solo si aún no tienes cuenta. Regístrate en el SUU con tus datos personales. Tu usuario será tu número de cédula o NIT. (Enlace en «Enlaces de la UPME».)</td></tr>
+          <tr><td>2. Inicia sesión</td><td>Ingresa al SUU con tu usuario (cédula o NIT) y contraseña.</td></tr>
+          <tr><td>3. Crea un nuevo caso</td><td>Clic en «Nuevo Caso» → «UPME» → «Solicitudes» → «Información básica solicitante». En «Actualizar información» llena todos los campos.</td></tr>
+          <tr><td>4. Habilita el módulo E-H</td><td>Baja hasta «Trámites y servicios a usar» y habilita «Incentivos tributarios vehículos E-H».</td></tr>
+          <tr><td>5. Autoriza datos personales</td><td>En «Tratamiento de datos personales» elige «Sí»; autoriza las notificaciones electrónicas («Sí»). Habilita «Información básica diligenciada» y clic en «Actualizar información Básica».</td></tr>
+          <tr><td>6. Selecciona el trámite E-H</td><td>Refresca la página y de nuevo «Nuevo Caso» → «UPME» → «Incentivos» → «Incentivos Tributarios Vehículos E-H».</td></tr>
+          <tr><td>7. Información del vehículo</td><td>Registra los datos del vehículo (tipo, marca, línea, tecnología, modelo, partida arancelaria —ver tabla—, valor sin IVA y proveedor) y la información general del proyecto (recorrido anual estimado, rendimiento si aplica). Adjunta cédula y RUT en PDF y marca los beneficios <b>Exclusión de IVA + Deducción de renta</b>. Acredita la tarifa a pagar y clic en «Siguiente».</td></tr>
+          <tr><td>8. Pago</td><td>El sistema calcula el pago. En «Concepto» elige <b>CERTIFICADOS GEE</b>. Paga por PSE y guarda el comprobante. Al adjuntarlo diligencia el número de referencia de pago (<b>CUS</b> <button class="tt" data-tip="CUS es el Código Único de Seguimiento del pago por PSE. Aparece en el comprobante que te llega al correo o que descargas al terminar la transacción."></button>). Guarda y deberías recibir un correo de que el radicado <button class="tt" data-tip="Así lo reporta la guía original. En el consultor público de estado de la UPME los ejemplos de formato son FNCE_2025118 y GEE_2026123, así que si tu número llega con otro prefijo, es normal: usa el que te haya enviado la UPME.">VEH_GEEXXXX</button> está en validación.</td></tr>
+          <tr><td>9. Sigue el estado</td><td>Ingresa al SUU, ve a la esquina superior derecha, escribe el número de tu caso en la barra «buscar» y presiona la lupa o Enter.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note info">
+      <h5>Enlaces de la UPME</h5>
+      <p>Información del incentivo: <a href="https://www.upme.gov.co/ventanilla-unica-de-tramites-y-servicios/incentivos-tributarios/vehiculos-electricos/" target="_blank" rel="noopener">upme.gov.co → Incentivos tributarios — Vehículos eléctricos</a>. &nbsp; Registro: <a href="https://suu.upme.gov.co/RegistroUsuarios/Home/Register" target="_blank" rel="noopener">suu.upme.gov.co/RegistroUsuarios</a>. &nbsp; Plataforma del trámite: <a href="https://automatizacion-upme.bizagi.com/" target="_blank" rel="noopener">automatizacion-upme.bizagi.com</a>.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>Ojo con las fechas</h5>
+      <p>Desde la Resolución 000400 de 2026 ya no hay ciclos separados: hay una ventana continua de recepción entre el <b>1 de febrero y el 15 de diciembre</b> de cada año. Solo asegúrate de radicar dentro de ese rango.</p>
+    </div>
+
+    <div class="note crit">
+      <h5>El pago NO se devuelve</h5>
+      <p>Aunque al final no aprueben el certificado, la tarifa pagada no se reembolsa. Revisa bien tus datos antes de pagar.</p>
+    </div>
+
+    <div class="note info">
+      <h5>¿Tu vehículo no aparece en la lista?</h5>
+      <p>Selecciona la opción de registrar manualmente la información del vehículo y adjunta el CEPD (Certificado de Emisiones por Prueba Dinámica) junto con la ficha técnica. Luego espera a que la UPME actualice ese vehículo en su base de datos para continuar.</p>
+    </div>
+
+    <div class="note">
+      <h5>Tips de quienes ya lo hicieron</h5>
+      <p>Hazlo desde un computador (en celular o iPad algunos campos no salen bien). Puedes estimar la tarifa antes en la <a href="https://app.upme.gov.co/Calculadora/CalculadoraIT.html" target="_blank" rel="noopener">calculadora de la UPME</a>.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>¿Compraste varios vehículos?</h5>
+      <p>Si una misma persona aparece como adquirente en varias facturas (aunque ya los haya vendido, dentro del plazo de 5 años), puede incluir más de un vehículo en un solo certificado UPME y pagar menos. Pero ante la DIAN la devolución se solicita de forma individual por cada factura: la DIAN inadmite cuando un mismo trámite reúne varias facturas.</p>
+    </div>
+
+    <h3>Partida arancelaria — según tu vehículo <button class="tt" data-tip="Es el código de 10 dígitos con el que la aduana clasifica tu carro. La UPME te lo pide para confirmar la tecnología del vehículo. Lo encuentras en la declaración de importación o lo deduces con la tabla de abajo."></button></h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:56%">Tu vehículo</th><th>Código (10 díg.)</th></tr></thead>
+        <tbody>
+          <tr><td>Eléctrico puro (BEV) — solo motor eléctrico (8703.80)</td><td>8703.80.10.00 (4×4)<br>8703.80.90.00 (los demás)</td></tr>
+          <tr><td>Híbrido gasolina, NO enchufable (HEV) (8703.40)</td><td>8703.40.10.00 (4×4)<br>8703.40.90.00 (los demás)</td></tr>
+          <tr><td>Híbrido diésel, NO enchufable (HEV) (8703.50)</td><td>8703.50.10.00 (4×4)<br>8703.50.90.00 (los demás)</td></tr>
+          <tr><td>Híbrido enchufable gasolina (PHEV) (8703.60)</td><td>8703.60.10.00 (4×4)<br>8703.60.90.00 (los demás)</td></tr>
+          <tr><td>Híbrido enchufable diésel (PHEV) (8703.70)</td><td>8703.70.10.00 (4×4)<br>8703.70.90.00 (los demás)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>El código termina en <b>.10.00</b> si es 4×4 («tracción en las cuatro ruedas») o en <b>.90.00</b> para «los demás». Confírmala en <a href="https://muisca.dian.gov.co/WebArancel" target="_blank" rel="noopener">MUISCA (muisca.dian.gov.co/WebArancel)</a>: SECCIÓN XVII → CAPÍTULO 87 → partida 8703 → tu subpartida. La UPME puede tardar hasta 30 días hábiles, aunque suele salir antes. Cuando llegue por correo, descárgalo: lo necesitas para la DIAN.</p>
+
+    <details class="panel">
+      <summary>Enlaces oficiales de la UPME (información complementaria)</summary>
+      <div class="panel-body">
+        <p class="small">No hacen parte de la guía original. Se incluyen porque ayudan a resolver dudas y a verificar el estado del trámite sin llamar a nadie.</p>
+        <ul class="plain">
+          <li><a href="https://www.upme.gov.co/ventanilla-unica-de-tramites-y-servicios/incentivos-tributarios/vehiculos-electricos/requisitos-y-lista-de-verificacion/" target="_blank" rel="noopener">Requisitos y lista de verificación</a></li>
+          <li><a href="https://www.upme.gov.co/ventanilla-unica-de-tramites-y-servicios/incentivos-tributarios/vehiculos-electricos/paso-a-paso-para-la-solicitud/" target="_blank" rel="noopener">Paso a paso oficial para la solicitud</a></li>
+          <li><a href="https://www.upme.gov.co/ventanilla-unica-de-tramites-y-servicios/incentivos-tributarios/vehiculos-electricos/preguntas-frecuentes-veh/" target="_blank" rel="noopener">Preguntas frecuentes de la UPME</a></li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ══════════════ 2 · DOCUMENTOS ══════════════ -->
+  <section class="step" id="s-2" data-step="2">
+    <div class="step-head">
+      <p class="step-kicker">Paso 2 de 5</p>
+      <h2>Reúne los 9 documentos</h2>
+      <p class="lede">Necesitas estos 9 archivos en PDF. Ve marcándolos abajo, en el checklist del paso.</p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:44px">#</th><th style="width:32%">Documento</th><th>Qué es</th></tr></thead>
+        <tbody>
+          <tr><td class="cas">1</td><td>Formulario 010 DIAN</td><td>La solicitud de devolución. Ver <a href="#" data-goto="anexos" data-anexo="A">Anexo A</a>.</td></tr>
+          <tr><td class="cas">2</td><td>Carta de remisión</td><td>Carta dirigida a tu Seccional DIAN. Ver <a href="#" data-goto="anexos" data-anexo="B">Anexo B</a>.</td></tr>
+          <tr><td class="cas">3</td><td>Certificado UPME</td><td>El que sacaste en el Paso 1, con su número de radicado.</td></tr>
+          <tr><td class="cas">4</td><td>Factura electrónica</td><td>La factura de compra con el IVA discriminado.</td></tr>
+          <tr><td class="cas">5</td><td>Relación de facturas</td><td>Resumen con los datos de la factura. Ver <a href="#" data-goto="anexos" data-anexo="C">Anexo C</a>.</td></tr>
+          <tr><td class="cas">6</td><td>Declaración juramentada</td><td>Reemplaza al contador. Ver <a href="#" data-goto="anexos" data-anexo="D">Anexo D</a>.</td></tr>
+          <tr><td class="cas">7</td><td>Copia de la cédula</td><td>Copia legible de tu cédula.</td></tr>
+          <tr><td class="cas">8</td><td>Certificación bancaria</td><td>Del banco, cuenta a tu nombre, máximo 1 mes de expedida. <button class="tt" data-tip="Pídela como «certificación de titularidad de cuenta». Debe decir tu nombre, tu cédula, el número y el tipo de cuenta, y estar activa. Si te demoras en radicar y pasa el mes, tienes que pedir una nueva."></button></td></tr>
+          <tr><td class="cas">9</td><td>RUT</td><td>Copia de tu RUT (mismo que usaste en la UPME).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note crit">
+      <h5>Lo más importante de todo</h5>
+      <p>Todo se envía desde el <b>correo registrado en tu RUT</b>. Si usas otro correo, la DIAN inadmite tu solicitud.</p>
+    </div>
+
+    <div class="note">
+      <h5>Ordénalos así</h5>
+      <p>Guarda los PDF con nombres claros y numerados: 1_Formulario010.pdf, 2_CartaRemision.pdf, 3_CertificadoUPME.pdf… Usa solo letras, números y guion bajo (_): <b>sin tildes ni caracteres especiales</b>.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Bancos avalados por la DIAN</h5>
+      <p>La cuenta para el abono debe estar a tu nombre en una entidad autorizada: Banco Agrario, AV Villas, Caja Social, Davibank (antes Scotiabank Colpatria), Davivienda, de Bogotá, de Occidente, GNB Sudameris, Popular, Bancolombia, BBVA, Citibank e Itaú Corpbanca. La lista puede cambiar; confírmala en la plataforma de la DIAN al diligenciar la solicitud.</p>
+      <p class="small"><b>Aclaración:</b> el requisito legal es que la cuenta esté a tu nombre en una entidad vigilada por la Superintendencia Financiera de Colombia y con sistema CENIT del Banco de la República. La lista de arriba es referencial y puede cambiar.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>Si la devolución supera 1.000 UVT (informativo)</h5>
+      <p>Cuando el valor a devolver supera 1.000 UVT — <b>$52.374.000 en 2026</b> — la DIAN no abona a la cuenta: expide Títulos de Devolución de Impuestos (TIDIS) en la entidad financiera que indicaste. Como el IVA es el 5%, esto solo ocurre en vehículos de más de mil millones de pesos, así que en la mayoría de los casos el pago llega a tu cuenta.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 3 · RUTA Y CITA ══════════════ -->
+  <section class="step" id="s-3" data-step="3">
+    <div class="step-head">
+      <p class="step-kicker">Paso 3 de 5</p>
+      <h2>Agenda la cita (solo si tu seccional la exige)</h2>
+      <p class="lede">La cita solo es obligatoria para radicaciones manuales en Bogotá, Bucaramanga, Cali y Medellín.</p>
+    </div>
+
+    <div class="note info">
+      <h5>¿Necesitas cita?</h5>
+      <p>La cita solo es obligatoria para las solicitudes que se radican de forma manual en las seccionales de <b>Bogotá, Bucaramanga, Cali y Medellín</b>. Si tu seccional no está en esa lista, NO necesitas agendar: envía los documentos al buzón correspondiente dentro del plazo. La cita se solicita en la seccional donde está inscrito tu RUT.</p>
+    </div>
+
+    <h3>Elige tu ruta de radicación</h3>
+    <p class="small">Información complementaria: la guía original describe la ruta manual. La DIAN también permite radicar en línea, y esa vía no requiere cita.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:34%">&nbsp;</th><th>Ruta A · Virtual</th><th>Ruta B · Manual por correo</th></tr></thead>
+        <tbody>
+          <tr><td><b>Qué necesitas</b></td><td>Firma electrónica de la DIAN <button class="tt" data-tip="Es un mecanismo gratuito que generas tú mismo desde tu cuenta en el portal de la DIAN. Con ella firmas declaraciones y radicas trámites en línea sin ir a una oficina."></button></td><td>Solo tu correo del RUT</td></tr>
+          <tr><td><b>¿Cita?</b></td><td>No</td><td>Sí, en Bogotá, Bucaramanga, Cali y Medellín</td></tr>
+          <tr><td><b>Cuándo se envía</b></td><td>24 horas, de lunes a viernes</td><td><b>En la fecha y hora exactas</b> de tu cita</td></tr>
+          <tr><td><b>Dónde</b></td><td><a href="https://devolucion.dian.gov.co/" target="_blank" rel="noopener">Servicio Informático de Devoluciones</a></td><td>Buzón de correo de tu seccional</td></tr>
+          <tr><td><b>Seguimiento</b></td><td>En línea, con el número de asunto</td><td>Por el correo de radicado que te llega</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="field" style="max-width:340px; margin-bottom:26px">
+      <label for="ruta">Ruta que voy a usar</label>
+      <select id="ruta"><option value="">— Elegir —</option><option value="virtual">Ruta A · Virtual con firma electrónica</option><option value="cita">Ruta B · Manual por correo</option></select>
+    </div>
+
+    <h3>Cómo agendar (si te aplica) — ya no por teléfono, solo por el portal</h3>
+    <ul class="plain">
+      <li>Entra a <a href="https://www.dian.gov.co" target="_blank" rel="noopener">www.dian.gov.co</a></li>
+      <li>Busca «<a href="https://agendamientodigiturno.dian.gov.co/" target="_blank" rel="noopener">Agendar citas</a>»</li>
+      <li>Selecciona: Persona natural → Videollamada → Devoluciones</li>
+      <li>Elige fecha y hora y guarda la confirmación (anota el código de cita).</li>
+    </ul>
+
+    <div class="note warn">
+      <h5>Pon atención a las indicaciones al agendar</h5>
+      <p>Lee con calma la información que te muestran o tómale un pantallazo. Según la seccional, la videollamada puede no ser necesaria: la hora suele ser una <b>ventana de tiempo</b> para enviar los documentos y nadie se conecta contigo.</p>
+    </div>
+
+    <div class="note crit">
+      <h5>Al agendar NO subas documentos: solo acepta la cita</h5>
+      <p>Durante el agendamiento la plataforma ofrece subir documentos. Haz caso omiso y solo confirma la cita. Hazlo rápido: las citas se agotan en segundos. Los documentos se envían después, al buzón, en la fecha y hora de la cita.</p>
+    </div>
+
+    <div class="note">
+      <h5>Ten paciencia con los cupos</h5>
+      <p>Se agotan rápido. Si ves «No se encontraron especialidades», no hay citas en ese momento. Las citas de videoatención normalmente se liberan los <b>viernes</b> para la semana siguiente; conviene estar muy pendiente esos días.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Buzón de tu seccional</h5>
+      <p>La lista oficial y actualizada de buzones de recepción está en el portal de la DIAN (<a href="https://www.dian.gov.co/tramitesservicios/Tramites_Impuestos/Devoluciones/Paginas/Tramite-y-requisitos.aspx" target="_blank" rel="noopener">Devoluciones y Compensaciones — Trámite y requisitos</a>).</p>
+    </div>
+
+    <h3>Buzones por seccional (referencia rápida)</h3>
+    <p class="small">Verifica siempre con el <a href="https://www.dian.gov.co/Prensa/Documents/Buzones_recepcion_solicitudes_devolucion_manual.pdf" target="_blank" rel="noopener">PDF oficial de buzones de la DIAN</a>.</p>
+    <div class="tw">
+      <table class="narrow">
+        <thead><tr><th style="width:38%">Ciudad / Seccional</th><th>Correo / buzón</th></tr></thead>
+        <tbody>
+          <tr><td>Medellín</td><td><a href="mailto:dsi_medellin_devoluciones@dian.gov.co">dsi_medellin_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Bogotá</td><td><a href="mailto:dsi_bogota_recaudo_naturales@dian.gov.co">dsi_bogota_recaudo_naturales@dian.gov.co</a></td></tr>
+          <tr><td>Cali</td><td><a href="mailto:dsi_cali_devoluciones@dian.gov.co">dsi_cali_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Barranquilla</td><td><a href="mailto:dsi_barranquilla_devoluciones@dian.gov.co">dsi_barranquilla_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Bucaramanga</td><td><a href="mailto:dsia_bucaramanga_devoluciones@dian.gov.co">dsia_bucaramanga_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Pereira</td><td><a href="mailto:dsia_pereira_devoluciones@dian.gov.co">dsia_pereira_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Manizales</td><td><a href="mailto:dsia_manizales_devoluciones@dian.gov.co">dsia_manizales_devoluciones@dian.gov.co</a></td></tr>
+          <tr><td>Otras ciudades</td><td><a href="https://www.dian.gov.co/Prensa/Documents/Buzones_recepcion_solicitudes_devolucion_manual.pdf" target="_blank" rel="noopener">Consulta el PDF oficial de buzones (DIAN)</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ 4 · ENVÍO ══════════════ -->
+  <section class="step" id="s-4" data-step="4">
+    <div class="step-head">
+      <p class="step-kicker">Paso 4 de 5</p>
+      <h2>Envía el correo con los documentos</h2>
+      <p class="lede">Si tu seccional exige cita, envía EXACTAMENTE en la fecha y hora asignadas.</p>
+    </div>
+
+    <div class="note crit">
+      <h5>Envía exactamente en la fecha y hora de la cita</h5>
+      <p>Si tu seccional exige cita (Bogotá, Bucaramanga, Cali o Medellín), los documentos se reciben únicamente en la fecha y hora asignadas. Los correos fuera de ese horario se consideran NO recibidos y NO serán radicados. Si tu seccional no exige cita, envíalos al buzón dentro del plazo.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>Adjunta TODOS los documentos</h5>
+      <p>Es fundamental enviar la totalidad de los documentos requeridos. Si falta alguno, la solicitud será inadmitida y tendrás que subsanar y volver a agendar la cita.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Cuánto pesa cada envío (informativo)</h5>
+      <p>La DIAN pide que los PDF no superen <b>20 MB por correo</b>. Si tus archivos pesan más, divide la solicitud en varios correos con el mismo asunto y numéralos «Envío No. 1», «Envío No. 2»…</p>
+      <p class="small">En la <b>Ruta A (virtual)</b> el envío se hace por el Servicio Informático de Devoluciones, disponible 24 horas de lunes a viernes y sin cita. En la <b>Ruta B (manual con cita)</b> aplica la hora exacta de tu cita, tal como advierte la guía.</p>
+    </div>
+
+    <h3>Asunto del correo</h3>
+    <p>La DIAN pide que el asunto incluya: <b>Código de cita / Solicitud de devolución / Nombre o razón social / Identificación / Envío No. XXX</b>. El «Envío No. XXX» solo aplica si la solicitud se manda en varios correos. Si tu seccional no exige cita, omite el código de cita.</p>
+    <div class="note info">
+      <h5>Formato oficial publicado por la DIAN (informativo)</h5>
+      <p>En su portal, la DIAN escribe el asunto así: <code>Solicitud Devolución - Nombre o razón social del solicitante - NIT del solicitante - envío No. XXX - fecha</code>, agregando además el código de la cita asignada.</p>
+    </div>
+
+    <div class="model">
+      <div class="model-top">
+        <h5>Cuerpo del correo (modelo para copiar)</h5>
+        <button class="btn-line btn-sm" data-copy="mailBody">Copiar texto</button>
+      </div>
+      <pre id="mailBody">Señores Dirección Seccional de Impuestos de [tu ciudad] — DIAN
+
+Cita agendada No. [código de cita] para el [fecha] a las [hora] (si tu seccional exige cita). Por medio del presente correo, radicado desde mi dirección registrada en el RUT, presento solicitud de devolución de IVA por pago de lo no debido, conforme al artículo 12 de la Ley 1715 de 2014 y el Concepto DIAN No. 000673-int-0063 del 16 de enero de 2026.
+
+Valor solicitado: $[valor del IVA, sin decimales]
+Datos cuenta: [Banco] — Cuenta [tipo] No. [número] — Titular: [nombre]
+
+Adjunto los 9 documentos requeridos.
+
+[Nombre completo] — CC [número] — [Correo del RUT]</pre>
+    </div>
+
+    <div class="note">
+      <h5>Después de enviar</h5>
+      <p>Recibirás un correo de confirmación con el número de radicado. Desde ese momento empiezan a contar los 50 días hábiles.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 5 · SEGUIMIENTO ══════════════ -->
+  <section class="step" id="s-5" data-step="5">
+    <div class="step-head">
+      <p class="step-kicker">Paso 5 de 5</p>
+      <h2>Sigue tu radicado</h2>
+      <p class="lede">Ya enviaste. Aquí guardas el número de radicado y ves cuántos de los 50 días hábiles han pasado.</p>
+    </div>
+
+    <div class="tracker">
+      <div class="grid2" style="align-items:end">
+        <div class="field"><label for="t_rad">Número de radicado DIAN</label><input type="text" id="t_rad" data-d="radicadoDian" placeholder="Lo recibes por correo"></div>
+        <div class="field"><label for="t_fecha">Fecha de radicación</label><input type="date" id="t_fecha" data-d="fechaRadicacion"></div>
+      </div>
+      <hr class="rule" style="margin:22px 0">
+      <div class="grid2">
+        <div><p class="bigstat" id="statDias">—<small>Días hábiles transcurridos de 50</small></p></div>
+        <div><p class="bigstat" id="statFecha" style="font-size:clamp(22px,5.4vw,32px)">—<small>Fecha límite estimada de respuesta</small></p></div>
+      </div>
+      <p class="small" id="statNota" style="margin:16px 0 0">Registra la fecha de radicación para ver el conteo. Se descuentan sábados, domingos y festivos colombianos.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Cómo consultar el estado</h5>
+      <p><b>Ruta A (virtual):</b> ingresa al <a href="https://devolucion.dian.gov.co/" target="_blank" rel="noopener">Servicio Informático de Devoluciones</a> con tu usuario y contraseña y, en «Asuntos», registra el número de asunto de tu solicitud.</p>
+      <p><b>Ruta B (manual):</b> la resolución que decide la solicitud se notifica al correo electrónico registrado en tu RUT.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>Si te llega un Auto Inadmisorio</h5>
+      <p>No es un rechazo: corrige lo señalado y radica de nuevo toda la solicitud (los 9 documentos), dentro del mes siguiente al quinto día tras la notificación. <button class="tt" data-tip="La notificación llega al correo del RUT. El plazo empieza a correr cinco días después de ese envío, y desde ahí tienes un mes para volver a radicar todo completo."></button></p>
+    </div>
+  </section>
+
+  <!-- ══════════════ ANEXOS ══════════════ -->
+  <section class="step" id="s-anexos" data-step="anexos">
+    <div class="step-head">
+      <p class="step-kicker">Anexos A · B · C · D</p>
+      <h2>Formulario y modelos de cartas</h2>
+      <p class="lede">Cómo llenar el Formulario 010 y los tres documentos que tú redactas. Los modelos se descargan en Word con tus datos ya puestos.</p>
+    </div>
+
+    <div class="note info">
+      <h5>Antes de descargar</h5>
+      <p>Los modelos toman lo que hayas escrito en <a href="#" id="lnkDatos">Mis datos</a>, en la pantalla de inicio. Lo que dejes vacío queda como <code>[campo]</code> para que lo completes en Word.</p>
+    </div>
+
+    <!-- ANEXO A -->
+    <h3 id="anexoA">Anexo A · Cómo llenar el Formulario 010</h3>
+    <p>Descárgalo en <a href="https://www.dian.gov.co/Transaccional/DevolucionesCompensacin/010-Solicitud-de-Devolucion-y-o-Compensacion.pdf" target="_blank" rel="noopener">dian.gov.co → Formulario 010</a>.</p>
+
+    <div class="note info">
+      <h5>Atajo recomendado</h5>
+      <p>Llénalo más fácil con la <a href="https://cyoung.github.io/dian-010-upme/" target="_blank" rel="noopener">herramienta gratuita para el Formulario 010</a>. También genera la declaración juramentada (Anexo D). No guarda datos personales y te ahorra el costo de que alguien lo diligencie.</p>
+    </div>
+
+    <div class="note crit">
+      <h5>No llenes casillas de más</h5>
+      <p>Diligencia únicamente las casillas de estas tablas (Hoja 1 y Hoja 2). Llenar campos adicionales puede ser causal de inadmisión.</p>
+    </div>
+
+    <div class="note warn">
+      <h5>Dirección, correo y teléfono</h5>
+      <p>Estos tres datos deben quedar exactamente iguales a como aparecen en el RUT (mayúsculas, abreviaciones, todo). Cualquier diferencia es causal de inadmisión.</p>
+    </div>
+
+    <h4>Hoja 1</h4>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:78px">Casilla</th><th style="width:26%">Nombre</th><th>Qué escribir</th></tr></thead>
+        <tbody>
+          <tr><td class="cas">2</td><td>Concepto</td><td><b>3</b> — Pago de lo no debido <button class="tt" data-tip="Corregido contra el instructivo oficial del Formato 010: el código 3 es «Pago de lo no debido». El código 6 corresponde a «IVA pagado en la adquisición de materiales de construcción». La guía impresa traía 6 por error."></button></td></tr>
+          <tr><td class="cas">20</td><td>Tipo documento</td><td>13 para CC (persona natural); 31 para NIT (persona jurídica) <button class="tt" data-tip="Regla oficial: el instructivo dice que quien esté registrado en el RUT use el código 31 (NIT), y solo quien no lo esté use su tipo de documento real. En la práctica reportada por la guía funcionó 13 (CC) para personas naturales. Si la DIAN te observa esta casilla, cámbiala a 31."></button></td></tr>
+          <tr><td class="cas">18</td><td>No. identificación</td><td>Cópiala del RUT tal cual (sin puntos)</td></tr>
+          <tr><td class="cas">6 / 1004</td><td>DV</td><td>Solo NIT: el dígito de verificación del RUT (también en la firma, casilla 1004). Obligatorio para jurídicas.</td></tr>
+          <tr><td class="cas">7–10</td><td>Apellidos y nombres</td><td>Cópialos del RUT tal cual (en mayúsculas)</td></tr>
+          <tr><td class="cas">12</td><td>Dirección seccional</td><td>Cópiala del RUT tal cual</td></tr>
+          <tr><td class="cas">14</td><td>Correo electrónico</td><td>Cópialo del RUT tal cual</td></tr>
+          <tr><td class="cas">24</td><td>Dirección</td><td>Cópiala del RUT tal cual</td></tr>
+          <tr><td class="cas">26–28</td><td>País / Depto / Ciudad</td><td>Cópialos del RUT tal cual</td></tr>
+          <tr><td class="cas">40</td><td>Forma de pago</td><td>Abono en cuenta <button class="tt" data-tip="El instructivo oficial pide escribir «Giro cuenta» o «TIDIS». La guía reporta que «Abono en cuenta» fue lo que se usó. Si el funcionario te lo observa, escribe «Giro cuenta»."></button></td></tr>
+          <tr><td class="cas">41</td><td>Entidad financiera</td><td>Nombre de tu banco. Que sea uno con convenio vigente con la DIAN (ver lista de bancos).</td></tr>
+          <tr><td class="cas">42</td><td>Número de cuenta</td><td>Tu número de cuenta</td></tr>
+          <tr><td class="cas">43</td><td>Tipo de cuenta</td><td>Corriente o Ahorros</td></tr>
+          <tr><td class="cas">44</td><td>Tipo de solicitud</td><td>A solicitud de parte</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Hoja 2</h4>
+    <div class="note crit">
+      <h5>No dejes la Hoja 2 con datos en blanco</h5>
+      <p>Los datos del solicitante (casillas 18, 6, 7, 8, 9, 10 y 12) deben repetirse también en la Hoja 2, idénticos a la Hoja 1.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:104px">Casilla</th><th style="width:22%">Nombre</th><th>Qué escribir</th></tr></thead>
+        <tbody>
+          <tr><td class="cas">20,18,6,7–10,12</td><td>Datos del solicitante</td><td>Los mismos de la Hoja 1, exactos</td></tr>
+          <tr><td class="cas">45–48</td><td>Titular del saldo</td><td>Tus mismos datos. En 45 (Tipo de documento) escribe CC o NIT y en su «Cód.» el código (13 cédula, 31 NIT). El nombre (casilla 48) en formato nombres y apellidos; si es jurídica, la razón social (casilla 11). <button class="tt" data-tip="Igual que en la casilla 20: el instructivo oficial indica el código 31 (NIT) para quien esté inscrito en el RUT. La guía reporta 13 (CC) como lo que funcionó en la práctica."></button></td></tr>
+          <tr><td class="cas">47 / 62</td><td>DV titular / responsable</td><td>Solo NIT: el mismo dígito de verificación. Obligatorio para jurídicas.</td></tr>
+          <tr><td class="cas">49</td><td>Valor solicitado</td><td>El valor del IVA de tu factura, SIN decimales</td></tr>
+          <tr><td class="cas">50</td><td>Tipo de obligación</td><td>«Beneficio tributario UPME IVA Excluido Ley 1715 de 2014» (NO escribir «Impuesto sobre las Ventas — IVA»)<br><span class="small"><b>En la tabla oficial del formato:</b> para el concepto 3, el tipo de obligación aparece como <b>«UPME»</b>. Si el funcionario te lo pide así, usa esa palabra.</span></td></tr>
+          <tr><td class="cas">51</td><td>Concepto saldo</td><td>Pago de lo no debido<br><span class="small"><b>En la tabla oficial del formato:</b> el concepto de saldo asociado a «UPME» es <b>«IVA», código 175</b>.</span></td></tr>
+          <tr><td class="cas">52</td><td>Año gravable</td><td>El año de tu factura (ej. 2026)</td></tr>
+          <tr><td class="cas">53</td><td>Período</td><td>Siempre 1 (para esta solicitud).</td></tr>
+          <tr><td class="cas">55</td><td>No. documento origen</td><td>Número de tu factura con prefijo (ej. 01ME218)</td></tr>
+          <tr><td class="cas">57</td><td>Nombre documento</td><td>Factura Electrónica de Venta <button class="tt" data-tip="En la tabla oficial, para la fila «UPME» esta casilla figura como no diligenciable. La guía indica escribirla y así se radicó. Déjala como dice la guía; si te la observan, bórrala."></button></td></tr>
+          <tr><td class="cas">58</td><td>Fecha documento</td><td>Fecha de tu factura (AAAA-MM-DD)</td></tr>
+          <tr><td class="cas">59</td><td>Valor por origen</td><td>El mismo valor del IVA, SIN decimales</td></tr>
+          <tr><td class="cas">60–63</td><td>Responsable</td><td>Tus mismos datos. En 60 (Tipo de documento) escribe CC o NIT y en «Cód.» el código (13 o 31). El nombre (casilla 63) en formato nombres y apellidos; si es jurídica, la razón social.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note crit">
+      <h5>Hoja 3 — No la llenes</h5>
+      <p>La Hoja 3 NO se diligencia en este trámite. Es solo para saldos a favor de declaraciones de IVA, que no es tu caso. Déjala en blanco.</p>
+    </div>
+
+    <hr class="rule">
+
+    <!-- ANEXO B -->
+    <h3 id="anexoB">Anexo B · Modelo de carta de remisión</h3>
+    <p>Reemplaza los datos entre corchetes por los tuyos.</p>
+    <div class="model">
+      <div class="model-top">
+        <h5>Carta de remisión</h5>
+        <div style="display:flex; gap:8px">
+          <button class="btn-line btn-sm" data-copy="txtB">Copiar</button>
+          <button class="btn-line btn-sm" data-docx="B">Descargar .docx</button>
+        </div>
+      </div>
+      <pre id="txtB"></pre>
+    </div>
+
+    <!-- ANEXO C -->
+    <h3 id="anexoC">Anexo C · Modelo relación de facturas</h3>
+    <p>RELACIÓN DE FACTURAS ELECTRÓNICAS — Solicitud Devolución IVA, Art. 12 Ley 1715 de 2014 — Concepto DIAN 000673-int-0063/2026.</p>
+    <div class="model">
+      <div class="model-top">
+        <h5>Relación de facturas</h5>
+        <div style="display:flex; gap:8px">
+          <button class="btn-line btn-sm" data-copy="txtC">Copiar</button>
+          <button class="btn-line btn-sm" data-docx="C">Descargar .docx</button>
+        </div>
+      </div>
+      <pre id="txtC"></pre>
+    </div>
+
+    <!-- ANEXO D -->
+    <h3 id="anexoD">Anexo D · Modelo de declaración juramentada</h3>
+    <p>Reemplaza al contador. La firmas tú, bajo gravedad de juramento.</p>
+    <div class="model">
+      <div class="model-top">
+        <h5>Declaración juramentada</h5>
+        <div style="display:flex; gap:8px">
+          <button class="btn-line btn-sm" data-copy="txtD">Copiar</button>
+          <button class="btn-line btn-sm" data-docx="D">Descargar .docx</button>
+        </div>
+      </div>
+      <pre id="txtD"></pre>
+    </div>
+
+    <p class="small">Documento basado en experiencia práctica — 2026. Es orientativo y no constituye asesoría jurídica ni tributaria. Consulta siempre <a href="https://www.dian.gov.co" target="_blank" rel="noopener">www.dian.gov.co</a> y <a href="https://www.upme.gov.co" target="_blank" rel="noopener">www.upme.gov.co</a> para verificar la normativa vigente.</p>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <div class="foot">
+    <p><strong>Guía Devolución IVA VE · Versión 5.4 · 22 de junio de 2026.</strong> La guía original y su contenido pertenecen a su creador. Esta versión HTML interactiva fue creada a partir de ella por el <strong>Profe Juan Tapia</strong> — <a href="https://www.impulso.click" target="_blank" rel="noopener">www.impulso.click</a>.</p>
+    <p>Tu avance, tus fechas y tus datos se guardan únicamente en este navegador y en este dispositivo. Nada viaja por internet. Usa «Copia de seguridad» para llevártelos a otro equipo.</p>
+    <p>Documento orientativo. No constituye asesoría jurídica ni tributaria.</p>
+  </div>
+
+  </main>
+</div>
+</div>
+
+<div id="tip" role="tooltip"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="fileIn" accept="application/json" hidden>
+
+<script>
+"use strict";
+/* ═══════════════ 1. ALMACENAMIENTO ═══════════════ */
+const KEY = "guia-iva-ve-v1";
+let memory = null;
+const Store = {
+  ok:(()=>{ try{ localStorage.setItem("__t","1"); localStorage.removeItem("__t"); return true; }catch(e){ return false; } })(),
+  read(){
+    if(this.ok){ try{ return JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){ return null; } }
+    return memory;
+  },
+  write(v){
+    if(this.ok){ try{ localStorage.setItem(KEY, JSON.stringify(v)); return; }catch(e){} }
+    memory = v;
+  },
+  clear(){ if(this.ok){ try{ localStorage.removeItem(KEY); }catch(e){} } memory = null; }
+};
+
+const blank = () => ({ v:1, checks:{}, stamps:{}, stepDates:{}, data:{}, ruta:"" });
+let S = Object.assign(blank(), Store.read()||{});
+S.checks = S.checks||{}; S.stamps = S.stamps||{}; S.stepDates = S.stepDates||{}; S.data = S.data||{};
+const save = () => Store.write(S);
+
+/* ═══════════════ 2. PASOS Y CHECKLIST ═══════════════ */
+const STEPS = [
+  { id:0, key:"0", label:"Inicio", short:"Inicio", items:[] },
+  { id:1, key:"1", label:"1 · Certificado UPME", short:"1 · UPME", items:[
+    "Tengo a la mano la factura, la cédula y el RUT en PDF",
+    "Me registré en el SUU (o ya tenía cuenta)",
+    "Inicié sesión en el SUU",
+    "Creé el nuevo caso y llené «Información básica solicitante»",
+    "Habilité «Incentivos tributarios vehículos E-H»",
+    "Autoricé el tratamiento de datos y las notificaciones electrónicas",
+    "Seleccioné el trámite «Incentivos Tributarios Vehículos E-H»",
+    "Registré el vehículo, la partida arancelaria y marqué Exclusión de IVA + Deducción de renta",
+    "Pagué por PSE (concepto CERTIFICADOS GEE) y adjunté el comprobante con el CUS",
+    "Recibí el correo de que mi radicado está en validación",
+    "Descargué el Certificado UPME que llegó por correo"
+  ]},
+  { id:2, key:"2", label:"2 · Los 9 documentos", short:"2 · Documentos", items:[
+    "1. Formulario 010 DIAN diligenciado y firmado",
+    "2. Carta de remisión a mi Seccional (Anexo B)",
+    "3. Certificado UPME con su número de radicado",
+    "4. Factura electrónica con el IVA discriminado",
+    "5. Relación de facturas (Anexo C)",
+    "6. Declaración juramentada firmada (Anexo D)",
+    "7. Copia legible de la cédula",
+    "8. Certificación bancaria con menos de 1 mes de expedida",
+    "9. Copia del RUT (el mismo que usé en la UPME)"
+  ]},
+  { id:3, key:"3", label:"3 · Ruta y cita", short:"3 · Cita", items:[
+    "Revisé si mi seccional exige cita (Bogotá, Bucaramanga, Cali, Medellín)",
+    "Elegí con qué ruta voy a radicar",
+    "Tengo listo el acceso: firma electrónica (Ruta A) o la cita agendada con su código (Ruta B)",
+    "Guardé el buzón de mi seccional o el acceso al Servicio Informático de Devoluciones"
+  ]},
+  { id:4, key:"4", label:"4 · Envío", short:"4 · Envío", items:[
+    "Renombré los 9 PDF en orden, sin tildes ni caracteres especiales",
+    "Verifiqué que envío desde el correo registrado en el RUT",
+    "Verifiqué que ningún envío supera 20 MB",
+    "Escribí el asunto con el formato exigido",
+    "Envié la solicitud (en la fecha y hora de la cita, si aplica)"
+  ]},
+  { id:5, key:"5", label:"5 · Seguimiento", short:"5 · Seguimiento", items:[
+    "Recibí el correo de confirmación con el número de radicado",
+    "Registré aquí el radicado y la fecha de radicación",
+    "Recibí la resolución de la DIAN"
+  ]},
+  { id:6, key:"anexos", label:"Anexos A · B · C · D", short:"Anexos", items:[] }
+];
+const TRACKED = STEPS.filter(s => s.items.length);
+
+const stepDone = s => s.items.length>0 && s.items.every((_,i)=>S.checks[s.key+"-"+i]);
+const stepUnlocked = s => {
+  const idx = TRACKED.findIndex(t=>t.key===s.key);
+  if(idx<=0) return true;
+  return TRACKED.slice(0,idx).every(stepDone);
+};
+const currentStep = () => { const n = TRACKED.find(s=>!stepDone(s)); return n ? n.key : "5"; };
+
+/* ═══════════════ 3. FECHAS Y FESTIVOS ═══════════════ */
+function easter(y){
+  const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,
+        f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,
+        i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),
+        mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;
+  return new Date(Date.UTC(y,mo-1,da));
+}
+const addD=(d,n)=>{ const x=new Date(d.getTime()); x.setUTCDate(x.getUTCDate()+n); return x; };
+const nextMon=d=>{ const x=new Date(d.getTime()); while(x.getUTCDay()!==1) x.setUTCDate(x.getUTCDate()+1); return x; };
+const iso=d=>d.toISOString().slice(0,10);
+const holidayCache={};
+function holidays(y){
+  if(holidayCache[y]) return holidayCache[y];
+  const s=new Set(), U=(m,d)=>new Date(Date.UTC(y,m-1,d));
+  [[1,1],[5,1],[7,20],[8,7],[12,8],[12,25]].forEach(([m,d])=>s.add(iso(U(m,d))));
+  [[1,6],[3,19],[6,29],[8,15],[10,12],[11,1],[11,11]].forEach(([m,d])=>s.add(iso(nextMon(U(m,d)))));
+  const E=easter(y);
+  s.add(iso(addD(E,-3))); s.add(iso(addD(E,-2)));
+  s.add(iso(addD(E,43))); s.add(iso(addD(E,64))); s.add(iso(addD(E,71)));
+  holidayCache[y]=s; return s;
+}
+const isBiz=d=>{ const w=d.getUTCDay(); if(w===0||w===6) return false; return !holidays(d.getUTCFullYear()).has(iso(d)); };
+function bizBetween(from,to){ let n=0,c=addD(from,1); while(c<=to){ if(isBiz(c)) n++; c=addD(c,1); } return n; }
+function addBiz(from,n){ let c=new Date(from.getTime()),left=n; while(left>0){ c=addD(c,1); if(isBiz(c)) left--; } return c; }
+const parseISO=s=>{ const p=(s||"").split("-"); return p.length===3 ? new Date(Date.UTC(+p[0],+p[1]-1,+p[2])) : null; };
+const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const fmtLong=d=>d? d.getUTCDate()+" de "+MESES[d.getUTCMonth()]+" de "+d.getUTCFullYear() : "";
+const fmtShort=d=>d? String(d.getUTCDate()).padStart(2,"0")+"/"+String(d.getUTCMonth()+1).padStart(2,"0")+"/"+d.getUTCFullYear() : "";
+const todayISO=()=>{ const n=new Date(); return iso(new Date(Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()))); };
+
+/* ═══════════════ 4. NAVEGACIÓN ═══════════════ */
+const navEl=document.getElementById("nav");
+STEPS.forEach(s=>{
+  const b=document.createElement("button");
+  b.className="navbtn"; b.dataset.goto=s.key;
+  b.innerHTML='<span class="dot"></span><span>'+s.short+"</span>";
+  navEl.appendChild(b);
+});
+let active="0";
+function show(key,scroll){
+  active=key;
+  document.querySelectorAll("section.step").forEach(sec=>sec.classList.toggle("show", sec.dataset.step===key));
+  document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active", b.dataset.goto===key));
+  if(scroll!==false) window.scrollTo({top:0,behavior:"smooth"});
+  render();
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-goto]");
+  if(!t) return;
+  e.preventDefault();
+  show(t.dataset.goto);
+  const an=t.dataset.anexo;
+  if(an) setTimeout(()=>{ const el=document.getElementById("anexo"+an); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); },120);
+});
+document.getElementById("btnStart").addEventListener("click",()=>show("1"));
+document.getElementById("btnResume").addEventListener("click",()=>show(currentStep()));
+document.getElementById("lnkDatos").addEventListener("click",e=>{
+  e.preventDefault(); show("0");
+  setTimeout(()=>{ const d=document.getElementById("misdatos"); d.open=true; d.scrollIntoView({behavior:"smooth",block:"start"}); },140);
+});
+
+/* ═══════════════ 5. CHECKLISTS ═══════════════ */
+TRACKED.forEach(s=>{
+  const sec=document.getElementById("s-"+s.key);
+  const w=document.createElement("div"); w.className="checkwrap"; w.id="cw-"+s.key;
+  w.innerHTML =
+    '<header><h3>Checklist del paso '+s.key+'</h3><p>Se marca en orden, a medida que vas haciendo cada cosa.</p></header>'+
+    '<ul class="items">'+s.items.map((t,i)=>
+      '<li data-li="'+s.key+'-'+i+'">'+
+        '<input type="checkbox" id="c-'+s.key+'-'+i+'" data-ck="'+s.key+'-'+i+'">'+
+        '<label for="c-'+s.key+'-'+i+'">'+t+'</label>'+
+        '<span class="stamp" data-stamp="'+s.key+'-'+i+'"></span>'+
+      '</li>').join("")+'</ul>'+
+    '<div class="checkfoot">'+
+      '<div class="field" style="flex:1 1 220px"><label for="sd-'+s.key+'">Fecha en que terminé este paso</label>'+
+      '<input type="date" id="sd-'+s.key+'" data-sd="'+s.key+'"></div>'+
+      '<span class="state-pill" data-pill="'+s.key+'">Pendiente</span>'+
+      (s.key!=="5" ? '<button class="btn-line btn-sm" data-next="'+s.key+'">Ir al paso siguiente</button>' : "")+
+    '</div>';
+  sec.appendChild(w);
+});
+
+document.addEventListener("change",e=>{
+  const ck=e.target.dataset.ck;
+  if(ck){
+    const [k,i]=ck.split("-"), idx=+i, st=STEPS.find(s=>s.key===k);
+    if(e.target.checked){ S.checks[ck]=true; S.stamps[ck]=todayISO(); }
+    else{
+      for(let j=idx;j<st.items.length;j++){ delete S.checks[k+"-"+j]; delete S.stamps[k+"-"+j]; }
+      delete S.stepDates[k];
+    }
+    if(stepDone(st) && !S.stepDates[k]) S.stepDates[k]=todayISO();
+    save(); render();
+    return;
+  }
+  const sd=e.target.dataset.sd;
+  if(sd){ S.stepDates[sd]=e.target.value; save(); render(); return; }
+  const d=e.target.dataset.d;
+  if(d){
+    S.data[d]=e.target.value;
+    if(d==="valorSinIva"){
+      const n=num(e.target.value);
+      if(n && !S.data.valorIva){ S.data.valorIva=String(Math.round(n*0.05)); }
+      recalcTotal();
+    }
+    if(d==="valorIva"||d==="valorInc") recalcTotal();
+    save(); render();
+    return;
+  }
+  if(e.target.id==="ruta"){ S.ruta=e.target.value; save(); return; }
+});
+document.addEventListener("click",e=>{
+  const n=e.target.closest("[data-next]");
+  if(n){ const i=TRACKED.findIndex(s=>s.key===n.dataset.next); show(TRACKED[i+1] ? TRACKED[i+1].key : "anexos"); }
+});
+function num(v){ const n=parseFloat(String(v||"").replace(/[^\d]/g,"")); return isNaN(n)?0:n; }
+function recalcTotal(){
+  const t=num(S.data.valorSinIva)+num(S.data.valorIva)+num(S.data.valorInc);
+  if(t) S.data.valorTotal=String(t);
+}
+const money=v=>{ const n=num(v); return n ? n.toLocaleString("es-CO") : ""; };
+
+/* ═══════════════ 6. RENDER ═══════════════ */
+function render(){
+  // checklist state
+  TRACKED.forEach(s=>{
+    const unlocked=stepUnlocked(s);
+    s.items.forEach((_,i)=>{
+      const key=s.key+"-"+i;
+      const cb=document.querySelector('[data-ck="'+key+'"]');
+      const li=document.querySelector('[data-li="'+key+'"]');
+      const stamp=document.querySelector('[data-stamp="'+key+'"]');
+      if(!cb) return;
+      const prevOk = i===0 ? true : !!S.checks[s.key+"-"+(i-1)];
+      const on=!!S.checks[key];
+      cb.checked=on;
+      cb.disabled=!(unlocked && (prevOk || on));
+      li.classList.toggle("locked", cb.disabled && !on);
+      li.classList.toggle("ok", on);
+      if(!cb.disabled) li.removeAttribute("title");
+      else li.title = unlocked ? "Marca primero el punto anterior." : "Termina el paso anterior para habilitar este checklist.";
+      const d=parseISO(S.stamps[key]);
+      stamp.textContent = on && d ? fmtShort(d) : "";
+    });
+    const done=stepDone(s);
+    const pill=document.querySelector('[data-pill="'+s.key+'"]');
+    pill.textContent = done ? "Paso completo" : (unlocked ? "En curso" : "Bloqueado");
+    pill.classList.toggle("ok", done);
+    const sd=document.querySelector('[data-sd="'+s.key+'"]');
+    sd.value=S.stepDates[s.key]||""; sd.disabled=!done;
+  });
+
+  // nav
+  document.querySelectorAll(".navbtn").forEach(b=>{
+    const s=STEPS.find(x=>x.key===b.dataset.goto);
+    b.classList.toggle("done", s.items.length>0 && stepDone(s));
+    b.classList.toggle("locked", s.items.length>0 && !stepUnlocked(s));
+  });
+
+  // meter
+  const cells=document.getElementById("cells");
+  if(cells.children.length!==TRACKED.length){
+    cells.innerHTML=TRACKED.map(()=>'<div class="cell"><i></i></div>').join("");
+  }
+  let totalDone=0, totalItems=0;
+  TRACKED.forEach((s,idx)=>{
+    const d=s.items.filter((_,i)=>S.checks[s.key+"-"+i]).length;
+    totalDone+=d; totalItems+=s.items.length;
+    const c=cells.children[idx];
+    c.classList.toggle("on", d===s.items.length);
+    c.classList.toggle("part", d>0 && d<s.items.length);
+    c.style.setProperty("--p", (d/s.items.length).toFixed(3));
+  });
+  document.getElementById("pct").textContent=Math.round(totalDone/totalItems*100)+"%";
+
+  // inputs de datos
+  document.querySelectorAll("[data-d]").forEach(el=>{
+    const k=el.dataset.d;
+    if(document.activeElement!==el) el.value = S.data[k]||"";
+  });
+  const r=document.getElementById("ruta"); if(r && document.activeElement!==r) r.value=S.ruta||"";
+
+  // UVT
+  const un=document.getElementById("uvtNote");
+  if(un){
+    const iv=num(S.data.valorIva);
+    un.innerHTML = iv
+      ? (iv>52374000
+          ? "Tu IVA (<b>$"+money(iv)+"</b>) supera 1.000 UVT ($52.374.000 en 2026): la DIAN devolvería en TIDIS y no por abono en cuenta."
+          : "Tu IVA (<b>$"+money(iv)+"</b>) está por debajo de 1.000 UVT ($52.374.000 en 2026), así que la devolución se abona a tu cuenta.")
+      : "El IVA se calcula solo, al 5% del valor sin IVA, en cuanto escribas ese valor.";
+  }
+
+  // tracker
+  const f=parseISO(S.data.fechaRadicacion);
+  const sd1=document.getElementById("statDias"), sd2=document.getElementById("statFecha"), sn=document.getElementById("statNota");
+  if(f){
+    const hoy=parseISO(todayISO());
+    const t=Math.max(0,bizBetween(f,hoy));
+    const lim=addBiz(f,50);
+    sd1.innerHTML=Math.min(t,50)+"<small>Días hábiles transcurridos de 50</small>";
+    sd2.innerHTML=fmtShort(lim)+"<small>Fecha límite estimada de respuesta</small>";
+    sn.innerHTML = t>=50
+      ? "Ya se cumplieron los 50 días hábiles del artículo 855 del E.T. Si no has recibido respuesta, consulta el estado de tu radicado."
+      : "Faltan <b>"+(50-t)+"</b> días hábiles. Se descuentan sábados, domingos y festivos colombianos.";
+  }else{
+    sd1.innerHTML="—<small>Días hábiles transcurridos de 50</small>";
+    sd2.innerHTML="—<small>Fecha límite estimada de respuesta</small>";
+    sn.textContent="Registra la fecha de radicación para ver el conteo. Se descuentan sábados, domingos y festivos colombianos.";
+  }
+
+  buildTemplates();
+}
+
+/* ═══════════════ 7. PLANTILLAS ═══════════════ */
+const g=(k,ph)=>{ const v=(S.data[k]||"").trim(); return v || "["+ph+"]"; };
+const gm=(k,ph)=>{ const v=money(S.data[k]); return v ? "$"+v : "$["+ph+"]"; };
+const gd=(k,ph)=>{ const d=parseISO(S.data[k]); return d ? fmtLong(d) : "["+ph+"]"; };
+
+function tplB(){
+  const hoy=parseISO(todayISO());
+  const ciudad=g("ciudad","Ciudad");
+  return ciudad+", "+hoy.getUTCDate()+" de "+MESES[hoy.getUTCMonth()]+" de "+hoy.getUTCFullYear()+"\n\n"+
+"Señores\nDIRECCIÓN SECCIONAL DE IMPUESTOS DE "+g("seccional","SU CIUDAD").toUpperCase()+"\nDirección de Impuestos y Aduanas Nacionales — DIAN\n"+g("buzon","correo de su seccional")+"\n\n"+
+"Asunto: Solicitud devolución IVA — pago de lo no debido — Vehículo eléctrico/híbrido — Ley 1715 de 2014\n"+
+"Ref: Concepto DIAN 000673-int-0063 del 16/01/2026 · Cita agendada "+g("fechaCita","fecha")+"\n\n"+
+"Yo, "+g("nombre","NOMBRE COMPLETO EN MAYÚSCULAS").toUpperCase()+", C.C. No. "+g("cedula","NÚMERO")+", persona natural no obligada a llevar contabilidad, domiciliado en "+g("direccion","dirección — igual al RUT")+", "+ciudad+", "+g("departamento","departamento")+", correo "+g("correo","correo del RUT")+", presento solicitud de devolución del IVA pagado de lo no debido:\n\n"+
+"I. HECHOS\n"+
+"1. El "+gd("fechaFactura","fecha compra")+" adquirí el vehículo "+g("marca","marca")+", modelo "+g("modelo","modelo")+", año "+g("anio","año")+", VIN "+g("vin","VIN")+", a "+g("concesionario","concesionario")+" NIT "+g("nitConcesionario","NIT")+", según factura No. "+g("factura","número con prefijo")+", CUFE: "+g("cufe","CUFE")+", por valor de "+gm("valorSinIva","sin IVA")+" más IVA de "+gm("valorIva","IVA")+" (más INC de "+gm("valorInc","INC")+" si el vehículo lo tiene), total "+gm("valorTotal","total")+".\n"+
+"2. El "+gd("fechaUpme","fecha certificado")+" la UPME expidió el Certificado de Vehículos Eléctricos, Radicado No. "+g("radicadoUpme","número")+".\n"+
+"3. Al momento de facturar no se contaba con el Certificado UPME. Conforme al Concepto DIAN 000673/2026, el IVA constituye un pago de lo no debido.\n\n"+
+"II. VALOR SOLICITADO\n"+
+"IVA factura No. "+g("factura","número")+": "+gm("valorIva","valor IVA, sin decimales")+"\n\n"+
+"III. DATOS DE CONSIGNACIÓN\n"+
+g("banco","Banco")+" — NIT "+g("nitBanco","NIT banco")+" — Cuenta "+g("tipoCuenta","tipo")+" No. "+g("numeroCuenta","número")+" — Titular: "+g("nombre","nombre")+" CC "+g("cedula","cédula")+"\n\n"+
+"IV. DOCUMENTOS ADJUNTOS\n"+
+"1. Formulario 010 diligenciado y firmado · 2. Certificado UPME — Radicado "+g("radicadoUpme","número")+" · 3. Factura electrónica No. "+g("factura","número")+" · 4. Relación de facturas · 5. Declaración juramentada · 6. Copia cédula · 7. Certificación bancaria · 8. RUT\n\n"+
+"Solicito resolver dentro de los 50 días hábiles (Art. 855 E.T.).\n\n"+
+"Atentamente,\n\n"+
+"_________________________________\n"+
+g("nombre","NOMBRE COMPLETO").toUpperCase()+" · C.C. No. "+g("cedula","número")+" · "+g("correo","correo del RUT")+" · "+ciudad;
+}
+function tplC(){
+  const hoy=parseISO(todayISO());
+  return "RELACIÓN DE FACTURAS ELECTRÓNICAS — Solicitud Devolución IVA, Art. 12 Ley 1715 de 2014 — Concepto DIAN 000673-int-0063/2026.\n\n"+
+"Nombre completo: "+g("nombre","Apellidos y nombre")+"\n"+
+"Cédula No.: "+g("cedula","número")+"\n"+
+"Domicilio: "+g("direccion","Dirección — igual al RUT")+"\n"+
+"Correo: "+g("correo","Correo registrado en el RUT")+"\n"+
+"Calidad: Persona natural no obligada a llevar contabilidad\n\n"+
+"No. Factura (prefijo): "+g("factura","Pref+No.")+"\n"+
+"Proveedor: "+g("concesionario","Concesionario")+"\n"+
+"NIT: "+g("nitConcesionario","NIT")+"\n"+
+"Valor sin IVA: "+gm("valorSinIva","valor")+"\n"+
+"Valor IVA: "+gm("valorIva","IVA")+"\n"+
+"TOTAL — Valor sin IVA: "+gm("valorSinIva","valor")+" · Valor IVA: "+gm("valorIva","IVA")+"\n\n"+
+"Datos del vehículo\n"+
+"Descripción: vehículo eléctrico/híbrido "+g("marca","marca")+" "+g("modelo","modelo")+" "+g("anio","año")+"\n"+
+"VIN / Chasis: "+g("vin","VIN del vehículo")+"\n"+
+"Número de factura: "+g("factura","No. con prefijo")+" — Fecha: "+gd("fechaFactura","fecha")+"\n"+
+"CUFE: "+g("cufe","Código CUFE de la factura")+"\n"+
+"Certificado UPME: Radicado "+g("radicadoUpme","número")+" — Fecha: "+gd("fechaUpme","fecha")+"\n\n"+
+"_________________________________\n"+
+g("nombre","NOMBRE COMPLETO").toUpperCase()+" · C.C. No. "+g("cedula","número")+" · "+g("ciudad","ciudad")+" · "+fmtLong(hoy);
+}
+function tplD(){
+  const hoy=parseISO(todayISO());
+  return "DECLARACIÓN JURAMENTADA\n"+
+"Solicitud de Devolución de IVA — Pago de lo No Debido\n"+
+"Artículo 12, Ley 1715 de 2014 · Concepto DIAN No. 000673-int-0063 del 16 de enero de 2026\n\n"+
+"Yo, "+g("nombre","NOMBRE COMPLETO EN MAYÚSCULAS").toUpperCase()+", C.C. No. "+g("cedula","NÚMERO")+", domiciliado en "+g("direccion","dirección — igual al RUT")+", "+g("ciudad","ciudad")+", "+g("departamento","departamento")+", persona natural no obligada a llevar contabilidad, actuando en nombre propio, manifiesto BAJO LA GRAVEDAD DE JURAMENTO:\n\n"+
+"PRIMERO. Que soy el legítimo adquirente y propietario del vehículo "+g("marca","marca")+", modelo "+g("modelo","modelo")+", año "+g("anio","año")+", VIN "+g("vin","VIN")+", adquirido el "+gd("fechaFactura","fecha")+" a "+g("concesionario","concesionario")+" (NIT "+g("nitConcesionario","NIT")+"), según factura electrónica No. "+g("factura","número")+" por valor de "+gm("valorSinIva","sin IVA")+" más IVA de "+gm("valorIva","IVA")+" (más INC de "+gm("valorInc","INC")+" si el vehículo lo tiene), total "+gm("valorTotal","total")+".\n"+
+"SEGUNDO. Que las facturas relacionadas corresponden a la adquisición del vehículo descrito, certificado por la UPME mediante Radicado No. "+g("radicadoUpme","número")+" del "+gd("fechaUpme","fecha")+".\n"+
+"TERCERO. Que no se ha efectuado devolución ni compensación, parcial ni total, del IVA pagado.\n"+
+"CUARTO. Que el IVA cuya devolución se solicita por valor de "+gm("valorIva","IVA, sin decimales")+" no ha sido tratado como mayor valor del costo, ni como deducción en renta, ni como impuesto descontable en IVA.\n"+
+"QUINTO. Que se cumplen todos los requisitos legales para la devolución por pago de lo no debido, conforme al parágrafo 3° del artículo 1.3.1.12.24 del Decreto 1625 de 2016, en concordancia con el artículo 12 de la Ley 1715 de 2014 y el Concepto DIAN No. 000673-int-0063 del 16/01/2026.\n\n"+
+"Suscrita con plena conciencia de las responsabilidades civiles y penales por falsedad en declaraciones bajo juramento (Arts. 442 y 443 del Código Penal colombiano).\n\n"+
+"En "+g("ciudad","ciudad")+", a los "+hoy.getUTCDate()+" días del mes de "+MESES[hoy.getUTCMonth()]+" de "+hoy.getUTCFullYear()+".\n\n"+
+"_________________________________\n"+
+g("nombre","NOMBRE COMPLETO EN MAYÚSCULAS").toUpperCase()+"\n"+
+"C.C. No. "+g("cedula","número")+" · "+g("correo","Correo del RUT")+" · "+g("ciudad","Ciudad")+", "+g("departamento","Departamento");
+}
+function buildTemplates(){
+  const b=document.getElementById("txtB"); if(b) b.textContent=tplB();
+  const c=document.getElementById("txtC"); if(c) c.textContent=tplC();
+  const d=document.getElementById("txtD"); if(d) d.textContent=tplD();
+}
+
+/* ═══════════════ 8. DOCX ═══════════════ */
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[n]=c>>>0;}return t;})();
+function crc32(b){let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRC[(c^b[i])&0xFF]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function zip(files){
+  const enc=new TextEncoder(), local=[], cd=[]; let off=0;
+  const n=new Date();
+  const dt=((n.getHours()<<11)|(n.getMinutes()<<5)|Math.floor(n.getSeconds()/2))&0xFFFF;
+  const dd=(((n.getFullYear()-1980)<<9)|((n.getMonth()+1)<<5)|n.getDate())&0xFFFF;
+  files.forEach(f=>{
+    const nb=enc.encode(f.name), data=enc.encode(f.data), c=crc32(data);
+    const lh=new Uint8Array(30+nb.length), lv=new DataView(lh.buffer);
+    lv.setUint32(0,0x04034b50,true); lv.setUint16(4,20,true); lv.setUint16(6,0,true); lv.setUint16(8,0,true);
+    lv.setUint16(10,dt,true); lv.setUint16(12,dd,true); lv.setUint32(14,c,true);
+    lv.setUint32(18,data.length,true); lv.setUint32(22,data.length,true);
+    lv.setUint16(26,nb.length,true); lv.setUint16(28,0,true); lh.set(nb,30);
+    local.push(lh,data);
+    const ch=new Uint8Array(46+nb.length), cv=new DataView(ch.buffer);
+    cv.setUint32(0,0x02014b50,true); cv.setUint16(4,20,true); cv.setUint16(6,20,true);
+    cv.setUint16(8,0,true); cv.setUint16(10,0,true); cv.setUint16(12,dt,true); cv.setUint16(14,dd,true);
+    cv.setUint32(16,c,true); cv.setUint32(20,data.length,true); cv.setUint32(24,data.length,true);
+    cv.setUint16(28,nb.length,true); cv.setUint32(38,0,true); cv.setUint32(42,off,true); ch.set(nb,46);
+    cd.push(ch);
+    off+=lh.length+data.length;
+  });
+  let cds=0; cd.forEach(x=>cds+=x.length);
+  const eo=new Uint8Array(22), ev=new DataView(eo.buffer);
+  ev.setUint32(0,0x06054b50,true); ev.setUint16(8,cd.length,true); ev.setUint16(10,cd.length,true);
+  ev.setUint32(12,cds,true); ev.setUint32(16,off,true);
+  return new Blob(local.concat(cd,[eo]),{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+function wp(text,o){
+  o=o||{};
+  const jc=o.align||"both";
+  const sz=o.size||22;
+  const runs=String(text).split("\n").map((ln,i)=>
+    (i?'<w:r><w:br/></w:r>':"")+
+    '<w:r><w:rPr>'+(o.bold?'<w:b/>':"")+(o.caps?'<w:caps/>':"")+
+    (o.spacing?'<w:spacing w:val="'+o.spacing+'"/>':"")+
+    '<w:sz w:val="'+sz+'"/><w:szCs w:val="'+sz+'"/>'+
+    '</w:rPr><w:t xml:space="preserve">'+esc(ln)+'</w:t></w:r>').join("");
+  return '<w:p><w:pPr><w:spacing w:before="'+(o.before||0)+'" w:after="'+(o.after==null?160:o.after)+'" w:line="'+(o.line||280)+'" w:lineRule="auto"/><w:jc w:val="'+jc+'"/></w:pPr>'+runs+'</w:p>';
+}
+function docxBlob(title,blocks){
+  const body=blocks.map(b=>wp(b.t,b)).join("");
+  const doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+'<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+body+
+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1418" w:right="1418" w:bottom="1418" w:left="1418" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr>'+
+'</w:body></w:document>';
+  const styles='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+'<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults>'+
+'<w:rPrDefault><w:rPr><w:rFonts w:ascii="Cambria" w:hAnsi="Cambria" w:cs="Cambria"/><w:sz w:val="22"/><w:szCs w:val="22"/><w:lang w:val="es-CO"/></w:rPr></w:rPrDefault>'+
+'<w:pPrDefault><w:pPr><w:spacing w:after="160" w:line="280" w:lineRule="auto"/><w:jc w:val="both"/></w:pPr></w:pPrDefault>'+
+'</w:docDefaults></w:styles>';
+  const ct='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'+
+'<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'+
+'<Default Extension="xml" ContentType="application/xml"/>'+
+'<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'+
+'<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>'+
+'</Types>';
+  const rels='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+'<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>';
+  const drels='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
+'<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
+  return zip([
+    {name:"[Content_Types].xml",data:ct},
+    {name:"_rels/.rels",data:rels},
+    {name:"word/_rels/document.xml.rels",data:drels},
+    {name:"word/styles.xml",data:styles},
+    {name:"word/document.xml",data:doc}
+  ]);
+}
+function blocksFrom(text,titleLines){
+  const out=[];
+  titleLines.forEach((t,i)=>out.push({t:t,align:"center",bold:true,size:i===0?28:22,spacing:i===0?30:0,after:i===titleLines.length-1?320:60}));
+  text.split("\n\n").forEach(par=>{
+    const isSig=par.indexOf("____")===0;
+    out.push({t:par, align:isSig?"left":"both", after:isSig?60:200, before:isSig?400:0});
+  });
+  return out;
+}
+function download(blob,name){
+  const u=URL.createObjectURL(blob), a=document.createElement("a");
+  a.href=u; a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(u); a.remove(); },400);
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-docx]");
+  if(!b) return;
+  const k=b.dataset.docx;
+  let blob,name;
+  if(k==="B"){
+    blob=docxBlob("Carta de remisión", blocksFrom(tplB(),["CARTA DE REMISIÓN"]));
+    name="2_CartaRemision.docx";
+  }else if(k==="C"){
+    blob=docxBlob("Relación de facturas", blocksFrom(tplC(),["RELACIÓN DE FACTURAS ELECTRÓNICAS","Solicitud de Devolución de IVA · Art. 12, Ley 1715 de 2014"]));
+    name="5_RelacionFacturas.docx";
+  }else{
+    blob=docxBlob("Declaración juramentada", blocksFrom(tplD(),["DECLARACIÓN JURAMENTADA"]));
+    name="6_DeclaracionJuramentada.docx";
+  }
+  download(blob,name);
+  toast("Documento de Word descargado");
+});
+
+/* ═══════════════ 9. COPIAR / COPIA DE SEGURIDAD / RESET ═══════════════ */
+function toast(m){
+  const t=document.getElementById("toast");
+  t.textContent=m; t.classList.add("on");
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("on"),2400);
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-copy]"); if(!b) return;
+  const txt=document.getElementById(b.dataset.copy).textContent;
+  const done=()=>toast("Texto copiado");
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(txt).then(done).catch(fallback); }
+  else fallback();
+  function fallback(){
+    const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); done(); }catch(err){ toast("Selecciona y copia manualmente"); }
+    ta.remove();
+  }
+});
+document.getElementById("btnBackup").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});
+  download(blob,"avance-devolucion-iva.json");
+  toast("Copia descargada. Puedes restaurarla con el mismo botón.");
+  setTimeout(()=>{ if(confirm("¿Quieres restaurar un avance guardado desde un archivo?")) document.getElementById("fileIn").click(); },600);
+});
+document.getElementById("fileIn").addEventListener("change",e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ const o=JSON.parse(r.result); S=Object.assign(blank(),o); save(); render(); toast("Avance restaurado"); }
+                 catch(err){ toast("El archivo no se pudo leer"); } };
+  r.readAsText(f); e.target.value="";
+});
+document.getElementById("btnReset").addEventListener("click",()=>{
+  if(!confirm("Se borrarán las casillas marcadas, las fechas y tus datos guardados en este navegador. ¿Continuar?")) return;
+  Store.clear(); S=blank(); save();
+  document.querySelectorAll("[data-d]").forEach(el=>el.value="");
+  const r=document.getElementById("ruta"); if(r) r.value="";
+  render(); show("0"); toast("Todo reiniciado");
+});
+
+/* ═══════════════ 10. TOOLTIPS ═══════════════ */
+const tip=document.getElementById("tip");
+let tipFor=null;
+function placeTip(el){
+  const txt=el.dataset.tip; if(!txt) return;
+  tip.textContent=txt; tip.classList.add("on");
+  const r=el.getBoundingClientRect(), t=tip.getBoundingClientRect();
+  let left=r.left+r.width/2-t.width/2;
+  left=Math.max(12,Math.min(left,window.innerWidth-t.width-12));
+  let top=r.top-t.height-10;
+  if(top<10) top=r.bottom+10;
+  tip.style.left=left+"px"; tip.style.top=top+"px";
+  tipFor=el;
+}
+function hideTip(){ tip.classList.remove("on"); tipFor=null; }
+document.addEventListener("click",e=>{
+  const t=e.target.closest(".tt");
+  if(t){ e.preventDefault(); if(tipFor===t) hideTip(); else placeTip(t); return; }
+  if(!e.target.closest("#tip")) hideTip();
+});
+document.addEventListener("mouseover",e=>{ const t=e.target.closest(".tt"); if(t && t!==tipFor) placeTip(t); });
+document.addEventListener("mouseout",e=>{ const t=e.target.closest(".tt"); if(t && !e.relatedTarget?.closest?.("#tip")) hideTip(); });
+document.addEventListener("focusin",e=>{ const t=e.target.closest(".tt"); if(t) placeTip(t); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") hideTip(); });
+window.addEventListener("scroll",()=>{ if(tipFor) placeTip(tipFor); },{passive:true});
+window.addEventListener("resize",()=>{ if(tipFor) placeTip(tipFor); });
+
+/* ═══════════════ 11. ARRANQUE ═══════════════ */
+if(!Store.ok){
+  const w=document.createElement("div");
+  w.className="note warn"; w.style.margin="18px 0 0";
+  w.innerHTML='<h5>Este navegador no está guardando el avance</h5><p>Tu navegador tiene bloqueado el almacenamiento local (suele pasar en ventanas de incógnito o al ver el archivo dentro de otra aplicación). Puedes seguir usando la guía, pero al cerrar la pestaña se pierde lo marcado. Descarga el archivo y ábrelo directamente en tu navegador para que se guarde, o usa el botón «Copia de seguridad».</p>';
+  document.querySelector("#s-0 .hero").after(w);
+}
+render();
+if(location.hash){ const k=location.hash.replace("#",""); if(STEPS.some(s=>s.key===k)) show(k,false); }
+</script>
+</body>
+</html>

@@ -32,7 +32,9 @@ function archivos(dir) {
 const vjs = leer('js/version.js') || '';
 const VERSION = (vjs.match(/APP_VERSION\s*=\s*'([^']+)'/) || [])[1];
 caso('js/version.js define APP_VERSION con formato vXX.YY.ZZcl', !!VERSION && /^v\d{2}\.\d{2}\.\d{2}cl$/.test(VERSION), `encontrado: ${VERSION}`);
-const fuera = archivos(RAIZ).filter((f) => !['docs/CHANGELOG.md', 'LEEME.md', 'js/version.js'].includes(f) && /\.(js|mjs|html|json|md|css|webmanifest)$/.test(f) && !f.startsWith('tests/'))
+const fuera = archivos(RAIZ).filter((f) => !['docs/CHANGELOG.md', 'LEEME.md', 'js/version.js'].includes(f) && /\.(js|mjs|html|json|md|css|webmanifest)$/.test(f) && !f.startsWith('tests/')
+  // Desde v02.02: cada guía de guias/ es un producto aparte con su propia versión (y su generador en herramientas/guia-iva)
+  && !f.startsWith('guias/') && !f.startsWith('herramientas/guia-iva/'))
   .filter((f) => RE_VERSION.test(leer(f) || '') && (RE_VERSION.lastIndex = 0, true));
 caso('ninguna otra cadena de versión fuera de version.js, CHANGELOG y LEEME', fuera.length === 0, fuera.join(', '));
 const sw = leer('sw.js') || '';

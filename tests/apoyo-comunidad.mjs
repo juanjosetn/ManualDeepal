@@ -48,3 +48,15 @@ export async function conectar(contexto, g, opciones = {}) {
   });
   return llamadas;
 }
+
+/**
+ * Desde v02.03 el panel pide usuario y contraseña. Con el servicio de prueba, el usuario «admin»
+ * entra con la clave antigua (CLAVE_PRUEBA): es la misma migración que hará el administrador real.
+ * `seccion` abre una sección del panel (p. ej. 'opiniones').
+ */
+export async function entrarPanel(p, { usuario = 'admin', clave = CLAVE_PRUEBA, seccion = '' } = {}) {
+  await p.waitForSelector('#formIngreso', { timeout: 10000 });
+  await p.fill('#inUsuario', usuario); await p.fill('#inClave', clave); await p.click('#btnEntrar');
+  await p.waitForSelector('#navPanel button', { timeout: 10000 });
+  if (seccion) await p.click(`#navPanel [data-sec="${seccion}"]`);
+}

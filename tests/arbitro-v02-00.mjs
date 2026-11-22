@@ -18,6 +18,8 @@ let fallas = 0, total = 0;
 function caso(nombre, ok, detalle = '') { total++; if (ok) console.log('✔', nombre); else { fallas++; console.log('✘', nombre, detalle ? `\n    ${String(detalle).slice(0, 300)}` : ''); } }
 const leer = (r) => { try { return fs.readFileSync(path.join(RAIZ, r), 'utf8'); } catch { return ''; } };
 const EMOJI = /\p{Extended_Pictographic}/u;
+// Pruebas tocadas en v02.04: el total de tips se lee de data/tips.json (antes estaba fijo en 108)
+const N_TIPS = (() => { try { return JSON.parse(leer('data/tips.json')).tips.length; } catch { return 108; } })();
 
 // ---------- A. Revisión estática ----------
 const ico = leer('js/iconos.js');
@@ -106,7 +108,7 @@ if (chromium) {
       caso(`${n}: sin desbordamiento horizontal`, !r.desborde);
       if (ancho >= 1080) caso(`${n}: riel lateral con las categorías`, r.riel >= 10, r.riel);
       else caso(`${n}: tablero de categorías con íconos en la portada, sin duplicar las pestañas`, r.tablero >= 10 && !r.chips, `${r.tablero} ${r.chips}`);
-      caso(`${n}: línea de energía cargada al total`, r.energia / r.pista > 0.95 && /108 tips/.test(r.cuenta), `${r.energia}/${r.pista} ${r.cuenta}`);
+      caso(`${n}: línea de energía cargada al total`, r.energia / r.pista > 0.95 && new RegExp(`${N_TIPS} tips`).test(r.cuenta), `${r.energia}/${r.pista} ${r.cuenta}`);
       // Búsqueda: el titular se recoge y la línea refleja los resultados
       await p.fill('#q', 'bajada'); await p.waitForTimeout(1300);
       const s = await p.evaluate(() => ({
@@ -115,7 +117,7 @@ if (chromium) {
         pista: document.querySelector('.pista')?.getBoundingClientRect().width || 1,
         cuenta: document.getElementById('cuentaEnergia')?.textContent || '',
       }));
-      caso(`${n}: al buscar, el titular se recoge y la línea muestra «N de 108»`, s.portada < 24 && /^\d+ de 108$/.test(s.cuenta) && s.energia / s.pista < 0.3, JSON.stringify(s));
+      caso(`${n}: al buscar, el titular se recoge y la línea muestra «N de ${N_TIPS}»`, s.portada < 24 && new RegExp(`^\\d+ de ${N_TIPS}$`).test(s.cuenta) && s.energia / s.pista < 0.3, JSON.stringify(s));
       await p.screenshot({ path: `${SALIDA}/${tema}-${ancho}-busqueda.png` });
       // Directorio en computador: el contenido usa todo el ancho
       await p.goto(`${BASE}#directorio`); await p.waitForTimeout(700);

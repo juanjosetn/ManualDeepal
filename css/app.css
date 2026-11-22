@@ -309,6 +309,18 @@ details.bajos .contacto { opacity: .85; }
 @media (prefers-reduced-motion: reduce) { .estrellas-opciones label { transition: none; } }
 .nota { border-left: 2px solid var(--hilo-fuerte); padding: 4px 0 4px 14px; margin-top: 22px; font-size: .92rem; color: var(--titanio); max-width: 72ch; }
 
+/* ---------- Trámites ---------- */
+#vistaTramites .nota { margin-top: 6px; }
+.tramite { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; background: var(--lamina); border: 1px solid var(--hilo); border-radius: 18px; padding: 22px 22px 18px; margin-top: 22px; }
+.tramite-icono { color: var(--ambar); padding-top: 4px; }
+.tramite h2 { margin: 0 0 6px; font-weight: 500; font-stretch: 110%; font-size: 1.3rem; line-height: 1.25; }
+.tramite p { margin: 0 0 10px; max-width: 70ch; }
+.tramite .fila-botones { margin: 8px 0 4px; }
+.tramite a.boton { text-decoration: none; }
+.tramite .novedades-tramite li { line-height: 1.5; }
+.vigencia { display: inline-block; font-size: .76rem; font-weight: 500; color: var(--ambar); border: 1px solid currentColor; border-radius: 999px; padding: 1px 9px; margin: 0 4px 2px 0; }
+@media (max-width: 560px) { .tramite { grid-template-columns: 1fr; padding: 18px 16px 14px; } }
+
 /* ---------- Preguntar e IA ---------- */
 .pregunta { display: grid; gap: 10px; }
 .pregunta label { font-size: .9rem; color: var(--titanio); }
@@ -370,6 +382,68 @@ details.bajos .contacto { opacity: .85; }
 .cand-cat { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; margin-right: 8px; }
 .rejilla { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
 
+/* Marca «Revisado por colaboradores» en tips y contactos (v02.03) */
+.revisado { display: inline-flex; align-items: center; gap: 5px; color: var(--consenso); }
+p.revisado { margin-top: 8px; }
+/* ---------- Panel con usuario y contraseña (v02.03) ---------- */
+.ingreso { max-width: 460px; }
+.tarjeta-ingreso { background: var(--lamina); border: 1px solid var(--hilo); border-radius: var(--radio); padding: 20px 20px 8px; margin-top: 14px; }
+.tarjeta-ingreso .boton { width: 100%; justify-content: center; }
+.tarjeta-ingreso .fila-botones .boton { width: auto; }
+.panel-cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 20px; }
+.panel-cabeza h2 { margin-bottom: 2px; }
+/* Las secciones van en una sola fila que se desliza en el celular (no se amontonan). */
+.subpestanas { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin: 16px 0 4px; border-bottom: 1px solid var(--hilo); }
+.subpestanas::-webkit-scrollbar { display: none; }
+.subpestanas button { position: relative; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; padding: 10px 12px 12px; min-height: 44px; font: inherit; font-size: .92rem; color: var(--titanio); cursor: pointer; }
+.subpestanas button:hover { color: var(--grafito); }
+.subpestanas button[aria-current="page"] { color: var(--grafito); font-weight: 500; }
+.subpestanas button[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px; background: var(--ambar); border-radius: 2px; }
+.contador { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ambar-suave); color: var(--grafito); font-size: .74rem; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+#seccionPanel { padding-top: 8px; outline: none; }
+.admin h4 { margin: 0 0 8px; font-weight: 500; font-size: 1rem; }
+.fila-titulo { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; margin: 6px 0 10px; }
+.fila-titulo h3 { margin: 0; }
+.cifras { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 16px; }
+.cifra { display: grid; gap: 2px; text-align: left; border: 1px solid var(--hilo); background: var(--lamina); color: var(--grafito); border-radius: var(--radio); padding: 14px 14px 12px; cursor: pointer; font: inherit; }
+.cifra:hover { border-color: var(--hilo-fuerte); }
+.cifra strong { font-size: 1.7rem; font-weight: 400; font-stretch: 112%; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.cifra span { font-size: .84rem; color: var(--titanio); }
+.aviso-panel { border-left: 3px solid var(--ambar); background: var(--ambar-suave); border-radius: 0 12px 12px 0; padding: 12px 16px; margin: 10px 0 14px; }
+.aviso-panel p { margin: 0 0 8px; }
+.barra-filtros { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 0 12px; }
+.registros { list-style: none; padding: 0; margin: 0; }
+.registro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--hilo); }
+.registro-texto { display: grid; gap: 3px; min-width: 0; }
+.registro-texto strong { font-weight: 500; overflow-wrap: anywhere; }
+.registro .fila-botones { gap: 6px; justify-content: flex-end; }
+.estado-reg { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: .76rem; font-weight: 500; margin-right: 4px; border: 1px solid var(--hilo-fuerte); color: var(--grafito); }
+.estado-reg.estado-publicado, .estado-reg.estado-aceptada, .estado-reg.estado-resuelta { border-color: var(--consenso); color: var(--consenso); }
+.estado-reg.estado-borrador, .estado-reg.estado-pendiente { border-color: var(--reporte); color: var(--reporte); }
+.estado-reg.estado-retirado, .estado-reg.estado-rechazada { border-color: var(--disputa); color: var(--disputa); }
+.verificado { color: var(--consenso); }
+.editor { border: 1px solid var(--hilo-fuerte); border-radius: var(--radio); padding: 16px 16px 6px; margin: 10px 0 18px; background: var(--lamina); }
+.editor .fila-botones { margin-bottom: 10px; }
+.tabla-desliza { overflow-x: auto; max-width: 100%; }
+.revision { border-bottom: 1px solid var(--hilo); padding: 14px 0; }
+.revision p { margin: 0 0 6px; }
+.revision blockquote { margin: 6px 0 10px; padding: 6px 12px; border-left: 2px solid var(--hilo-fuerte); color: var(--grafito); overflow-wrap: anywhere; }
+table.cambios td { overflow-wrap: anywhere; }
+/* Mismo código que la guía del IVA: lo anterior tachado, lo nuevo resaltado */
+table.cambios del { color: var(--disputa); text-decoration-thickness: 1.5px; }
+table.cambios ins { text-decoration: none; background: var(--ambar-suave); padding: 0 3px; border-radius: 4px; }
+.clave-temporal { font-size: 1.5rem; letter-spacing: .08em; font-variant-numeric: tabular-nums; background: var(--niebla); border: 1px dashed var(--hilo-fuerte); border-radius: 12px; padding: 10px 14px; margin: 4px 0 8px; user-select: all; overflow-wrap: anywhere; }
+.boton.peligro { background: var(--disputa); color: #fff; }
+:root[data-tema="oscuro"] .boton.peligro { color: #1B1408; }
+.dlg-texto p { margin: 6px 0; }
+.dialogo h3 { margin: 0 0 4px; font-weight: 500; font-stretch: 108%; font-size: 1.2rem; }
+@media (max-width: 640px) {
+  .registro { grid-template-columns: 1fr; }
+  .registro .fila-botones { justify-content: flex-start; }
+  .barra-filtros, .rejilla { grid-template-columns: 1fr; }
+  .admin h2 { font-size: 1.5rem; }
+}
+
 /* ---------- Transiciones entre secciones (View Transitions) ---------- */
 ::view-transition-old(root) { animation: salir .22s var(--curva) both; }
 ::view-transition-new(root) { animation: entrar .36s var(--curva) both; }
@@ -400,6 +474,19 @@ body:not([data-vista="tips"]) .disposicion { display: block !important; }
   #filtrosDirectorio .chips { flex-wrap: wrap; mask-image: none; }
   .tablero { display: none; }
   .portada h1 { max-width: 18ch; }
+}
+/* ---------- Tableta (720 a 1023 px): con cuatro pestañas arriba no cabe el aviso «no oficial»
+   junto al logo; las pestañas bajan, como en el celular (desde v02.02) ---------- */
+@media (min-width: 720px) and (max-width: 1023px) {
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+  .pestanas {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; justify-content: center; gap: 8px;
+    padding: 6px 16px calc(6px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--lamina) 90%, transparent); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    border-top: 1px solid var(--hilo);
+  }
+  .pestanas a { flex: 0 1 150px; flex-direction: column; gap: 2px; padding: 6px 4px 8px; font-size: .8rem; }
+  .pestanas a::after { top: 0; bottom: auto; left: 30%; right: 30%; transform-origin: center; }
 }
 /* ---------- Celular: pestañas abajo, al alcance del pulgar ---------- */
 @media (max-width: 719px) {

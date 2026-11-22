@@ -1,6 +1,6 @@
 {
   "name": "manual-practico-deepal",
-  "version": "2.1.1",
+  "version": "2.5.0",
   "private": true,
   "type": "module",
   "description": "PWA del Manual práctico Deepal (comunidad de propietarios en Colombia). No necesita compilar: se publica tal cual en GitHub Pages. Versión de la app: ver js/version.js. Los íconos se generan con «npm run iconos» (requiere sharp: npm i -D sharp).",

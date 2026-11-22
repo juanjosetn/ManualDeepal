@@ -43,16 +43,20 @@ export function crearGAS({ archivo = new URL('../apps-script/Codigo.gs', import.
     SpreadsheetApp: { getActive: () => libro, flush() {}, getUi() { throw new Error('sin interfaz'); } },
     CacheService: { getScriptCache: () => ({
       get: (k) => { const e = sim.cache.get(k); return e && e.vence > sim.t ? e.v : null; },
-      put: (k, v, s) => { if (String(v).length > 100000) throw new Error('Argumento demasiado grande'); sim.cache.set(k, { v: String(v), vence: sim.t + s * 1000 }); },
+      put: (k, v, s) => { if (String(v).length > 100000) throw new Error('Argumento demasiado grande'); sim.cache.set(k, { v: String(v), vence: sim.t + Math.min(s || 600, 21600) * 1000 }); },
+      putAll: (o, s) => { for (const [k, v] of Object.entries(o)) { if (String(v).length > 100000) throw new Error('Argumento demasiado grande'); sim.cache.set(k, { v: String(v), vence: sim.t + Math.min(s || 600, 21600) * 1000 }); } },
+      getAll: (ks) => Object.fromEntries(ks.map((k) => [k, sim.cache.get(k)]).filter(([, e]) => e && e.vence > sim.t).map(([k, e]) => [k, e.v])),
+      remove: (k) => { sim.cache.delete(k); },
     }) },
     LockService: { getScriptLock: () => ({ tryLock: () => !sim.ocupado, releaseLock() {} }) },
-    PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => (sim.props.has(k) ? sim.props.get(k) : null), setProperty: (k, v) => { sim.props.set(k, String(v)); } }) },
+    PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => (sim.props.has(k) ? sim.props.get(k) : null), setProperty: (k, v) => { sim.props.set(k, String(v)); }, deleteProperty: (k) => { sim.props.delete(k); } }) },
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (t) => ({ contenido: t, setMimeType() { return this; }, getContent() { return t; } }) },
     MailApp: { getRemainingDailyQuota: () => 100, sendEmail: (a, s, m) => sim.correos.push({ a, s, m }) },
     Utilities: {
       DigestAlgorithm: { SHA_256: 'sha256' }, Charset: { UTF_8: 'utf8' },
       computeDigest: (alg, t) => [...crypto.createHash('sha256').update(String(t), 'utf8').digest()].map((b) => (b > 127 ? b - 256 : b)),
       formatDate: (d) => new globalThis.Date(d.getTime() - 5 * 3600000).toISOString().slice(0, 19),
+      getUuid: () => crypto.randomUUID(),
     },
   };
   ctx.Date = class extends globalThis.Date { constructor(...a) { if (a.length) super(...a); else super(sim.t); } static now() { return sim.t; } };

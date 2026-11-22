@@ -26,6 +26,8 @@ const guardar = () => { try { localStorage.setItem(PREF, JSON.stringify({ modelo
 let SITIO, CAT, TIPS, DIR, buscaTips, buscaDir;
 /** Servicio de calificaciones (Apps Script) y su último resumen. */
 let COM = crearComunidad(''), RESUMEN = { contactos: {} };
+/** Generación de los datos de la hoja que se está mostrando ('' = archivos de GitHub). */
+let GEN_DATOS = '';
 const CATS = {};
 
 // ---------- 1. Cargar datos ----------
@@ -42,8 +44,27 @@ async function iniciar() {
     return;
   }
   CAT.categorias.forEach((c) => { CATS[c.id] = c; });
+  // Desde v02.03 los tips y el directorio viven en la hoja de Google (la edita el panel #admin).
+  // Para abrir rápido: primero la última copia guardada de la hoja; si no hay, los archivos de GitHub.
+  // Luego se pregunta a la hoja en segundo plano y, si cambió algo, se vuelve a pintar.
+  const copia = crearComunidad(SITIO.comunidad?.servicio).datosGuardados?.();
+  if (copia) { TIPS = copia.tips; DIR = copia.directorio; GEN_DATOS = copia.generacion; }
+  prepararDatos();
+
+  pintarMarco();
+  iniciarComunidad();
+  refrescarDatos();
+  estado.q = $('q').value; $('limpiar').hidden = !estado.q;
+  window.addEventListener('hashchange', enrutar);
+  enrutar();
+  iniciarPWA();
+}
+
+/** Campos auxiliares y buscadores. Se repite cada vez que llegan datos nuevos de la hoja. */
+function prepararDatos() {
   // Campo auxiliar con el nombre de la categoría y los motores en palabras, para que también se encuentren
   TIPS.tips.forEach((t) => {
+    t.modelos = t.modelos || []; t.motor = t.motor || [];
     t._cat = CATS[t.cat]?.nombre || '';
     t._extra = [...t.modelos, ...t.motor.map((m) => (m === 'REEV' ? 'rango extendido reev max' : 'electrico ev emax'))].join(' ');
   });
@@ -51,14 +72,22 @@ async function iniciar() {
   const ocultarPersonas = SITIO.directorio?.ocultarPersonasNaturales;
   DIR.contactos = DIR.contactos.filter((d) => !(ocultarPersonas && d.tipo === 'persona'));
   buscaDir = crearBuscador(DIR.contactos, { nombre: 5, alias: 4, servicio: 3, ciudad: 3, nota: 2 });
-
-  pintarMarco();
-  iniciarComunidad();
-  estado.q = $('q').value; $('limpiar').hidden = !estado.q;
-  window.addEventListener('hashchange', enrutar);
-  enrutar();
-  iniciarPWA();
 }
+
+/** Pide a la hoja los tips y el directorio publicados; si son de otra «generación», los usa y repinta. */
+async function refrescarDatos() {
+  if (!COM.activa) return;
+  try {
+    const d = await COM.datos();
+    // Hoja vacía, misma generación o respuesta incompleta (p. ej. un servicio sin actualizar): siguen los datos que ya hay.
+    if (!d || d.vacio || d.generacion === GEN_DATOS || !Array.isArray(d.tips?.tips) || !Array.isArray(d.directorio?.contactos)) return;
+    TIPS = d.tips; DIR = d.directorio; GEN_DATOS = d.generacion;
+    prepararDatos();
+    $('versionDatos').textContent = textoVersionDatos();
+    if (estado.vista === 'tips' || estado.vista === 'directorio') pintar();
+  } catch { /* sin conexión o servicio caído: el manual sigue con lo que tiene */ }
+}
+const textoVersionDatos = () => `Datos del ${TIPS.version}: ${TIPS.tips.length} tips y ${DIR.contactos.length} contactos${GEN_DATOS ? ' (desde la hoja de la comunidad)' : ''}`;
 
 function pintarMarco() {
   $('tituloSitio').textContent = SITIO.nombreCabecera || SITIO.nombre;
@@ -67,7 +96,7 @@ function pintarMarco() {
   $('aviso').textContent = SITIO.aviso;
   pintarCreditos();
   $('versionApp').textContent = VERSION;
-  $('versionDatos').textContent = `Datos del ${TIPS.version}: ${TIPS.tips.length} tips y ${DIR.contactos.length} contactos`;
+  $('versionDatos').textContent = textoVersionDatos();
   if (SITIO.github?.usuario && SITIO.github?.repositorio) {
     const a = $('enlaceRepo'); a.href = `https://github.com/${SITIO.github.usuario}/${SITIO.github.repositorio}`; a.hidden = false;
   }
@@ -174,18 +203,19 @@ function marcarSegmentos() {
 
 // ---------- Rutas (#tips, #directorio, #preguntar, #admin, #tip/ID) ----------
 const conBuscadorEn = (v) => v === 'tips' || v === 'directorio';
-const PORTADAS = { tips: '¿Qué necesitas saber de tu Deepal?', directorio: 'Talleres, asesores y servicios que recomienda el grupo' };
+const PORTADAS = { tips: '¿Qué necesitas saber de tu Deepal?', directorio: 'Talleres, asesores y servicios que recomienda el grupo', tramites: 'Trámites paso a paso' };
 function enrutar() { conTransicion(enrutarAhora); }
 function enrutarAhora() {
   const h = decodeURIComponent(location.hash.slice(1));
   let vista = 'tips', tipId = null;
   if (h.startsWith('tip/')) tipId = h.slice(4);
-  else if (['directorio', 'preguntar', 'admin'].includes(h)) vista = h;
+  else if (['directorio', 'tramites', 'preguntar', 'admin'].includes(h)) vista = h;
   estado.vista = vista;
   document.querySelectorAll('.pestanas a').forEach((a) => { if (a.dataset.vista === vista) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   $('vistaTips').hidden = vista !== 'tips';
   $('vistaDirectorio').hidden = vista !== 'directorio';
   $('vistaPreguntar').hidden = vista !== 'preguntar';
+  $('vistaTramites').hidden = vista !== 'tramites';
   $('vistaAdmin').hidden = vista !== 'admin';
   $('portada').hidden = !PORTADAS[vista];
   $('tituloPortada').textContent = PORTADAS[vista] || '';
@@ -198,7 +228,7 @@ function enrutarAhora() {
   $('chipsCategorias').hidden = vista !== 'tips';
   $('filtrosDirectorio').hidden = vista !== 'directorio';
   $('q').placeholder = vista === 'directorio' ? 'Polarizado, seguros, UPME, Morato…' : 'Presión de llantas, carga, reiniciar pantalla…';
-  if (vista === 'admin') { import('./admin.js').then((m) => m.abrirAdmin({ SITIO, CAT, TIPS, DIR, IA, COM })).catch((e) => { $('vistaAdmin').innerHTML = `<p class="vacio">No se pudo abrir el panel: ${esc(e.message)}</p>`; }); }
+  if (vista === 'admin') { import('./admin.js').then((m) => m.abrirAdmin({ SITIO, CAT, TIPS, DIR, IA, COM, refrescar: refrescarDatos })).catch((e) => { $('vistaAdmin').innerHTML = `<p class="vacio">No se pudo abrir el panel: ${esc(e.message)}</p>`; }); }
   pintar();
   if (tipId) abrirTip(tipId); else window.scrollTo(0, 0);
 }
@@ -207,6 +237,7 @@ function enrutarAhora() {
 function pintar() {
   if (estado.vista === 'tips') pintarTips();
   else if (estado.vista === 'directorio') pintarDirectorio();
+  else if (estado.vista === 'tramites') pintarTramites();
 }
 
 function pasaFiltros(t, ignorarCat = false) {
@@ -301,9 +332,10 @@ function tarjeta(t, palabras, abierto) {
     : [['Cuándo', t.cuando, 'cuando'], ['Cómo', t.como, 'como'], ['Ojo', t.ojo, 'ojo']].filter((x) => x[1])
       .map(([l, v, c]) => `<p class="fila ${c}">${icono(c)}<span class="lbl">${l}</span><span>${hl(v)}</span></p>`).join('');
   const verif = t.verificacion ? `<p class="verif">${icono('verificado', 18)}<span><strong>Verificación.</strong> ${esc(t.verificacion)}</span></p>` : '';
+  const revisado = /^\d{4}-\d{2}-\d{2}$/.test(t.verificadoEn || '') ? `<p class="fuentes revisado">${icono('verificado', 16)}<span>Revisado por colaboradores el ${esc(fechaLarga(t.verificadoEn))}</span></p>` : '';
   const fuentes = t.fuentes?.length ? `<p class="fuentes">${icono('fuente', 16)}<span>Fuente: ${t.fuentes.map((f) => esc(f.ref)).join('; ')}</span></p>` : '';
   return `<details class="tip" id="tip-${esc(t.id)}"${abierto ? ' open' : ''}><summary><span class="t">${hl(t.titulo)}</span>${icono('flecha', 18, 'chev')}<span class="etiquetas">${etq}</span></summary>` +
-    `<div class="cuerpo">${filas}${verif}${fuentes}<div class="acciones-tip"><button class="boton secundario mini" data-accion="compartir" data-id="${esc(t.id)}">${icono('compartir', 16)}<span>Compartir</span></button></div></div></details>`;
+    `<div class="cuerpo">${filas}${verif}${fuentes}${revisado}<div class="acciones-tip"><button class="boton secundario mini" data-accion="compartir" data-id="${esc(t.id)}">${icono('compartir', 16)}<span>Compartir</span></button></div></div></details>`;
 }
 
 async function accionTip(e) {
@@ -365,7 +397,7 @@ function pintarDirectorio() {
     const ya = COM.activa && calificados().includes(d.id);
     const calificar = COM.activa && d.id ? `<button type="button" class="calificar${ya ? ' hecha' : ''}" data-calificar="${esc(d.id)}" aria-label="${ya ? 'Cambiar mi calificación de' : 'Calificar a'} ${esc(d.nombre)}" title="${ya ? 'Cambiar mi calificación' : 'Calificar'}">${icono(ya ? 'estrellaLlena' : 'estrella')}</button>` : '';
     return `<article class="contacto"><div class="nm">${hl(d.nombre)}${d.alias ? ` <span class="pequeno">(${hl(d.alias)})</span>` : ''}</div><div class="acts">${wa}${tel}${web}${calificar}</div>` +
-      `<div class="meta"><span>${esc(nombreCiudad(d.ciudad))}</span>${d.telefono ? `<span>${esc(d.telefono)}</span>` : ''}${valoracion(d)}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}${opinionesDe(d)}</article>`;
+      `<div class="meta"><span>${esc(nombreCiudad(d.ciudad))}</span>${d.telefono ? `<span>${esc(d.telefono)}</span>` : ''}${valoracion(d)}${/^\d{4}-\d{2}-\d{2}$/.test(d.verificadoEn || '') ? `<span class="revisado" title="Revisado por colaboradores el ${esc(fechaLarga(d.verificadoEn))}">${icono('verificado', 14)}Revisado</span>` : ''}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}${opinionesDe(d)}</article>`;
   };
   // Desde la 2.1: los de calificación baja salen de la lista principal y los mejores van arriba.
   const principales = vis.filter(({ d }) => !esBajo(d));
@@ -403,6 +435,52 @@ function pintarDirectorio() {
   if (!vis.length) h = '<div class="vacio">No hay contactos con esa búsqueda y filtros.</div>';
   $('listaDir').innerHTML = h;
   $('estadoDir').textContent = !buscando && estado.ciudad !== 'all' && estado.ciudad !== 'Nacional' ? 'Incluye los contactos nacionales o virtuales.' : '';
+}
+
+// ---------- Trámites: guías descargables (una por archivo en guias/) ----------
+let TRAMITES = null;
+var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+/** «2026-11-22» → «22 de noviembre de 2026» (por partes: new Date('2026-11-22') sería el día anterior en Colombia). */
+const fechaLarga = (iso) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} de ${MESES[+m[2] - 1]} de ${m[1]}` : ''; };
+
+/** Lee la versión que trae la propia guía (<meta name="version">): una sola fuente de verdad. */
+async function versionDeGuia(archivo) {
+  try {
+    const r = await fetch(archivo);
+    if (!r.ok) return '';
+    const m = /<meta name="version" content="([^"]{1,40})">/.exec(await r.text());
+    return m ? m[1] : '';
+  } catch { return ''; }
+}
+
+async function pintarTramites() {
+  const caja = $('listaTramites');
+  if (!TRAMITES) {
+    caja.innerHTML = '<p class="pequeno">Cargando…</p>';
+    try { TRAMITES = (await cargarJSON('data/tramites.json')).tramites || []; }
+    catch { caja.innerHTML = '<p class="vacio">No se pudieron cargar los trámites. Revisa tu conexión e intenta de nuevo.</p>'; return; }
+  }
+  const tarjetas = await Promise.all(TRAMITES.map(async (t) => {
+    const archivo = /^guias\/[a-z0-9-]+\.html$/.test(t.archivo || '') ? t.archivo : '';
+    if (!archivo) return '';
+    const version = t._version ?? (t._version = await versionDeGuia(archivo));
+    const nombre = `${(t.nombreDescarga || t.id).replace(/[^A-Za-z0-9_-]/g, '')}${version ? `_${version}` : ''}.html`;
+    const novedades = (t.novedades || []).map((n) => `<li><span class="vigencia">${n.vigencia ? `Vigente desde el ${esc(fechaLarga(n.vigencia))}` : 'En trámite: no vigente'}</span> <b>${esc(n.fuente)}.</b> ${esc(n.texto)}</li>`).join('');
+    return `<article class="tramite" id="tramite-${esc(t.id)}">
+      <div class="tramite-icono">${icono('documento', 28)}</div>
+      <div class="tramite-cuerpo">
+        <h2>${esc(t.titulo)}</h2>
+        <p>${esc(t.resumen)}</p>
+        <p class="pequeno">${version ? `Guía ${esc(version)} · ` : ''}revisada el ${esc(fechaLarga(t.revisada))}. ${esc(t.credito || '')}</p>
+        <div class="fila-botones">
+          <a class="boton" href="${esc(archivo)}" target="_blank" rel="noopener">${icono('abrir', 18)}<span>Abrir la guía</span></a>
+          <a class="boton secundario" href="${esc(archivo)}" download="${esc(nombre)}">${icono('descargar', 18)}<span>Descargar (HTML)</span></a>
+        </div>
+        ${novedades ? `<details class="opiniones novedades-tramite"><summary>Novedades normativas (${(t.novedades || []).length})</summary><ul>${novedades}</ul></details>` : ''}
+      </div>
+    </article>`;
+  }));
+  if (estado.vista === 'tramites') caja.innerHTML = tarjetas.join('') || '<p class="vacio">Todavía no hay guías publicadas.</p>';
 }
 
 // ---------- Comunidad: estrellas, opiniones y solicitudes ----------

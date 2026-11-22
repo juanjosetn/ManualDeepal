@@ -12,6 +12,7 @@
 
 const DISPOSITIVO = 'deepal-dispositivo';
 const RESUMEN = 'deepal-resumen';
+const DATOS = 'deepal-datos';
 /** Solo se aceptan direcciones de implementaciones de Apps Script. */
 export const URL_VALIDA = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]{10,}\/exec$/;
 
@@ -86,9 +87,26 @@ export function crearComunidad(url) {
     return null;
   }
 
+  /**
+   * Tips y directorio publicados desde la hoja (desde el servicio 2.0.0). Se guarda una copia
+   * en este navegador para abrir rápido la próxima vez y para funcionar sin internet.
+   * Si la hoja todavía está vacía, el servicio responde «vacio» y el manual usa los archivos de GitHub.
+   */
+  async function datos() {
+    if (!activa) return null;
+    const d = await pedir({ url: `${url}?accion=datos` }, 15000);
+    if (d && !d.vacio && Array.isArray(d.tips?.tips)) guardar(DATOS, d);
+    return d;
+  }
+  const datosGuardados = () => { const d = leer(DATOS); return d && Array.isArray(d.tips?.tips) && Array.isArray(d.directorio?.contactos) ? d : null; };
+
   return {
     activa,
     resumen,
+    datos,
+    datosGuardados,
+    /** Cualquier acción del panel: la sesión (token) va dentro de «d». */
+    accion: (nombre, d = {}) => enviar({ accion: nombre, ...d }),
     calificar: (d) => enviar({ accion: 'calificar', ...d }),
     solicitar: (d) => enviar({ accion: 'solicitar', ...d }),
     adminPendientes: (clave) => enviar({ accion: 'admin_pendientes', clave }),

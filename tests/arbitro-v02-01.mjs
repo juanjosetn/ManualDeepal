@@ -16,7 +16,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { nuevoServicio, sembrar, conectar, CLAVE_PRUEBA, URL_PRUEBA } from './apoyo-comunidad.mjs';
+import { nuevoServicio, sembrar, conectar, entrarPanel, CLAVE_PRUEBA, URL_PRUEBA } from './apoyo-comunidad.mjs';
 
 const RAIZ = process.env.RAIZ || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = process.env.BASE || 'http://localhost:8080/';
@@ -28,7 +28,8 @@ const json = (r) => { try { return JSON.parse(leer(r)); } catch { return {}; } }
 // ---------- A. Revisión estática ----------
 const sitio = json('config/sitio.json');
 const dir = json('data/directorio.json').contactos || [];
-caso('config/sitio.json trae la sección «comunidad» vacía por defecto (todo apagado hasta configurarlo)', sitio.comunidad && sitio.comunidad.servicio === '');
+// Desde v02.02 el administrador ya configuró su dirección /exec: se acepta vacía o una dirección válida
+caso('config/sitio.json trae la sección «comunidad»: vacía (apagado) o con una dirección /exec válida', sitio.comunidad && (sitio.comunidad.servicio === '' || /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]{10,}\/exec$/.test(sitio.comunidad.servicio)));
 caso('umbral de calificación baja = 2 y mínimo para bajar = 3', sitio.comunidad?.umbralBajo === 2 && sitio.comunidad?.minimoParaBajar === 3);
 const ids = dir.map((d) => d.id);
 caso('cada contacto del directorio tiene un id único (ahí se guardan sus estrellas)', ids.length > 0 && ids.every((x) => /^[a-z0-9][a-z0-9-]{2,79}$/.test(x || '')) && new Set(ids).size === ids.length);
@@ -53,7 +54,8 @@ if (chromium) {
   async function pagina(g, { ancho = 390, alto = 844, hash = '#directorio', oscuro = false, ...op } = {}) {
     const ctx = await nav.newContext({ viewport: { width: ancho, height: alto }, colorScheme: oscuro ? 'dark' : 'light' });
     if (oscuro) await ctx.addInitScript(() => { try { localStorage.setItem('deepal-tema', 'oscuro'); } catch { /* */ } });
-    const llamadas = g ? await conectar(ctx, g, op) : [];
+    // Sin servicio (g = null): se simula la configuración vacía y se bloquea cualquier llamada real
+    const llamadas = g ? await conectar(ctx, g, op) : await conectar(ctx, null, { url: '', caido: true });
     const p = await ctx.newPage();
     p.setDefaultTimeout(6000);
     p.on('pageerror', (e) => errores.push(e.message));
@@ -232,22 +234,23 @@ if (chromium) {
   {
     const { p, ctx } = await pagina(g, { hash: '#admin', ancho: 1280, alto: 900 });
     try {
-    await p.waitForSelector('#pasoComunidad', { timeout: 8000 }).catch(() => {});
-    caso('el panel trae el paso «Opiniones, calificaciones y solicitudes»', await p.locator('#comunidadActiva').isVisible().catch(() => false));
-    await p.fill('#claveCom', 'clave-equivocada-123'); await p.click('#btnPendientes'); await p.waitForTimeout(400);
-    caso('clave equivocada: lo dice y no muestra nada', /incorrecta/.test(await p.textContent('#estadoCom')) && (await p.locator('#listaOpiniones tr').count()) === 0);
-    await p.fill('#claveCom', CLAVE_PRUEBA); await p.click('#btnPendientes');
+    // Pruebas tocadas en v02.03: el panel pide usuario y contraseña (antes, una clave en el paso 6)
+    //   y «Agregar al directorio» publica el contacto en la hoja en un solo paso (antes iba a cambios pendientes).
+    await p.fill('#inUsuario', 'admin'); await p.fill('#inClave', 'clave-equivocada-123'); await p.click('#btnEntrar'); await p.waitForTimeout(500);
+    caso('clave equivocada: lo dice y no muestra nada', /incorrect/.test(await p.textContent('#estadoIngreso')) && (await p.locator('#listaOpiniones').count()) === 0);
+    await entrarPanel(p, { seccion: 'opiniones' });
+    caso('el panel trae la sección «Opiniones»', await p.waitForSelector('#listaOpiniones h4', { timeout: 8000 }).then(() => true).catch(() => false));
     await p.waitForSelector('#listaOpiniones tbody tr', { timeout: 8000 }).catch(() => {});
     caso('clave correcta: muestra la opinión y la solicitud pendientes', (await p.locator('#listaOpiniones tbody tr').count()) >= 1 && (await p.locator('#listaSolicitudes tbody tr').count()) >= 1);
-    caso('la clave no queda guardada en el navegador', await p.evaluate((c) => !JSON.stringify({ ...localStorage }).includes(c), CLAVE_PRUEBA));
+    caso('la clave no queda guardada en el navegador', await p.evaluate((c) => !JSON.stringify({ ...localStorage, ...sessionStorage }).includes(c), CLAVE_PRUEBA));
     await p.locator('#listaOpiniones tbody tr').first().locator('[data-estado="publicado"]').click();
     await p.waitForTimeout(400);
     caso('«Publicar» publica la opinión en el servidor', g.filas('CALIFICACIONES').some((f) => f.estado === 'publicado' && /Buen trabajo/.test(f.comentario)));
     await p.locator('#listaSolicitudes tbody tr').first().locator('[data-estado="agregada"]').click();
-    await p.waitForTimeout(400);
-    const borr = await p.evaluate(() => JSON.parse(localStorage.getItem('deepal-admin-borradores') || '{}'));
-    const nuevo = (borr.contactos || []).find((c) => c.nombre === 'Polarizados Ejemplo');
-    caso('«Agregar al directorio» crea el contacto en cambios pendientes, con id propio', nuevo && /^polarizados-ejemplo-bogota/.test(nuevo.id) && nuevo.web === 'https://ejemplo.com', JSON.stringify(nuevo));
+    await p.waitForTimeout(600);
+    const fila = g.filas('DIRECTORIO').find((f) => f.nombre === 'Polarizados Ejemplo');
+    const nuevo = fila ? JSON.parse(fila.datos) : null;
+    caso('«Agregar al directorio» crea el contacto en la hoja, con id propio', nuevo && /^polarizados-ejemplo-bogota/.test(nuevo.id) && nuevo.web === 'https://ejemplo.com' && fila.estado === 'publicado', JSON.stringify(nuevo));
     caso('…y marca la solicitud como agregada en la hoja', g.filas('SOLICITUDES').some((f) => f.negocio === 'Polarizados Ejemplo' && f.estado === 'agregada'));
     caso('lista los contactos en «Calificación baja» para revisarlos', (await p.locator(`[data-revisar="${vardiSalitre}"]`).count()) === 1);
     await p.click(`[data-revisar="${vardiSalitre}"]`);

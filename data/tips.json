@@ -1,5 +1,5 @@
 {
- "version": "2026.11.21",
+ "version": "2026.11.22",
  "ultimoChat": "2026-11-21",
  "tips": [
   {
@@ -8,7 +8,7 @@
    "titulo": "Calibra las llantas en la mañana, antes de encender el carro",
    "tipo": "hacer",
    "cuando": "Con las llantas frías: el carro lleva al menos 3 horas quieto a la sombra o ha rodado menos de 1,6 km. Revisa una vez por semana (el manual pide mínimo una vez al mes).",
-   "como": "Infla hasta el valor de la etiqueta del paral de la puerta del conductor: S05 a 41 PSI; S07 a 39 PSI (2,7 bar) según su manual.",
+   "como": "Infla hasta el valor de la etiqueta del paral de la puerta del conductor: S05 a 41 PSI (2,8 bar; así lo dicen los manuales de la S05 Max y de la eléctrica); S07 a 39 PSI (2,7 bar) según su manual.",
    "ojo": "Después de rodar es normal ver 43–46 PSI. No le saques aire en ese momento: cuando se enfríen quedarán bajas.",
    "saber": "",
    "modelos": [],
@@ -22,11 +22,19 @@
      "ref": "manual S07 Max (PDF p. 227)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 210)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 214)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s05-41-psi-en-las-cuatro-llantas",
@@ -34,23 +42,31 @@
    "titulo": "S05: 41 PSI en las cuatro llantas",
    "tipo": "hacer",
    "cuando": "Cada vez que calibres, en la mañana antes de salir.",
-   "como": "41 PSI (unos 2,8 bar), adelante y atrás. Aplica a la REEV y a la eléctrica.",
-   "ojo": "Si en el montallantas no lo saben, muéstrales la etiqueta del paral de la puerta del conductor. Algunos dueños citan 39 PSI: la etiqueta de tu carro manda.",
+   "como": "41 PSI (unos 2,8 bar), adelante y atrás. Aplica a la S05 Max (rango extendido) y a la eléctrica: lo confirman sus dos manuales.",
+   "ojo": "Si en el montallantas no lo saben, muéstrales la etiqueta del paral de la puerta del conductor. Algunos dueños citan 39 PSI: la etiqueta de tu carro manda. Los dos manuales traen además una presión «cómoda» de 250 kPa (unos 36 PSI), solo para ir sin carga, y pide volver a 280 kPa si vas a más de 160 km/h.",
    "saber": "",
    "modelos": [
     "S05"
    ],
    "motor": [],
-   "confianza": "consenso",
-   "verificacion": "Confirmado por varios dueños con la etiqueta de la puerta. No se tuvo el manual de la S05 para contrastar.",
+   "confianza": "oficial",
+   "verificacion": "Confirmado con los manuales de la S05 Max y de la S05 eléctrica: 280 kPa (2,8 bar, unos 41 PSI) adelante y atrás, vacía o cargada, en rines de 18 y de 20. Coincide con la etiqueta de la puerta que leen los dueños. El manual europeo de la S05 (68,8 kWh, no se vende en Colombia) dice 290 kPa (42 PSI).",
    "claves": "presion psi bar inflar calibrar libras etiqueta",
    "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 225)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 230)"
+    },
     {
      "tipo": "chat",
      "ref": "varios propietarios (etiqueta de la puerta)"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s07-39-psi-2-7-bar-en-frio-atras-42-psi-solo-con",
@@ -108,7 +124,7 @@
    "titulo": "Si el medidor y la pantalla no coinciden, guíate por la pantalla",
    "tipo": "hacer",
    "cuando": "Cada vez que calibres en una bomba o con tu compresor.",
-   "como": "Infla con el compresor y confirma en la pantalla del carro (TPMS). El manual de la S07 dice que la referencia es la lectura del TPMS.",
+   "como": "Infla con el compresor y confirma en la pantalla del carro (TPMS). Los manuales de la S07 y de las dos S05 dicen que la referencia es la lectura del TPMS.",
    "ojo": "Los medidores de los compresores pueden marcar varios PSI de menos: un dueño vio 40 PSI en el compresor y 50 PSI en la pantalla.",
    "saber": "",
    "modelos": [],
@@ -122,11 +138,19 @@
      "ref": "manual S07 Max (PDF p. 227)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 210)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 214)"
+    },
+    {
      "tipo": "chat",
      "ref": "1 propietario"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "si-una-llanta-baja-3-psi-o-mas-de-un-dia-a-otro-",
@@ -161,7 +185,7 @@
    "tipo": "hacer",
    "cuando": "En cada revisión de 10.000 km (va incluida la rotación).",
    "como": "Pide rotación (el manual la indica cada 10.000 km después del primer mantenimiento), alineación y balanceo. Revisa llantas y rines cada 3.000 km por si hay chichones o cortes.",
-   "ojo": "Es pesado, de tracción trasera y con regeneración fuerte: un dueño cambió llantas a los 15.000 km por llevarlas bajas.",
+   "ojo": "Es pesado, de tracción trasera y con regeneración fuerte: un dueño cambió llantas a los 15.000 km por llevarlas bajas. El manual de la S05 pide cambiar toda llanta de más de 6 años, aunque se vea bien.",
    "saber": "",
    "modelos": [],
    "motor": [],
@@ -174,11 +198,27 @@
      "ref": "manual S07 Max (PDF p. 225)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 203)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 205)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 208)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 209)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "arma-tu-kit-de-pinchazo-el-carro-no-trae-llanta-",
@@ -186,12 +226,12 @@
    "titulo": "Arma tu kit de pinchazo: el carro no trae llanta de repuesto",
    "tipo": "hacer",
    "cuando": "Apenas recibas el carro, antes del primer viaje.",
-   "como": "Revisa el baúl: trae sellante y compresor. En la S05 la toma de 12 V está en el baúl y el cable no llega a las delanteras: compra una extensión de 12 V o un compresor inalámbrico. La S07 tiene además una toma de 12 V en el apoyabrazos central.",
-   "ojo": "El compresor del kit funciona máximo 10 minutos seguidos y las tomas de 12 V aguantan hasta 120 W. El sellante es de un solo uso y vence: revisa la fecha en la botella.",
+   "como": "Revisa el baúl: trae sellante y compresor. En la S05 la única toma de 12 V está en el baúl (lo confirman sus dos manuales) y el cable no llega a las delanteras: compra una extensión de 12 V o un compresor inalámbrico. La S07 tiene además una toma de 12 V en el apoyabrazos central.",
+   "ojo": "El compresor del kit funciona máximo 10 minutos seguidos y las tomas de 12 V aguantan hasta 120 W. El sellante es de un solo uso, solo sirve para huecos de menos de 6 mm en la banda y vence: revisa la fecha en la botella.",
    "saber": "",
    "modelos": [],
    "motor": [],
-   "confianza": "consenso",
+   "confianza": "oficial",
    "verificacion": "",
    "claves": "repuesto dona kit despinche compresor extension 12v pinchazo",
    "fuentes": [
@@ -204,11 +244,27 @@
      "ref": "manual S07 Max (PDF p. 223)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 37)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 203)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 36)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 207)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "ante-un-pinchazo-leve-infla-y-llega-al-montallan",
@@ -356,12 +412,12 @@
    "titulo": "Ajusta el amperaje desde el menú de Energía",
    "tipo": "hacer",
    "cuando": "Antes de conectar en una toma que no conoces, o si quieres que la carga dure más horas.",
-   "como": "S05: menú de Energía > tuerca arriba a la derecha > elige 8 A, 13 A o Máximo. S07: el límite viene en 32 A y se baja en la pantalla central (solo aplica a la carga lenta).",
-   "ojo": "En un toma doméstico, el manual de la S07 pide que soporte al menos 16 A. En tomas dudosas o extensiones, usa el valor más bajo.",
+   "como": "S05: Centro del vehículo > Energía > Más > Límite de corriente de carga. Viene en «Máximo»; los dueños ven también 8 A y 13 A. S07: el límite viene en 32 A y se baja en la pantalla central. En los dos, solo aplica a la carga lenta.",
+   "ojo": "En un toma doméstico, los manuales de la S07 y de la S05 piden que soporte al menos 16 A. En tomas dudosas o extensiones, usa el valor más bajo, y nunca pongas más corriente de la que aguanta el cable.",
    "saber": "",
    "modelos": [],
    "motor": [],
-   "confianza": "reporte",
+   "confianza": "oficial",
    "verificacion": "",
    "claves": "amperios amperaje cargador portatil viajero menu energia tuerca",
    "fuentes": [
@@ -370,11 +426,51 @@
      "ref": "manual S07 Max (PDF p. 199)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 179)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 179)"
+    },
+    {
      "tipo": "chat",
      "ref": "1 propietario S05"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
+  },
+  {
+   "tipo": "hacer",
+   "cuando": "Cuando terminaste de cargar en AC, desbloqueaste el carro y la pistola sigue trabada.",
+   "como": "Primero desbloquea el carro con la llave e intenta otra vez. Si sigue trabada, en la S05 quita la tapa decorativa del lado derecho del baúl y hala la cuerda de desbloqueo de emergencia. En la carga rápida (DC) es distinto: la suelta el cargador cuando lo detienes.",
+   "ojo": "Puedes activar el «Desbloqueo automático del puerto de carga lenta» (Centro del vehículo > Energía > Carga y descarga) para que suelte la pistola sola al terminar. La cuerda está en el mismo lugar en la S05 Max y en la eléctrica, según sus manuales; en la S07 confírmala en el taller.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "pistola cargador trabada atascada no sale desbloqueo emergencia cuerda puerto carga",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 176)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 178)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 176)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "si-la-pistola-de-carga-lenta-no-sale-usa-la-cuerda",
+   "cat": "carga",
+   "titulo": "Si la pistola de carga lenta no sale, usa la cuerda de emergencia del baúl"
   },
   {
    "id": "cuanto-tarda-la-carga-en-casa",
@@ -515,22 +611,26 @@
    "tipo": "hacer",
    "cuando": "Cuando la batería quedó baja, no hay dónde enchufar y viene una subida o un tramo largo.",
    "como": "S05: Conducción > Carga de aparcamiento > elige el % objetivo (es el % final de la batería, no cuánto sumar) y la velocidad (empieza por la baja). La llave debe quedar dentro del carro.",
-   "ojo": "Nunca en garaje cerrado o sótano: el motor a gasolina genera gases. Tampoco como forma habitual de cargar.",
+   "ojo": "Nunca en garaje cerrado o sótano: el motor a gasolina genera gases (el manual pide un lugar abierto y ventilado). Tampoco como forma habitual de cargar: el manual la presenta para necesidades temporales. En la S05 tiene tres velocidades: baja, media y alta.",
    "saber": "",
    "modelos": [],
    "motor": [
     "REEV"
    ],
-   "confianza": "consenso",
+   "confianza": "oficial",
    "verificacion": "",
    "claves": "carga estacionaria aparcamiento estacionamiento motor termico",
    "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 98)"
+    },
     {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s07-la-carga-de-aparcamiento-esta-en-disputa",
@@ -591,7 +691,7 @@
    "tipo": "hacer",
    "cuando": "En el uso diario en ciudad.",
    "como": "Carga hasta 80–90 % (con carga programada) y vuelve a cargar antes de bajar del 20 %.",
-   "ojo": "Si cargas al 100 %, sal a usar el carro en menos de 24 horas. El manual de la S07 pide no dejarlo más de 7 días por debajo del 20 % y guardarlo con 40 % o más si va a estar quieto más de 3 meses.",
+   "ojo": "Si cargas al 100 %, sal a usar el carro en menos de 24 horas. En la S05 (las dos versiones), además, una carga completa a la semana (ver el tip de la S05). Los manuales de la S07 y de la S05 piden no dejarlo más de 7 días por debajo del 20 % y guardarlo con 40 % o más si va a estar quieto más de 3 meses.",
    "saber": "",
    "modelos": [],
    "motor": [],
@@ -604,18 +704,26 @@
      "ref": "manual S07 Max (PDF p. 207)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 186)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 190)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s05-carga-al-100-una-vez-al-mes-en-carga-lenta",
    "cat": "bateria",
-   "titulo": "S05: carga al 100 % una vez al mes, en carga lenta",
+   "titulo": "S05: carga al 100 % en carga lenta al menos una vez a la semana",
    "tipo": "hacer",
-   "cuando": "Una vez al mes, idealmente la noche antes de un viaje o de un día de mucho uso.",
+   "cuando": "Al menos una vez a la semana si usas el carro con frecuencia: lo piden los manuales de la S05 Max y de la eléctrica (en el grupo se decía una vez al mes). Mejor la noche antes de un viaje o de un día de mucho uso.",
    "como": "Carga enchufado en casa (AC) hasta el 100 % y deja conectado ~30 minutos más. Sirve para que el sistema calibre bien el porcentaje.",
    "ojo": "Si casi no usas el carro, mínimo cada 3 meses o 2.000 km; el mismo carro lo pide.",
    "saber": "",
@@ -624,15 +732,23 @@
    ],
    "motor": [],
    "confianza": "consenso",
-   "verificacion": "",
+   "verificacion": "Corregido con los manuales de las dos S05: carga completa al menos una vez a la semana (antes decía una vez al mes). El manual de la S07 Max no trae esa recomendación.",
    "claves": "bms calibrar 100 balanceo celdas lfp mes",
    "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 185)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 189)"
+    },
     {
      "tipo": "chat",
      "ref": "grupo de propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s07-e-max-electrica-dia-a-dia-al-80",
@@ -641,7 +757,7 @@
    "tipo": "hacer",
    "cuando": "Diario; el 100 % la noche antes de un viaje.",
    "como": "Carga a 80 % para el uso normal y al 100 % solo antes de un viaje. La E-Max usa batería NCM de 79,47 kWh, que se cuida mejor sin quedarse quieta al 100 %.",
-   "ojo": "Esto NO aplica a la S07 Max (rango extendido): esa usa LFP, como la S05.",
+   "ojo": "Esto NO aplica a la S07 Max (rango extendido): esa usa LFP, como las dos S05.",
    "saber": "",
    "modelos": [
     "S07"
@@ -658,7 +774,7 @@
      "ref": "El Carro Colombiano y Xataka: E-Max NCM 79,47 kWh"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "quimica-de-la-bateria-casi-todas-son-lfp-solo-la",
@@ -668,11 +784,11 @@
    "cuando": "",
    "como": "",
    "ojo": "",
-   "saber": "S05 (Max y E-Max): LFP de CATL según el grupo. S07 Max (rango extendido): LFP de 31,73 kWh según su manual. S07 E-Max (eléctrica): NCM de 79,47 kWh según la prensa del lanzamiento en Colombia. Las LFP toleran bien el 100 % y necesitan llegar ahí de vez en cuando para calibrar el porcentaje.",
+   "saber": "S05 Max (rango extendido): LFP de 27,28 kWh. S05 E-Max (eléctrica): LFP de 56,12 kWh. Las dos con refrigeración líquida, según sus manuales. S07 Max (rango extendido): LFP de 31,73 kWh según su manual. S07 E-Max (eléctrica): NCM de 79,47 kWh según la prensa del lanzamiento en Colombia. Las LFP toleran bien el 100 % y necesitan llegar ahí de vez en cuando para calibrar el porcentaje.",
    "modelos": [],
    "motor": [],
    "confianza": "oficial",
-   "verificacion": "Corregido: el HTML anterior decía que la S07 es NMC sin distinguir versión.",
+   "verificacion": "Corregido: el HTML anterior decía que la S07 es NMC sin distinguir versión. Las capacidades de las dos S05 salen de sus manuales.",
    "claves": "lfp nmc quimica catl",
    "fuentes": [
     {
@@ -680,15 +796,27 @@
      "ref": "manual S07 Max (PDF p. 242)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 223)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 228)"
+    },
+    {
      "tipo": "web",
      "ref": "El Carro Colombiano: S07 Max LFP 31,73 kWh; E-Max NCM 79,47 kWh"
+    },
+    {
+     "tipo": "web",
+     "ref": "El Carro Colombiano: S05 Max LFP 27,28 kWh; S05 E-Max LFP 56,12 kWh"
     },
     {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "cuando-salga-el-aviso-de-cargar-con-electricidad",
@@ -793,7 +921,7 @@
    "tipo": "hacer",
    "cuando": "Al salir y al cambiar de tipo de vía.",
    "como": "Ciudad con batería sobre 30 %: Prioridad eléctrica. Carretera plana: Híbrido. Subidas largas o batería baja: Prioridad combustible / Montaña. Bajadas: Eléctrica con regeneración alta.",
-   "ojo": "En la S07 los modos se llaman distinto: mira el tip «S07: Urbano, Alta velocidad y Montaña».",
+   "ojo": "Según el manual, Prioridad eléctrica evita prender el generador y trae un interruptor de «eléctrico forzado» para usar más batería (solo si sabes que hay dónde cargar adelante: al salir de él, el motor trabaja más y gasta más). Prioridad combustible es para montaña y carretera rápida. En la S07 los modos se llaman distinto: mira el tip «S07: Urbano, Alta velocidad y Montaña».",
    "saber": "",
    "modelos": [
     "S05"
@@ -802,15 +930,19 @@
     "REEV"
    ],
    "confianza": "consenso",
-   "verificacion": "",
+   "verificacion": "Coincide con lo que recomienda el manual de la S05 Max para cada modo. Los porcentajes son del grupo y cambian con el software.",
    "claves": "ev hibrido combinado fuel montaña prioridad combustible que modo usar",
    "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 97)"
+    },
     {
      "tipo": "chat",
      "ref": "grupo de propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "cuando-enciende-el-motor-en-cada-modo-s05-softwa",
@@ -921,7 +1053,7 @@
    "tipo": "hacer",
    "cuando": "Si casi siempre andas en eléctrico: cada 15 días aprox.",
    "como": "Pon Híbrido o Prioridad combustible durante un trayecto normal.",
-   "ojo": "La gasolina se degrada en 3–6 meses. Si casi no la usas, tanquea poco en vez de llenar. El manual de la S07 pide gasolina de grado 92 o superior según la norma china GB 17930; en el grupo hay debate sobre corriente o extra: pregunta en el taller.",
+   "ojo": "La gasolina se degrada en 3–6 meses. Si casi no la usas, tanquea poco en vez de llenar. El manual de la S07 pide gasolina de grado 92 o superior según la norma china GB 17930 y el de la S05 Max, RON 91 o más (ver el tip «S05 Max: el manual pide gasolina RON 91 o más»).",
    "saber": "",
    "modelos": [],
    "motor": [
@@ -936,7 +1068,45 @@
      "ref": "grupo de propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
+  },
+  {
+   "tipo": "hacer",
+   "cuando": "Cada vez que tanquees.",
+   "como": "El manual de la S05 Max pide gasolina de RON 91 o más y remite a las normas de cada país; el tanque es de 51 litros. En Colombia, la extra ronda RON 94–95 y cumple; la corriente tiene menos octanaje (la prensa la ubica alrededor de RON 84–85 con etanol).",
+   "ojo": "En el grupo la mayoría tanquea corriente sin problemas y varios dicen que el concesionario la acepta; otros prefieren extra porque la gasolina pasa semanas en el tanque. Pide al taller, por escrito, cuál exige la garantía de tu carro.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "disputa",
+   "verificacion": "",
+   "claves": "gasolina corriente extra octanaje octanos ron 91 tanque 51 litros combustible garantia",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 226)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 234)"
+    },
+    {
+     "tipo": "web",
+     "ref": "El Tiempo y La República: corriente ~RON 84–85; extra ~RON 94–95"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios (debate corriente o extra)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "s05-max-el-manual-pide-gasolina-ron-91",
+   "cat": "energia",
+   "titulo": "S05 Max: el manual pide gasolina RON 91 o más"
   },
   {
    "id": "para-saber-si-el-motor-esta-encendido-mira-la-pa",
@@ -1042,8 +1212,8 @@
    "titulo": "Regeneración: alta en ciudad y bajadas, baja en carretera plana",
    "tipo": "hacer",
    "cuando": "Al cambiar de ciudad a carretera y antes de una bajada.",
-   "como": "Ciudad: alta (casi manejas con un solo pedal). Carretera plana: baja o media. Bajadas largas: alta. Se ajusta en el modo Personalizado.",
-   "ojo": "Al 100 % en plano frena mucho y cansa. En bajada recupera bastante (un dueño pasó de 39 % a 47 % de Bogotá a Fusagasugá), pero con la batería al 100 % la regeneración desaparece: ver el tip de bajadas.",
+   "como": "Ciudad: alta (casi manejas con un solo pedal). Carretera plana: baja o media. Bajadas largas: alta. Se ajusta en el modo Personalizado (en la S05: Estándar, Fuerte o Personalizada).",
+   "ojo": "Con regeneración fuerte se encienden las luces de freno al soltar el acelerador. Al 100 % en plano frena mucho y cansa. En bajada recupera bastante (un dueño pasó de 39 % a 47 % de Bogotá a Fusagasugá), pero con la batería al 100 % la regeneración desaparece: ver el tip de bajadas.",
    "saber": "",
    "modelos": [],
    "motor": [],
@@ -1056,11 +1226,19 @@
      "ref": "manual S07 Max (PDF p. 15)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 98)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 96)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "configuracion-que-les-funciona-a-varios-duenos",
@@ -1222,11 +1400,45 @@
      "ref": "manual S07 Max (PDF p. 15)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 97)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
+  },
+  {
+   "tipo": "hacer",
+   "cuando": "En la bomba, antes de que llegue el islero.",
+   "como": "Con el carro encendido y en P, toca el botón de la tapa del tanque en la pantalla (en el carro en 3D o en el menú que se baja). Luego presiona la tapa, que está atrás a la izquierda, y se abre sola. Al terminar, aprieta la tapa del tubo hasta oír dos o más clics y cierra la tapa con la mano.",
+   "ojo": "El tanque es presurizado: por eso no abre con el carro apagado. Si el motor estaba encendido, se apaga al desbloquear la tapa. Si la pistola salta muchas veces, deja de tanquear y consulta en el taller.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "tanquear gasolina tapa tanque no abre presurizado bomba repostar",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 182)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 183)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "s05-max-para-tanquear-desbloquea-la-tapa-en-la-pantalla",
+   "cat": "viajes",
+   "titulo": "S05 Max: para tanquear, desbloquea la tapa desde la pantalla"
   },
   {
    "id": "en-la-ruta-combustible-antes-de-subir-electrico-",
@@ -1323,6 +1535,36 @@
    "actualizado": "2026-11-21"
   },
   {
+   "tipo": "hacer",
+   "cuando": "Cuando la autonomía total (gasolina más batería) no alcanza; el carro te lo propone en la pantalla.",
+   "como": "Centro del vehículo > Conducción > Modo de emergencia. Limita la potencia y apaga funciones de confort y entretenimiento para estirar la autonomía. Si necesitas el aire, la ventilación de los asientos o la música, los puedes prender a mano.",
+   "ojo": "El modo se apaga solo cuando tanqueas o cargas. Con la potencia limitada, ten cuidado al adelantar.",
+   "saber": "",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "modo emergencia autonomia baja sin gasolina sin bateria llegar bomba cargador",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 97)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 98)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "s05-max-modo-de-emergencia-para-llegar-a-la-bomba",
+   "cat": "viajes",
+   "titulo": "S05 Max: usa el modo de emergencia para llegar a la bomba o al cargador"
+  },
+  {
    "id": "revisa-el-pico-y-placa-de-la-ciudad-de-destino",
    "cat": "viajes",
    "titulo": "Revisa el pico y placa de la ciudad de destino",
@@ -1351,7 +1593,7 @@
    "tipo": "hacer",
    "cuando": "Antes de una bajada larga (Bogotá–Girardot, La Línea, Letras…).",
    "como": "Empieza la bajada con 90–95 % o menos, baja la velocidad y usa los frenos con suavidad.",
-   "ojo": "El manual advierte que la fuerza de frenado regenerativo disminuye a medida que sube la carga y desaparece al 100 %. Un dueño lo confirmó en el grupo.",
+   "ojo": "Los manuales de la S07 y de las dos S05 advierten que la fuerza de frenado regenerativo disminuye a medida que sube la carga y desaparece al 100 %. Un dueño lo confirmó en el grupo.",
    "saber": "",
    "modelos": [],
    "motor": [],
@@ -1364,11 +1606,19 @@
      "ref": "manual S07 Max (PDF p. 15)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 8)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 8)"
+    },
+    {
      "tipo": "chat",
      "ref": "1 propietario"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s05-para-reiniciar-la-pantalla-manten-el-joystic",
@@ -1468,8 +1718,8 @@
    "titulo": "S05: instala las actualizaciones en P, con buena señal y leyendo la pantalla",
    "tipo": "hacer",
    "cuando": "Cuando te llegue el aviso de actualización.",
-   "como": "Con el carro parqueado, lee el aviso antes de aceptar (algunas versiones fueron beta). Si sale “actualización pausada” o error de validación, reinicia la pantalla e intenta de nuevo.",
-   "ojo": "",
+   "como": "Centro del vehículo > Sistema > Actualización del sistema. Con el carro parqueado en P, sin cargar ni dar corriente afuera y con la batería bien cargada, lee el aviso antes de aceptar (algunas versiones fueron beta). Puedes elegir «Actualizar ahora» o programarla para la noche. Si sale “actualización pausada” o error de validación, reinicia la pantalla e intenta de nuevo.",
+   "ojo": "Mientras se actualiza, el carro no se puede manejar.",
    "saber": "",
    "modelos": [
     "S05"
@@ -1480,11 +1730,19 @@
    "claves": "ota actualizacion version 3.0 beta pausada",
    "fuentes": [
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 219)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 223)"
+    },
+    {
      "tipo": "chat",
      "ref": "grupo de propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "s07-las-actualizaciones-se-piden-en-el-taller",
@@ -1835,24 +2093,86 @@
   {
    "id": "ubica-la-apertura-mecanica-de-las-puertas-antes-",
    "cat": "funciones",
-   "titulo": "Ubica la apertura mecánica de las puertas antes de necesitarla",
+   "titulo": "Aprende a abrir las puertas si se acaba la batería de 12 V",
    "tipo": "hacer",
    "cuando": "En los primeros días con el carro.",
-   "como": "Busca en el manual la guaya de apertura mecánica de las puertas (manijas a ras). Existe en S05 y S07.",
-   "ojo": "",
+   "como": "En la S05 (Max y eléctrica, según sus manuales), desde adentro: con el carro quieto y cerrado, hala la manija interior dos veces (una vez si no tiene seguro). Desde afuera: si la batería de 12 V se descargó, quita la tapita del bumper trasero, conecta un arrancador (rojo al positivo, negro al negativo) al puerto de desbloqueo de emergencia y desbloquea enseguida. El baúl se abre desde adentro: abate los asientos traseros, quita la tapa de la compuerta y gira la manija blanca. En la S07 su manual no lo explica: pregunta en el taller cómo es el suyo.",
+   "ojo": "El arrancador en ese puerto no puede quedarse más de 30 segundos: se funde un fusible y la próxima vez no funcionará.",
    "saber": "",
    "modelos": [],
    "motor": [],
-   "confianza": "reporte",
+   "confianza": "oficial",
    "verificacion": "",
-   "claves": "guaya manija emergencia abrir puertas",
+   "claves": "guaya manija emergencia abrir puertas bateria 12v descargada arrancador baul",
    "fuentes": [
     {
      "tipo": "chat",
      "ref": "grupo de propietarios"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 22)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 33)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 215)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 23)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 33)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 220)"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
+  },
+  {
+   "tipo": "hacer",
+   "cuando": "Para un paseo, un corte de luz o una herramienta en el campo.",
+   "como": "El carro entrega 220 V por la toma de carga lenta. Necesitas un adaptador de descarga (V2L) tipo 2: se compra aparte. Con el carro encendido y en P, en un lugar ventilado, conéctalo, activa la descarga (en la S05: Centro del vehículo > Energía > Carga y descarga > Descarga externa) y prende el interruptor del adaptador. Al terminar, apaga el interruptor y desconecta.",
+   "ojo": "Da 220 V: no conectes aparatos de 110 V ni más potencia de la que permite el adaptador. Se detiene sola cuando la batería queda baja. No es para cargar otro carro (los dueños lo discuten, pero no está en el manual). Nunca lo toques con las manos mojadas ni lo dejes al alcance de niños. Está en los manuales de la S07 Max y de las dos S05. En la S05 Max puedes activar «Arrancar el motor con batería baja» (en los ajustes de descarga): el generador recarga mientras das corriente, y se detiene cuando se acaban la batería y la gasolina.",
+   "saber": "",
+   "modelos": [],
+   "motor": [],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "v2l descarga externa 220 toma corriente electrodomesticos camping apagon adaptador",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 179)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 180)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 199)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 180)"
+    },
+    {
+     "tipo": "chat",
+     "ref": "varios propietarios (adaptador comprado aparte)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "usa-el-carro-como-toma-de-220-v-v2l",
+   "cat": "funciones",
+   "titulo": "Usa el carro como toma de 220 V con un adaptador V2L"
   },
   {
    "id": "s07-apagar-con-un-toque",
@@ -1884,7 +2204,7 @@
    "titulo": "Si necesitas grúa, pide de plataforma",
    "tipo": "hacer",
    "cuando": "Cuando el carro no pueda moverse por sí mismo.",
-   "como": "Pide grúa de plataforma (cama baja): el manual dice que el rescate en carretera solo se hace en camión de plataforma. Antes de subirlo, activa el Modo de remolque en la pantalla: pasa a N y suelta el freno de mano, así que hazlo en terreno plano. El gancho de arrastre viene en el kit del baúl (manual S05: pág. 213).",
+   "como": "Pide grúa de plataforma (cama baja): el manual dice que el rescate en carretera solo se hace en camión de plataforma. Antes de subirlo, activa el Modo de remolque en la pantalla: pasa a N y suelta el freno de mano, así que hazlo en terreno plano. El gancho de arrastre viene en la caja de herramientas del baúl; en la S05 se enrosca abajo a la derecha del bumper delantero, tras quitar la tapita.",
    "ojo": "No se debe arrastrar con las ruedas motrices en el piso: van conectadas a los motores. Si se pierde la tapita del bumper, reclámala.",
    "saber": "",
    "modelos": [],
@@ -1902,11 +2222,23 @@
      "ref": "manual S07 Max (PDF p. 233)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 230)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 231)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 237)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "la-carga-inalambrica-calienta-el-celular",
@@ -1936,12 +2268,10 @@
    "titulo": "Modo de remolque: actívalo antes de que lo suban a la grúa",
    "tipo": "hacer",
    "cuando": "Cuando la grúa vaya a cargar o arrastrar el carro.",
-   "como": "Pantalla central > Modo de remolque y acepta el aviso. La transmisión pasa de P a N y se suelta el freno de mano.",
-   "ojo": "Hazlo en terreno plano para que no se deslice. Sin el modo de remolque se pueden dañar piezas. En la S05 búscalo en la pantalla o pregunta en el taller.",
+   "como": "S07: pantalla central > Modo de remolque. S05: Centro del vehículo > Mantenimiento de seguridad > Modo de remolque (con el carro desbloqueado, en P y pisando el freno). Acepta el aviso: la transmisión pasa de P a N y se suelta el freno de mano.",
+   "ojo": "Hazlo en terreno plano para que no se deslice. Sin el modo de remolque se pueden dañar piezas. En la S05 la ruta es la misma en la Max y en la eléctrica, según sus manuales.",
    "saber": "",
-   "modelos": [
-    "S07"
-   ],
+   "modelos": [],
    "motor": [],
    "confianza": "oficial",
    "verificacion": "",
@@ -1952,11 +2282,19 @@
      "ref": "manual S07 Max (PDF p. 231)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 229)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 236)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "revisa-el-stop-trasero-cada-semana-los-primeros-",
@@ -2035,16 +2373,28 @@
    "saber": "",
    "modelos": [],
    "motor": [],
-   "confianza": "consenso",
-   "verificacion": "",
+   "confianza": "oficial",
+   "verificacion": "Los manuales de las dos S05 recomiendan cambiarlo después de los 10.000 km; el de la S07 Max, desde los 15.000 y cada 10.000.",
    "claves": "olor aire acondicionado filtro cabina",
    "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 183)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S07 Max (PDF p. 203)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 186)"
+    },
     {
      "tipo": "chat",
      "ref": "grupo de propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "en-latoneria-avisa-que-el-carro-es-electrico",
@@ -2146,7 +2496,7 @@
    "modelos": [],
    "motor": [],
    "confianza": "oficial",
-   "verificacion": "Ampliado: el manual de la S07 fija también meses; el HTML anterior solo daba kilómetros.",
+   "verificacion": "Ampliado: los manuales de la S07 y de las dos S05 fijan también meses; el HTML anterior solo daba kilómetros.",
    "claves": "mantenimiento revision 1000 5000 10000 15000 intervalo calendario",
    "fuentes": [
     {
@@ -2154,11 +2504,19 @@
      "ref": "manual S07 Max (PDF p. 203)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 181)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 184)"
+    },
+    {
      "tipo": "chat",
      "ref": "taller, septiembre de 2026"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "que-piden-en-cada-revision",
@@ -2168,11 +2526,11 @@
    "cuando": "",
    "como": "",
    "ojo": "",
-   "saber": "Manual S07 Max: el aceite y el filtro del motor a gasolina se cambian en cada revisión (5.000, 15.000, 25.000 km…); las bujías cada 20.000 km; el lubricante del reductor la primera vez a los 10.000 km y luego cada 60.000 km; el filtro del aire acondicionado desde los 15.000 km y cada 10.000; el líquido de frenos a los 45.000 km. En la práctica, Vardí cambia el aceite del reductor a los 5.000 km. 10.000 km: rotación de llantas, pila del control y líquidos.",
+   "saber": "Manual S07 Max: el aceite y el filtro del motor a gasolina se cambian en cada revisión (5.000, 15.000, 25.000 km…); las bujías cada 20.000 km; el lubricante del reductor la primera vez a los 10.000 km y luego cada 60.000 km; el filtro del aire acondicionado desde los 15.000 km y cada 10.000; el líquido de frenos a los 45.000 km. Manual S05 eléctrica (no tiene motor a gasolina): lubricante del reductor cada 3 años o 60.000 km; líquido de frenos a los 45.000 y a los 85.000 km; filtro del aire acondicionado desde los 10.000 km; refrigerante revisado cada 10.000 km y cambiado a los 36 meses u 80.000 km; en cada revisión, inspección de la batería de alto voltaje y su cableado. En la práctica, Vardí cambia el aceite del reductor a los 5.000 km. 10.000 km: rotación de llantas, pila del control y líquidos.",
    "modelos": [],
    "motor": [],
    "confianza": "oficial",
-   "verificacion": "Corregido y ampliado con el plan de mantenimiento del manual de la S07. No se tuvo el manual de la S05.",
+   "verificacion": "Corregido y ampliado con los planes de mantenimiento de los manuales de la S07 Max y de la S05 eléctrica. El plan de la S05 Max (rango extendido) está en el tip siguiente.",
    "claves": "aceite reductor rotacion pila control incluye",
    "fuentes": [
     {
@@ -2180,11 +2538,57 @@
      "ref": "manual S07 Max (PDF p. 203)"
     },
     {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 182)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 183)"
+    },
+    {
      "tipo": "chat",
      "ref": "varios propietarios"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
+  },
+  {
+   "tipo": "saber",
+   "cuando": "",
+   "como": "",
+   "ojo": "En vías polvorientas el manual pide revisar el filtro de aire del motor cada 2.500 km o 3 meses. En la práctica, Vardí cambia el aceite del reductor a los 5.000 km.",
+   "saber": "Aceite del motor y su filtro: en cada revisión (5.000, 15.000, 25.000 km…). Usa 0W-16 de calidad SP/GF-6 o superior; lleva unos 4 litros. Filtro de aire del motor: a los 25.000 km y luego cada 20.000 (45.000, 65.000…). Bujías: después de 30.000 km recorridos con el motor de gasolina encendido, no del kilometraje total. Filtro de gasolina (viene dentro de la bomba): cada 4 años o 100.000 km. Lubricante del reductor: cada 3 años o 60.000 km. Líquido de frenos: a los 45.000 y a los 85.000 km. Filtro del aire acondicionado: desde los 10.000 km. Refrigerante: revisión cada 10.000 km y cambio a los 36 meses u 80.000 km.",
+   "modelos": [
+    "S05"
+   ],
+   "motor": [
+    "REEV"
+   ],
+   "confianza": "oficial",
+   "verificacion": "",
+   "claves": "mantenimiento aceite motor filtro bujias reductor 0w16 revision plan fabricante max rango extendido",
+   "fuentes": [
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 185)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 186)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 187)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 201)"
+    }
+   ],
+   "actualizado": "2026-11-22",
+   "id": "s05-max-plan-de-mantenimiento-del-fabricante",
+   "cat": "mantenimiento",
+   "titulo": "S05 Max: plan de mantenimiento del fabricante"
   },
   {
    "id": "costos-reportados",
@@ -2316,9 +2720,17 @@
     {
      "tipo": "manual",
      "ref": "manual S07 Max (PDF p. 207)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 eléctrica (PDF p. 186)"
+    },
+    {
+     "tipo": "manual",
+     "ref": "manual S05 Max (PDF p. 190)"
     }
    ],
-   "actualizado": "2026-11-21"
+   "actualizado": "2026-11-22"
   },
   {
    "id": "pide-el-certificado-upme-en-cuanto-tengas-la-fac",

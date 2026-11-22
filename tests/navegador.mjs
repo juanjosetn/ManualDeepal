@@ -4,6 +4,7 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { nuevoServicio, conectar, CLAVE_PRUEBA } from './apoyo-comunidad.mjs';
 
 const BASE = process.env.BASE || 'http://localhost:8080/';
 const SALIDA = process.env.CAPTURAS || '/tmp/capturas';
@@ -17,6 +18,8 @@ async function caso(nombre, fn) {
 
 for (const [disp, vp] of [['celular', { width: 390, height: 844 }], ['escritorio', { width: 1280, height: 860 }]]) {
   const ctx = await navegador.newContext({ viewport: vp, locale: 'es-CO', timezoneId: 'America/Bogota', acceptDownloads: true, serviceWorkers: 'allow' });
+  // Pruebas tocadas en v02.03: el manual ahora consulta la hoja de la comunidad; en las pruebas nunca se llama al servicio real
+  await ctx.route('https://script.google.com/**', (r) => r.abort());
   const page = await ctx.newPage();
   const errores = [];
   page.on('pageerror', (e) => errores.push(e.message));
@@ -99,30 +102,45 @@ for (const [disp, vp] of [['celular', { width: 390, height: 844 }], ['escritorio
   });
 
   if (disp === 'escritorio') {
-    await caso('admin: carga el ZIP, anonimiza y crea un tip', async () => {
-      await page.goto(`${BASE}#admin`);
-      await page.waitForSelector('#archivoChat');
-      await page.setInputFiles('#archivoChat', new URL('./fixtures/chat-ejemplo.zip', import.meta.url).pathname);
-      await page.waitForSelector('#resumenChat:has-text("mensajes")');
-      await page.fill('#desde', '2026-11-01'); await page.click('#btnBuscarCand');
-      await page.waitForSelector('.candidato');
-      const html = await page.content();
+    // Pruebas tocadas en v02.03: el panel pide usuario y contraseña y guarda en la hoja (aquí, el simulador del Apps Script)
+    await caso('admin: entra, carga el ZIP, anonimiza y guarda un tip en la hoja', async () => {
+      const g = nuevoServicio();
+      const c2 = await navegador.newContext({ viewport: vp, locale: 'es-CO', timezoneId: 'America/Bogota', acceptDownloads: true });
+      await conectar(c2, g);
+      const pa = await c2.newPage();
+      pa.on('pageerror', (e) => errores.push(e.message));
+      await pa.goto(`${BASE}#admin`);
+      await pa.fill('#inUsuario', 'admin'); await pa.fill('#inClave', CLAVE_PRUEBA); await pa.click('#btnEntrar');
+      await pa.waitForSelector('.cifras', { timeout: 10000 });
+      await pa.click('#navPanel [data-sec="copia"]'); await pa.click('#btnImportar');
+      await pa.waitForFunction(() => /Listo/.test(document.getElementById('resImportar').textContent), null, { timeout: 15000 });
+      await pa.click('#navPanel [data-sec="chat"]');
+      await pa.setInputFiles('#archivoChat', new URL('./fixtures/chat-ejemplo.zip', import.meta.url).pathname);
+      await pa.waitForSelector('#resumenChat:has-text("mensajes")');
+      await pa.fill('#desde', '2026-11-01'); await pa.click('#btnBuscarCand');
+      await pa.waitForSelector('.candidato');
+      const html = await pa.content();
       for (const p of ['carla@example.com', 'ABC123', '3000000002', 'Ana Prueba']) assert.ok(!html.includes(p), `fuga: ${p}`);
-      assert.ok(await page.locator('#listaVcf tr').count() >= 2, 'contacto vcf nuevo');
-      await page.click('.candidato [data-acc="mano"]');
-      await page.fill('#fTitulo', 'Prueba: calibra en frío a 39 PSI');
-      await page.fill('#fComo', 'Con el carro frío.');
-      await page.click('#formTip button[type="submit"]');
-      await page.waitForSelector('#borradores li:has-text("Prueba: calibra")');
-      const [descarga] = await Promise.all([page.waitForEvent('download'), page.click('#btnDescTips')]);
+      assert.ok(await pa.locator('#listaVcf tr').count() >= 2, 'contacto vcf nuevo');
+      await pa.click('.candidato [data-acc="mano"]');
+      await pa.fill('#fTitulo', 'Prueba: calibra en frío a 39 PSI');
+      await pa.fill('#fComo', 'Con el carro frío.');
+      await pa.click('#formTip button[value="borrador"]');
+      await pa.waitForSelector('#editorChat .estado-form.ok', { timeout: 10000 });
+      const fila = g.filas('TIPS').find((f) => f.titulo === 'Prueba: calibra en frío a 39 PSI');
+      assert.ok(fila && fila.estado === 'borrador' && JSON.parse(fila.datos).cat === 'llantas', 'tip en la hoja como borrador');
+      assert.ok(!JSON.stringify(g.filas('TIPS')).includes('Ana Prueba'), 'el chat no llega a la hoja');
+      await pa.click('#btnUltimoChat');
+      await pa.waitForFunction(() => /Listo/.test(document.getElementById('resUltimoChat').textContent));
+      assert.equal(g.props.get('ULTIMO_CHAT'), '2026-11-03'); // fecha local, no UTC
+      await pa.click('#navPanel [data-sec="copia"]'); await pa.waitForSelector('#btnDescTips');
+      const [descarga] = await Promise.all([pa.waitForEvent('download'), pa.click('#btnDescTips')]);
       const json = JSON.parse(fs.readFileSync(await descarga.path(), 'utf8'));
-      assert.ok(json.tips.some((t) => t.titulo === 'Prueba: calibra en frío a 39 PSI' && t.cat === 'llantas'));
-      assert.equal(json.ultimoChat, '2026-11-03'); // fecha local, no UTC
+      assert.equal(json.ultimoChat, '2026-11-03');
+      assert.ok(!json.tips.some((t) => t.titulo.startsWith('Prueba:')), 'el borrador no va en la copia pública');
       assert.ok(!JSON.stringify(json).includes('_cat'), 'no exporta campos internos');
-      await page.screenshot({ path: `${SALIDA}/admin.png`, fullPage: false });
-      globalThis.__ok = 1;
-      await page.evaluate(() => { globalThis.__confirmar = () => true; });
-      await page.click('#btnVaciar');
+      await pa.screenshot({ path: `${SALIDA}/admin.png`, fullPage: false });
+      await c2.close();
     });
 
     await caso('PWA: funciona sin conexión', async () => {

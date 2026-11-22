@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { crearGAS } from './gas-simulador.mjs';
-import { conectar, CLAVE_PRUEBA } from './apoyo-comunidad.mjs';
+import { conectar, CLAVE_PRUEBA, entrarPanel } from './apoyo-comunidad.mjs';
 
 const RAIZ = process.env.RAIZ || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = process.env.BASE || 'http://localhost:8080/';
@@ -22,7 +22,8 @@ const gs = fs.readFileSync(path.join(RAIZ, 'apps-script/Codigo.gs'), 'utf8');
 
 // ---------- A. Servidor (simulado con el Codigo.gs de RAIZ) ----------
 caso('la regla está en un solo lugar del servidor: ESTRELLAS_MINIMAS_QUE_CUENTAN = 2', /var ESTRELLAS_MINIMAS_QUE_CUENTAN = 2;/.test(gs));
-caso('el servicio informa la versión 1.1.0 (cambió una regla)', /SERVICIO_VERSION = '1\.1\.0'/.test(gs));
+// Pruebas tocadas en v02.03: el servicio pasó a 2.0.0 (usuarios y datos en la hoja); se acepta 1.1.0 o posterior
+caso('el servicio informa la versión 1.1.0 o posterior (cambió una regla)', (() => { const m = gs.match(/SERVICIO_VERSION = '(\d+)\.(\d+)\.\d+'/); return !!m && (+m[1] > 1 || (+m[1] === 1 && +m[2] >= 1)); })());
 function servicio() { const g = crearGAS({ archivo: path.join(RAIZ, 'apps-script/Codigo.gs') }); g.ctx.fijarClaveAdmin_(CLAVE_PRUEBA); return g; }
 let k = 0;
 const votar = (g, id, e, t = '') => g.post({ accion: 'calificar', contactoId: id, estrellas: e, comentario: t, dispositivo: `voto${String(++k).padStart(4, '0')}${'0'.repeat(12)}`, reqId: `voto-${k}-prueba` });
@@ -91,7 +92,7 @@ if (chromium) {
     votar(g, salitre, 1, 'Retaliación de prueba');
     const { p, ctx } = await pagina('#admin', 1280);
     try {
-      await p.fill('#claveCom', CLAVE_PRUEBA); await p.click('#btnPendientes');
+      await entrarPanel(p, { seccion: 'opiniones' }); // Pruebas tocadas en v02.03: ingreso con usuario y contraseña
       await p.waitForSelector('#listaOpiniones tbody tr', { timeout: 8000 });
       const fila = p.locator('#listaOpiniones tbody tr', { hasText: 'Retaliación de prueba' });
       caso('panel: la opinión de 1 estrella dice que no cuenta ni se publica', /no cuenta ni se publica/.test(await fila.textContent()));

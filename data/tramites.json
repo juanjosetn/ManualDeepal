@@ -1,0 +1,21 @@
+{
+  "nota": "Lista de guías de la pestaña Trámites. La versión de cada guía se lee de la propia guía (<meta name=\"version\">), así hay una sola fuente. Para agregar un trámite: pon su HTML en guias/ y agrega un elemento aquí.",
+  "tramites": [
+    {
+      "id": "devolucion-iva",
+      "titulo": "Devolución del IVA de tu vehículo eléctrico o híbrido",
+      "resumen": "Cómo pedirle a la DIAN el IVA que pagaste al comprar un carro eléctrico o híbrido nuevo: certificado UPME, los 9 documentos, cita, envío y seguimiento de los 50 días hábiles. Con checklist, modelos de cartas en Word y cálculo de plazos.",
+      "archivo": "guias/devolucion-iva.html",
+      "nombreDescarga": "Guia_Devolucion_IVA",
+      "revisada": "2026-11-22",
+      "credito": "Guía original de su autor. Versión HTML interactiva: El profe Juan Tapia (ProEduLab).",
+      "novedades": [
+        { "vigencia": "2026-11-12", "fuente": "Concepto DIAN 2242 de 2026", "texto": "Si sacas el certificado UPME antes de comprar, la factura debe salir sin IVA." },
+        { "vigencia": "2026-10-01", "fuente": "Comunicado DIAN 127 de 2026", "texto": "Cita solo en Bogotá, Medellín, Cali y Bucaramanga; formulario electrónico de la DIAN para el Formato 010." },
+        { "vigencia": "2026-08-07", "fuente": "Resolución UPME 563 de 2026", "texto": "Reemplaza a la 400 de 2026: ventana del 1 de febrero al 15 de diciembre de cada año; el certificado no vence y el de un vehículo no se modifica." },
+        { "vigencia": "2026-08-04", "fuente": "Concepto DIAN 12670 de 2026", "texto": "La nota crédito del concesionario no sirve: la devolución se pide a la DIAN." },
+        { "vigencia": null, "fuente": "Proyecto de Ley de Rescate 477 de 2026", "texto": "Propone subir el IVA de eléctricos e híbridos del 5 % al 19 %. No está aprobado." }
+      ]
+    }
+  ]
+}

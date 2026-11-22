@@ -55,6 +55,9 @@ const P = {
   estrellaLlena: '<path d="m12 3.6 2.5 5.3 5.8.7-4.3 4 1.1 5.7L12 16.5l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7Z" fill="currentColor"/>',
   agregar: '<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>',
   creditos: '<circle cx="12" cy="9" r="5.5"/><path d="m9 13.8-1.5 6.7 4.5-2.3 4.5 2.3-1.5-6.7"/>',
+  documento: '<path d="M7 3.5h6.5l4 4v13H7z"/><path d="M13.5 3.5v4h4"/><path d="m9.6 14.2 1.9 1.9 3.4-3.8"/>',
+  descargar: '<path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 19.5h14"/>',
+  abrir: '<path d="M13.5 4.5h6v6"/><path d="M19.5 4.5 11 13"/><path d="M18 14v5.5H4.5V6H10"/>',
   categoria: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
 };
 
