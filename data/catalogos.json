@@ -1,69 +1,70 @@
 {
+ "nota": "«icono» es el nombre de un ícono de js/iconos.js (trazo fino). Para una categoría nueva usa uno existente o agrega su dibujo allá.",
  "categorias": [
   {
    "id": "llantas",
    "nombre": "Llantas y rines",
-   "icono": "🛞"
+   "icono": "llantas"
   },
   {
    "id": "carga",
    "nombre": "Carga",
-   "icono": "🔌"
+   "icono": "carga"
   },
   {
    "id": "bateria",
    "nombre": "Batería",
-   "icono": "🔋"
+   "icono": "bateria"
   },
   {
    "id": "energia",
    "nombre": "Modos de energía (REEV)",
-   "icono": "⛽"
+   "icono": "energia"
   },
   {
    "id": "manejo",
    "nombre": "Manejo y consumo",
-   "icono": "🧭"
+   "icono": "manejo"
   },
   {
    "id": "viajes",
    "nombre": "Viajes y montaña",
-   "icono": "⛰️"
+   "icono": "viajes"
   },
   {
    "id": "software",
    "nombre": "Pantalla y software",
-   "icono": "🖥️"
+   "icono": "software"
   },
   {
    "id": "app",
    "nombre": "App",
-   "icono": "📱"
+   "icono": "app"
   },
   {
    "id": "funciones",
    "nombre": "Funciones útiles",
-   "icono": "🔧"
+   "icono": "funciones"
   },
   {
    "id": "problemas",
    "nombre": "Problemas comunes",
-   "icono": "⚠️"
+   "icono": "problemas"
   },
   {
    "id": "mantenimiento",
    "nombre": "Mantenimiento y taller",
-   "icono": "🧰"
+   "icono": "mantenimiento"
   },
   {
    "id": "tramites",
    "nombre": "Trámites e incentivos",
-   "icono": "📄"
+   "icono": "tramites"
   },
   {
    "id": "accesorios",
    "nombre": "Accesorios y protección",
-   "icono": "🛡️"
+   "icono": "accesorios"
   }
  ],
  "modelos": [

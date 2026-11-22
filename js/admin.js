@@ -10,6 +10,7 @@
 // =====================================================================
 import { escaparHTML as esc, normalizar } from './texto.js';
 import { crearBuscador } from './buscador.js';
+import { icono } from './iconos.js';
 import { leerZip, leerChat, crearAlias, buscarCandidatos, textoDelHilo, leerVcf } from './chat.js';
 
 const $ = (id) => document.getElementById(id);
@@ -121,7 +122,7 @@ async function cargarArchivo(e) {
     if (!mensajes.length) throw new Error('No reconocí el formato del chat. ¿Es una exportación de WhatsApp?');
     chat = { mensajes, alias: crearAlias(mensajes) };
     const ini = mensajes[0].fecha, fin = mensajes[mensajes.length - 1].fecha;
-    res.innerHTML = `✔ ${mensajes.length.toLocaleString('es-CO')} mensajes de ${chat.alias.size} participantes, del ${ini.toLocaleDateString('es-CO')} al ${fin.toLocaleDateString('es-CO')}. ${vcfs.length ? `${vcfs.length} contactos .vcf.` : ''}<br>La última vez se procesó hasta: <strong>${esc(ctx.TIPS.ultimoChat || 'nunca')}</strong>.`;
+    res.innerHTML = `Listo: ${mensajes.length.toLocaleString('es-CO')} mensajes de ${chat.alias.size} participantes, del ${ini.toLocaleDateString('es-CO')} al ${fin.toLocaleDateString('es-CO')}. ${vcfs.length ? `${vcfs.length} contactos .vcf.` : ''}<br>La última vez se procesó hasta: <strong>${esc(ctx.TIPS.ultimoChat || 'nunca')}</strong>.`;
     $('desde').value = ctx.TIPS.ultimoChat || fechaLocal(new Date(fin - 30 * 864e5));
     $('pasoCandidatos').hidden = false;
     pintarVcf();
@@ -144,8 +145,8 @@ function listarCandidatos() {
     const parecido = busca.buscar(c.palabrasClave.slice(0, 4).join(' '), { limite: 1 }).resultados[0];
     const cat = ctx.CAT.categorias.find((x) => x.id === c.categoria);
     return `<div class="candidato" data-i="${i}">
-      <strong>${cat?.icono || ''} ${esc(cat?.nombre || c.categoria)}</strong> · ${c.inicio.toLocaleDateString('es-CO')} · ${c.autores} propietarios · ${c.mensajes.length} mensajes
-      <div class="pequeno">Palabras: ${esc(c.palabrasClave.join(', '))}${parecido ? ` · Tip parecido: «${esc(parecido.item.titulo)}»` : ''}</div>
+      <strong class="cand-cat">${icono(cat?.icono || 'categoria', 18)}${esc(cat?.nombre || c.categoria)}</strong> <span class="pequeno">${c.inicio.toLocaleDateString('es-CO')}, ${c.autores} propietarios, ${c.mensajes.length} mensajes</span>
+      <div class="pequeno">Palabras: ${esc(c.palabrasClave.join(', '))}${parecido ? `. Tip parecido: «${esc(parecido.item.titulo)}»` : ''}</div>
       <details><summary class="pequeno">Ver conversación anonimizada</summary><pre>${esc(textoDelHilo(c, chat.alias, 6000))}</pre></details>
       <div class="fila-botones"><button class="boton mini" data-acc="ia" type="button">Redactar con IA</button>
       <button class="boton secundario mini" data-acc="mano" type="button">Redactar a mano</button>
@@ -303,9 +304,9 @@ function pintarBorradores() {
   const el = $('borradores'); if (!el) return;
   const nT = Object.keys(b.tips).length, nC = b.contactos.length, nB = b.borrados.length;
   el.innerHTML = !nT && !nC && !nB ? '<p class="pequeno">No hay cambios pendientes.</p>'
-    : `<ul>${Object.values(b.tips).map((t) => `<li>${ctx.TIPS.tips.some((x) => x.id === t.id) ? '✏️ Editado' : '🆕 Nuevo'}: ${esc(t.titulo)} <button class="boton secundario mini" data-quitar="${esc(t.id)}" type="button">Quitar</button></li>`).join('')}
-      ${b.borrados.map((id) => `<li>🗑️ Eliminar: ${esc(ctx.TIPS.tips.find((x) => x.id === id)?.titulo || id)}</li>`).join('')}
-      ${b.contactos.map((c) => `<li>📇 Contacto: ${esc(c.nombre)} (${esc(c.servicio)})</li>`).join('')}</ul>`;
+    : `<ul>${Object.values(b.tips).map((t) => `<li>${ctx.TIPS.tips.some((x) => x.id === t.id) ? 'Editado' : 'Nuevo'}: ${esc(t.titulo)} <button class="boton secundario mini" data-quitar="${esc(t.id)}" type="button">Quitar</button></li>`).join('')}
+      ${b.borrados.map((id) => `<li>Eliminar: ${esc(ctx.TIPS.tips.find((x) => x.id === id)?.titulo || id)}</li>`).join('')}
+      ${b.contactos.map((c) => `<li>Contacto nuevo: ${esc(c.nombre)} (${esc(c.servicio)})</li>`).join('')}</ul>`;
   el.onclick = (e) => { const q = e.target.closest('[data-quitar]'); if (q) { const bo = leerBorr(); delete bo.tips[q.dataset.quitar]; guardarBorr(bo); } };
 }
 
@@ -363,7 +364,7 @@ async function publicarGitHub() {
     if (leerBorr().ia) { res.textContent = 'Publicando IAs…'; await subirArchivo(datos, 'config/ia.json', JSON.stringify(leerBorr().ia, null, 2), `Actualiza IAs aprobadas (${hoy()})`); }
     $('ghToken').value = '';
     guardarBorr(nuevoBorr());
-    res.textContent = '✔ Publicado. GitHub Pages tarda 1 a 3 minutos en mostrar los cambios.';
+    res.textContent = 'Publicado. GitHub Pages tarda 1 a 3 minutos en mostrar los cambios.';
   } catch (e) { res.textContent = `No se pudo publicar: ${e.message}`; }
 }
 

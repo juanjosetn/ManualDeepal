@@ -10,9 +10,12 @@
 import { escaparHTML as esc, antirrebote } from './texto.js';
 import { crearBuscador, resaltar, MIN_LETRAS } from './buscador.js';
 import * as IA from './ia.js';
+import { icono, ponerIconos } from './iconos.js';
 
 const $ = (id) => document.getElementById(id);
 const PREF = 'deepal-manual';
+/** Versión de la app: viene de js/version.js (único lugar donde se escribe). */
+export const VERSION = globalThis.APP_VERSION || 'sin versión';
 
 // ---------- Estado ----------
 const estado = { vista: 'tips', q: '', modelo: 'all', motor: 'all', cat: 'all', ciudad: 'all', servicio: 'all' };
@@ -54,11 +57,13 @@ async function iniciar() {
 }
 
 function pintarMarco() {
-  $('tituloSitio').textContent = SITIO.nombre;
+  $('tituloSitio').textContent = SITIO.nombreCabecera || SITIO.nombre;
+  if (SITIO.logo?.archivo) { $('logoSitio').src = SITIO.logo.archivo; $('logoSitio').alt = SITIO.logo.texto || ''; } else $('logoSitio').hidden = true;
   $('subtituloSitio').textContent = SITIO.subtitulo;
   $('aviso').textContent = SITIO.aviso;
-  $('creditos').innerHTML = SITIO.creditos.map((c) => `${esc(c.rol)}: <strong>${esc(c.nombre)}</strong>`).join(' · ');
-  $('versionDatos').textContent = `Datos ${TIPS.version} · ${TIPS.tips.length} tips · ${DIR.contactos.length} contactos`;
+  pintarCreditos();
+  $('versionApp').textContent = VERSION;
+  $('versionDatos').textContent = `Datos del ${TIPS.version}: ${TIPS.tips.length} tips y ${DIR.contactos.length} contactos`;
   if (SITIO.github?.usuario && SITIO.github?.repositorio) {
     const a = $('enlaceRepo'); a.href = `https://github.com/${SITIO.github.usuario}/${SITIO.github.repositorio}`; a.hidden = false;
   }
@@ -74,15 +79,69 @@ function pintarMarco() {
   seg('modelo', CAT.modelos); seg('motor', CAT.motores);
   marcarSegmentos();
 
-  $('chipsCategorias').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; estado.cat = b.dataset.v; pintar(); });
+  $('chipsCategorias').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; elegirCategoria(b.dataset.v); });
+  $('riel').addEventListener('click', (e) => { const b = e.target.closest('button[data-v]'); if (!b) return; elegirCategoria(b.dataset.v); });
   $('chipsCiudad').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; estado.ciudad = b.dataset.v; pintar(); });
   $('chipsServicio').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; estado.servicio = b.dataset.v; pintar(); });
 
 }
+/** Créditos: en el pie y en la ventana que abre el botón de la cabecera. */
+function pintarCreditos() {
+  const nombre = (c) => `${esc(c.nombre)}${c.organizacion ? `, ${esc(c.organizacion)}` : ''}`;
+  const enlace = (c) => (c.enlace && /^https:\/\//.test(c.enlace) ? `<a href="${esc(c.enlace)}" target="_blank" rel="noopener">${esc(c.enlace.replace(/^https:\/\//, ''))}</a>` : '');
+  $('creditos').innerHTML = SITIO.creditos.map((c) => `<span>${esc(c.rol)}: <strong>${nombre(c)}</strong>${c.enlace ? ` ${enlace(c)}` : ''}</span>`).join('');
+  // Ventana: agrupa los roles repetidos (p. ej. los dos administradores)
+  const grupos = new Map();
+  SITIO.creditos.forEach((c) => grupos.set(c.rol, [...(grupos.get(c.rol) || []), c]));
+  $('listaCreditos').innerHTML = [...grupos].map(([rol, cs]) => `<dt>${esc(rol)}</dt>${cs.map((c) => `<dd>${nombre(c)}${enlace(c)}</dd>`).join('')}`).join('');
+}
+
+/** Selecciona una categoría (o «all») y lleva la vista al inicio de la lista. */
+function elegirCategoria(v) {
+  estado.cat = v;
+  conTransicion(pintar);
+  const inicio = $('contenido').getBoundingClientRect().top + window.scrollY - 140;
+  if (window.scrollY > inicio) window.scrollTo({ top: Math.max(0, inicio), behavior: movimientoReducido() ? 'auto' : 'smooth' });
+}
+
+const movimientoReducido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+/** Cambio fluido entre estados (View Transitions). Si el navegador no lo soporta, cambia al instante. */
+function conTransicion(fn) {
+  if (document.startViewTransition && !movimientoReducido()) document.startViewTransition(fn); else fn();
+}
+
+/** Tema claro (predeterminado) u oscuro; se recuerda en este navegador. */
+function conectarTema() {
+  const b = $('btnTema');
+  const aplicar = (tema) => {
+    document.documentElement.dataset.tema = tema;
+    b.setAttribute('aria-pressed', String(tema === 'oscuro'));
+    b.setAttribute('aria-label', tema === 'oscuro' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+    document.querySelector('meta[name="theme-color"]').content = tema === 'oscuro' ? '#0F1417' : '#ECEFF0';
+    document.querySelector('meta[name="color-scheme"]').content = tema === 'oscuro' ? 'dark' : 'light';
+  };
+  aplicar(document.documentElement.dataset.tema === 'oscuro' ? 'oscuro' : 'claro');
+  b.addEventListener('click', () => {
+    const nuevo = document.documentElement.dataset.tema === 'oscuro' ? 'claro' : 'oscuro';
+    conTransicion(() => aplicar(nuevo));
+    try { localStorage.setItem('deepal-tema', nuevo); } catch { /* sin almacenamiento */ }
+  });
+}
+
+/** Botón pequeño de créditos: abre una ventana (diálogo) accesible. */
+function conectarCreditos() {
+  const d = $('dlgCreditos');
+  $('btnCreditos').addEventListener('click', () => { if (typeof d.showModal === 'function') d.showModal(); else location.hash = 'creditos'; });
+  d.addEventListener('click', (e) => { if (e.target === d || e.target.closest('[data-cerrar]')) d.close(); });
+}
+
 // ---------- Eventos que se conectan de inmediato (aunque los datos aún no lleguen) ----------
 // LECCIÓN: si la persona escribe o envía el formulario antes de que carguen
 // los datos, no se pierde nada: se espera a `listo` y luego se responde.
 function conectarEventos() {
+  ponerIconos();
+  conectarTema();
+  conectarCreditos();
   const q = $('q');
   const alEscribir = antirrebote(() => {
     estado.q = q.value; if (!TIPS) return;
@@ -105,7 +164,10 @@ function marcarSegmentos() {
 }
 
 // ---------- Rutas (#tips, #directorio, #preguntar, #admin, #tip/ID) ----------
-function enrutar() {
+const conBuscadorEn = (v) => v === 'tips' || v === 'directorio';
+const PORTADAS = { tips: '¿Qué necesitas saber de tu Deepal?', directorio: 'Talleres, asesores y servicios que recomienda el grupo' };
+function enrutar() { conTransicion(enrutarAhora); }
+function enrutarAhora() {
   const h = decodeURIComponent(location.hash.slice(1));
   let vista = 'tips', tipId = null;
   if (h.startsWith('tip/')) tipId = h.slice(4);
@@ -116,12 +178,17 @@ function enrutar() {
   $('vistaDirectorio').hidden = vista !== 'directorio';
   $('vistaPreguntar').hidden = vista !== 'preguntar';
   $('vistaAdmin').hidden = vista !== 'admin';
+  $('portada').hidden = !PORTADAS[vista];
+  $('tituloPortada').textContent = PORTADAS[vista] || '';
+  $('riel').hidden = vista !== 'tips';
+  document.body.dataset.vista = vista;
+  if (!conBuscadorEn(vista)) document.body.classList.remove('buscando', 'con-tablero');
   const conBuscador = vista === 'tips' || vista === 'directorio';
   document.querySelector('.barra-busqueda').hidden = !conBuscador;
   $('filtrosTips').hidden = vista !== 'tips';
   $('chipsCategorias').hidden = vista !== 'tips';
   $('filtrosDirectorio').hidden = vista !== 'directorio';
-  $('q').placeholder = vista === 'directorio' ? 'Busca: polarizado, seguros, UPME, Morato…' : 'Busca: presión llantas, carga, reiniciar pantalla…';
+  $('q').placeholder = vista === 'directorio' ? 'Polarizado, seguros, UPME, Morato…' : 'Presión de llantas, carga, reiniciar pantalla…';
   if (vista === 'admin') { import('./admin.js').then((m) => m.abrirAdmin({ SITIO, CAT, TIPS, DIR, IA })).catch((e) => { $('vistaAdmin').innerHTML = `<p class="vacio">No se pudo abrir el panel: ${esc(e.message)}</p>`; }); }
   pintar();
   if (tipId) abrirTip(tipId); else window.scrollTo(0, 0);
@@ -140,10 +207,25 @@ function pasaFiltros(t, ignorarCat = false) {
   return true;
 }
 
+/**
+ * Línea de energía: se llena según cuántos resultados hay frente al total.
+ * La primera vez arranca en 0 y se "carga" (el único movimiento automático de la app).
+ */
+let energiaLista = false;
+function energia(n, total, buscando, sustantivo) {
+  const linea = $('lineaEnergia');
+  const pct = total ? Math.max(n ? 2 : 0, Math.round((n / total) * 100)) : 0;
+  const poner = () => { linea.style.width = `${pct}%`; };
+  if (!energiaLista) { energiaLista = true; linea.style.width = '0%'; requestAnimationFrame(() => requestAnimationFrame(poner)); } else poner();
+  $('cuentaEnergia').textContent = buscando ? `${n} de ${total}` : `${n} ${sustantivo}`;
+}
+
 /** Ayuda bajo el buscador: avisa si faltan letras y cuántos resultados hay. */
 function ayuda(n, r, tipo) {
   const el = $('ayudaBusqueda');
   const largo = estado.q.trim().replace(/\s/g, '').length;
+  el.classList.remove('solo-lector');
+  document.body.classList.toggle('buscando', largo >= MIN_LETRAS);
   if (largo > 0 && largo < MIN_LETRAS) { el.textContent = `Escribe al menos ${MIN_LETRAS} letras para buscar…`; return; }
   if (!largo) { el.textContent = ''; return; }
   if (n === 0) {
@@ -152,57 +234,72 @@ function ayuda(n, r, tipo) {
     el.querySelector('button')?.addEventListener('click', (e) => { $('q').value = e.target.dataset.sug; estado.q = e.target.dataset.sug; $('limpiar').hidden = false; pintar(); });
     return;
   }
+  // El número ya se ve en la línea de energía: aquí solo se anuncia al lector de pantalla
   el.textContent = `${n} resultado${n === 1 ? '' : 's'}${r.parcial ? ' (contienen solo algunas de tus palabras)' : ''}, del más al menos relevante.`;
+  el.classList.toggle('solo-lector', !r.parcial);
 }
 
 function pintarTips() {
   const r = buscaTips.buscar(estado.q, { filtro: (t) => pasaFiltros(t, true) });
   const buscando = !r.corta;
   const base = buscando ? r.resultados : TIPS.tips.filter((t) => pasaFiltros(t, true)).map((item) => ({ item, palabras: new Set() }));
-  // Chips de categoría con conteos
+  // Conteo por categoría (para pestañas, riel y tablero)
   const cuenta = {}; base.forEach(({ item }) => { cuenta[item.cat] = (cuenta[item.cat] || 0) + 1; });
   if (estado.cat !== 'all' && !cuenta[estado.cat]) estado.cat = 'all';
+  const conCuenta = CAT.categorias.filter((c) => cuenta[c.id]);
   $('chipsCategorias').innerHTML = `<button class="chip" data-v="all" aria-pressed="${estado.cat === 'all'}">Todo<b>${base.length}</b></button>` +
-    CAT.categorias.filter((c) => cuenta[c.id]).map((c) => `<button class="chip" data-v="${c.id}" aria-pressed="${estado.cat === c.id}">${c.icono} ${esc(c.nombre)}<b>${cuenta[c.id]}</b></button>`).join('');
+    conCuenta.map((c) => `<button class="chip" data-v="${c.id}" aria-pressed="${estado.cat === c.id}">${icono(c.icono, 16)}${esc(c.nombre)}<b>${cuenta[c.id]}</b></button>`).join('');
+  $('riel').innerHTML = `<h2>Categorías</h2><button data-v="all" aria-pressed="${estado.cat === 'all'}">${icono('categoria', 18)}<span>Todas</span><b>${base.length}</b></button>` +
+    conCuenta.map((c) => `<button data-v="${c.id}" aria-pressed="${estado.cat === c.id}">${icono(c.icono, 18)}<span>${esc(c.nombre)}</span><b>${cuenta[c.id]}</b></button>`).join('');
   const vis = base.filter(({ item }) => estado.cat === 'all' || item.cat === estado.cat);
   ayuda(vis.length, r, 'tips');
+  energia(vis.length, TIPS.tips.length, buscando, 'tips');
 
   let h = '';
   if (buscando) {
     // Al buscar: una sola lista, ordenada por relevancia
     h = `<div class="lista">${vis.map(({ item, palabras }) => tarjeta(item, palabras, true)).join('')}</div>`;
   } else {
+    // Tablero de categorías (celular y tableta) cuando se ven todas
+    if (estado.cat === 'all') {
+      h += `<nav class="tablero" aria-label="Ir a una categoría">${conCuenta.map((c) => `<button type="button" data-cat="${c.id}">${icono(c.icono, 26)}<strong>${esc(c.nombre)}</strong><small>${cuenta[c.id]} tips</small></button>`).join('')}</nav>`;
+    }
     for (const c of CAT.categorias) {
       const items = vis.filter(({ item }) => item.cat === c.id);
       if (!items.length) continue;
-      h += `<section class="cat" id="c-${c.id}"><h2><span aria-hidden="true">${c.icono}</span>${esc(c.nombre)}<span class="n">${items.length}</span></h2><div class="lista">${items.map(({ item }) => tarjeta(item, null, false)).join('')}</div></section>`;
+      h += `<section class="cat" id="c-${c.id}"><div class="cabeza-cat">${icono(c.icono, 22)}<h2>${esc(c.nombre)}</h2><span class="n">${items.length}</span></div><div class="lista">${items.map(({ item }) => tarjeta(item, null, false)).join('')}</div></section>`;
     }
   }
   if (!vis.length) h = `<div class="vacio">No hay tips con esa búsqueda y filtros.<br><button class="boton" data-accion="reiniciar">Quitar filtros y búsqueda</button></div>`;
   $('listaTips').innerHTML = h;
   const f = [estado.modelo !== 'all' ? estado.modelo : null, estado.motor !== 'all' ? CAT.motores.find((m) => m.id === estado.motor)?.nombre.toLowerCase() : null].filter(Boolean);
-  $('estadoTips').textContent = buscando ? '' : `${vis.length} tip${vis.length === 1 ? '' : 's'}${f.length ? ` para ${f.join(' · ')} (incluye los que aplican a todos)` : ''}`;
+  // El total ya está en la línea de energía; aquí solo se aclara qué filtro se aplicó
+  $('estadoTips').textContent = !buscando && f.length ? `${vis.length} tip${vis.length === 1 ? '' : 's'} para ${f.join(' y ')}, incluidos los que aplican a todos` : '';
+  document.body.classList.toggle('con-tablero', !buscando && estado.cat === 'all');
 }
 
 const ETQ_CONF = { oficial: 'Manual oficial', consenso: 'Varios lo confirman', reporte: 'Pocos reportes', disputa: 'En disputa' };
 function tarjeta(t, palabras, abierto) {
   const hl = (s) => resaltar(s, palabras, esc);
   const etq = [
-    abierto ? `<span class="etq cat">${CATS[t.cat]?.icono || ''} ${esc(CATS[t.cat]?.nombre || '')}</span>` : '',
+    abierto ? `<span class="etq cat">${esc(CATS[t.cat]?.nombre || '')}</span>` : '',
     ...t.modelos.map((m) => `<span class="etq m">${esc(m)}</span>`),
     ...t.motor.map((m) => `<span class="etq ${esc(m)}">${m === 'REEV' ? 'Rango ext.' : 'Eléctrico'}</span>`),
-    `<span class="conf ${esc(t.confianza)}"><i></i>${ETQ_CONF[t.confianza] || ''}</span>`,
+    `<span class="conf ${esc(t.confianza)}">${icono(t.confianza, 15)}${ETQ_CONF[t.confianza] || ''}</span>`,
   ].join('');
   const filas = t.tipo === 'saber'
-    ? `<p class="fila bloque"><span class="lbl">Para saber</span>${hl(t.saber)}</p>`
-    : [['Cuándo', t.cuando, ''], ['Cómo', t.como, ''], ['Ojo', t.ojo, 'ojo']].filter((x) => x[1]).map(([l, v, c]) => `<p class="fila"><span class="lbl ${c}">${l}</span><span>${hl(v)}</span></p>`).join('');
-  const verif = t.verificacion ? `<p class="verif">✔ <strong>Verificación:</strong> ${esc(t.verificacion)}</p>` : '';
-  const fuentes = t.fuentes?.length ? `<p class="fuentes">Fuente: ${t.fuentes.map((f) => esc(f.ref)).join(' · ')}</p>` : '';
-  return `<details class="tip" id="tip-${esc(t.id)}"${abierto ? ' open' : ''}><summary><span class="t">${hl(t.titulo)}</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span class="etiquetas">${etq}</span></summary>` +
-    `<div class="cuerpo">${filas}${verif}${fuentes}<div class="acciones-tip"><button class="boton secundario mini" data-accion="compartir" data-id="${esc(t.id)}">Compartir</button></div></div></details>`;
+    ? `<p class="fila bloque">${icono('saber')}<span><span class="lbl">Para saber</span>${hl(t.saber)}</span></p>`
+    : [['Cuándo', t.cuando, 'cuando'], ['Cómo', t.como, 'como'], ['Ojo', t.ojo, 'ojo']].filter((x) => x[1])
+      .map(([l, v, c]) => `<p class="fila ${c}">${icono(c)}<span class="lbl">${l}</span><span>${hl(v)}</span></p>`).join('');
+  const verif = t.verificacion ? `<p class="verif">${icono('verificado', 18)}<span><strong>Verificación.</strong> ${esc(t.verificacion)}</span></p>` : '';
+  const fuentes = t.fuentes?.length ? `<p class="fuentes">${icono('fuente', 16)}<span>Fuente: ${t.fuentes.map((f) => esc(f.ref)).join('; ')}</span></p>` : '';
+  return `<details class="tip" id="tip-${esc(t.id)}"${abierto ? ' open' : ''}><summary><span class="t">${hl(t.titulo)}</span>${icono('flecha', 18, 'chev')}<span class="etiquetas">${etq}</span></summary>` +
+    `<div class="cuerpo">${filas}${verif}${fuentes}<div class="acciones-tip"><button class="boton secundario mini" data-accion="compartir" data-id="${esc(t.id)}">${icono('compartir', 16)}<span>Compartir</span></button></div></div></details>`;
 }
 
 async function accionTip(e) {
+  const cat = e.target.closest('.tablero button[data-cat]');
+  if (cat) { elegirCategoria(cat.dataset.cat); return; }
   const b = e.target.closest('button[data-accion]'); if (!b) return;
   if (b.dataset.accion === 'reiniciar') { estado.cat = 'all'; estado.modelo = 'all'; estado.motor = 'all'; guardar(); marcarSegmentos(); limpiarBusqueda(); return; }
   if (b.dataset.accion === 'compartir') {
@@ -211,7 +308,7 @@ async function accionTip(e) {
     const texto = `${t.titulo}\n${t.tipo === 'saber' ? t.saber : [t.como, t.ojo && `Ojo: ${t.ojo}`].filter(Boolean).join('\n')}`;
     try {
       if (navigator.share) await navigator.share({ title: t.titulo, text: texto, url });
-      else { await navigator.clipboard.writeText(`${texto}\n${url}`); b.textContent = '¡Copiado!'; setTimeout(() => { b.textContent = 'Compartir'; }, 1600); }
+      else { const et = b.querySelector('span') || b; await navigator.clipboard.writeText(`${texto}\n${url}`); et.textContent = 'Copiado'; setTimeout(() => { et.textContent = 'Compartir'; }, 1600); }
     } catch { /* la persona canceló */ }
   }
 }
@@ -248,24 +345,25 @@ function pintarDirectorio() {
     servicios.filter((c) => sc[c]).map((c) => `<button class="chip" data-v="${esc(c)}" aria-pressed="${estado.servicio === c}">${esc(c)}<b>${sc[c]}</b></button>`).join('');
   const vis = base.filter(({ d }) => pasaDir(d));
   ayuda(vis.length, r, 'dir');
+  energia(vis.length, DIR.contactos.length, buscando, 'contactos');
   const fila = ({ d, palabras }) => {
     const hl = (s) => resaltar(s, palabras, esc);
     const dig = (d.telefono || '').replace(/\D/g, '');
-    const wa = dig.length === 12 && dig.startsWith('573') ? `<a class="wa" href="https://wa.me/${dig}" target="_blank" rel="noopener" aria-label="WhatsApp a ${esc(d.nombre)}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5Z"/></svg></a>` : '';
-    const tel = dig ? `<a href="tel:+${dig}" aria-label="Llamar a ${esc(d.nombre)}"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></a>` : '';
-    const web = d.web ? `<a href="${esc(d.web)}" target="_blank" rel="noopener" aria-label="Página web de ${esc(d.nombre)}">🌐</a>` : '';
+    const wa = dig.length === 12 && dig.startsWith('573') ? `<a class="wa" href="https://wa.me/${dig}" target="_blank" rel="noopener" aria-label="WhatsApp a ${esc(d.nombre)}">${icono('whatsapp')}</a>` : '';
+    const tel = dig ? `<a href="tel:+${dig}" aria-label="Llamar a ${esc(d.nombre)}">${icono('telefono')}</a>` : '';
+    const web = d.web && /^https:\/\//.test(d.web) ? `<a href="${esc(d.web)}" target="_blank" rel="noopener" aria-label="Página web de ${esc(d.nombre)}">${icono('web')}</a>` : '';
     return `<div class="contacto"><div class="nm">${hl(d.nombre)}${d.alias ? ` <span class="pequeno">(${hl(d.alias)})</span>` : ''}</div><div class="acts">${wa}${tel}${web}</div>` +
-      `<div class="meta">${esc(d.ciudad === 'Nacional' ? 'Nacional / virtual' : d.ciudad)}${d.telefono ? ` · ${esc(d.telefono)}` : ''}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}</div>`;
+      `<div class="meta"><span>${esc(d.ciudad === 'Nacional' ? 'Nacional / virtual' : d.ciudad)}</span>${d.telefono ? `<span>${esc(d.telefono)}</span>` : ''}</div>${d.nota ? `<div class="nt">${hl(d.nota)}</div>` : ''}</div>`;
   };
   let h = '';
   if (buscando) h = `<div class="lista">${vis.map(fila).join('')}</div>`;
   else for (const s of servicios) {
     const items = vis.filter(({ d }) => d.servicio === s).sort((a, b) => (ORDEN_CIUDADES.indexOf(a.d.ciudad) + 1 || 50) - (ORDEN_CIUDADES.indexOf(b.d.ciudad) + 1 || 50));
-    if (items.length) h += `<section class="cat"><h2>${esc(s)}<span class="n">${items.length}</span></h2><div class="lista">${items.map(fila).join('')}</div></section>`;
+    if (items.length) h += `<section class="cat"><div class="cabeza-cat"><h2>${esc(s)}</h2><span class="n">${items.length}</span></div><div class="lista">${items.map(fila).join('')}</div></section>`;
   }
   if (!vis.length) h = '<div class="vacio">No hay contactos con esa búsqueda y filtros.</div>';
   $('listaDir').innerHTML = h;
-  $('estadoDir').textContent = buscando ? '' : `${vis.length} contacto${vis.length === 1 ? '' : 's'}${estado.ciudad !== 'all' && estado.ciudad !== 'Nacional' ? ' (incluye los nacionales / virtuales)' : ''}`;
+  $('estadoDir').textContent = !buscando && estado.ciudad !== 'all' && estado.ciudad !== 'Nacional' ? 'Incluye los contactos nacionales o virtuales.' : '';
 }
 
 // ---------- Preguntar ----------
@@ -313,7 +411,7 @@ async function responder() {
     el.innerHTML = `${html}<span class="quien">Redactado por ${esc(r.proveedor)} (${esc(r.modelo)}) a partir de los tips de abajo. La IA puede equivocarse: mandan el manual y el taller.</span>`;
   } catch (e) {
     el.innerHTML = `No fue posible redactar la respuesta con IA (${esc(e.message)}). Abajo tienes los tips del manual.` +
-      (e.intentos?.length ? `<span class="quien">${e.intentos.map((x) => `${esc(x.proveedor)}: ${esc(x.error)}`).join(' · ')}</span>` : '');
+      (e.intentos?.length ? `<span class="quien">${e.intentos.map((x) => `${esc(x.proveedor)}: ${esc(x.error)}`).join('; ')}</span>` : '');
   }
 }
 
@@ -414,7 +512,9 @@ function iniciarPWA() {
   window.addEventListener('online', red); window.addEventListener('offline', red); red();
 
   if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
-  navigator.serviceWorker.register('sw.js').then((reg) => {
+  // Desde v01.01: la versión va en la dirección del service worker (sw.js?v=…) y sin caché HTTP,
+  // así TODOS los navegadores (también Safari en iPhone) detectan la versión nueva apenas se publica.
+  navigator.serviceWorker.register(`sw.js?v=${encodeURIComponent(VERSION)}`, { updateViaCache: 'none' }).then((reg) => {
     const avisar = (w) => {
       $('avisoActualizacion').hidden = false;
       $('btnActualizar').onclick = () => w.postMessage('activar');
