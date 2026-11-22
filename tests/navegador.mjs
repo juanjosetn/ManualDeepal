@@ -26,7 +26,8 @@ for (const [disp, vp] of [['celular', { width: 390, height: 844 }], ['escritorio
   await caso(`${disp}: carga los tips`, async () => {
     await page.goto(BASE);
     await page.waitForSelector('details.tip');
-    assert.match(await page.textContent('#estadoTips'), new RegExp(`${TIPS.length} tips`));
+    // Pruebas tocadas en v02.00: el total pasó a la línea de energía (#cuentaEnergia)
+    await page.waitForFunction((n) => document.querySelector('#cuentaEnergia')?.textContent === `${n} tips`, TIPS.length);
     await page.screenshot({ path: `${SALIDA}/${disp}-inicio.png` });
   });
 

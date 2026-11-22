@@ -86,7 +86,7 @@ Cada árbitro atacó la app y los datos desde su especialidad. Abajo, lo que enc
 | Marca (Changan/Deepal) | «¿El logo hace pasar la app por oficial?» | El logo va junto a «Manual práctico» y «no oficial»; el aviso del pie aclara que la marca es de su titular; el ícono de la app instalada sigue siendo genérico | Media | ✅ Mitigado; ver decisión 5 |
 
 ### Decisión adicional para el administrador
-5. **Ícono de la app instalada:** sigue siendo el genérico (libro con rayo). Ponerle el logo de Deepal haría que en la pantalla del celular parezca la app oficial de la marca; por eso no se cambió sin consultarte.
+5. **Ícono de la app instalada:** el administrador decidió usar el emblema de Deepal en trazo fino con un libro pequeño (desde v02.00.01). El nombre «Manual Deepal» y el libro indican que es un manual de la comunidad; el aviso «no oficial» sigue en la cabecera y en los créditos.
 
 ## 6. Revisión de la versión v02 (rediseño): árbitros de UI/UX y de diseño gráfico
 

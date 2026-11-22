@@ -15,7 +15,7 @@ const CACHE_DATOS = 'deepal-datos';
 const APP = [
   './', 'index.html', 'css/app.css', 'manifest.webmanifest',
   'js/version.js', 'js/tema.js', 'js/iconos.js', 'js/app.js', 'js/texto.js', 'js/buscador.js', 'js/ia.js', 'js/admin.js', 'js/chat.js',
-  'fonts/archivo-latin.woff2', 'icons/logo-deepal.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png',
+  'fonts/archivo-latin.woff2', 'icons/logo-deepal.svg', 'icons/icono-app.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png',
 ];
 const DATOS = ['data/tips.json', 'data/directorio.json', 'data/catalogos.json', 'config/sitio.json', 'config/ia.json'];
 

@@ -10,4 +10,4 @@
 // LECCIÓN: es un script clásico (no módulo) para que también lo pueda
 // cargar el service worker con importScripts().
 // =====================================================================
-self.APP_VERSION = 'v02.00.00cl';
+self.APP_VERSION = 'v02.00.01cl';

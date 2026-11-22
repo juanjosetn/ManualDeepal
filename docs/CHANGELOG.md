@@ -2,6 +2,20 @@
 
 Formato de versión **vXX.YY.ZZcl** — XX: rediseño o cambio que rompe datos · YY: funciones nuevas o correcciones de fondo · ZZ: ajustes menores. La más reciente va arriba.
 
+## v02.00.01cl — 21 de noviembre de 2026
+
+### Diseño
+- **Ícono nuevo de la app:** el emblema de Deepal en trazo fino (solo contorno, plateado) con un libro abierto pequeño en ámbar, sobre fondo grafito. Sale del logo entregado, sin redibujarlo. Hay versión redondeada, versión a sangre para Android (todo el dibujo dentro de la zona segura) y versión para iPhone.
+- El ícono también es el favicon (en SVG) de la pestaña del navegador.
+- Los colores del manifiesto (barra y pantalla de arranque) pasan al gris claro del tema; antes quedaba el verde azulado de la primera versión.
+
+### Nuevo
+- `herramientas/generar-iconos.mjs` (`npm run iconos`): genera el SVG y los PNG a partir del logo. Los PNG ya no se hacen a mano.
+
+### Pruebas
+- Script árbitro `tests/arbitro-v02-00-01.mjs`: 21 afirmaciones, entre ellas emblema tomado del logo, trazo fino, libro pequeño, tamaños, zona segura medida píxel a píxel, manifiesto y favicon. Contra v02.00.00cl pasan 6 y fallan 15; contra esta versión pasan las 21.
+- `tests/mutaciones-v02-00-01.mjs`: 8 defectos sembrados, los 8 detectados. Cuando la mutación toca el generador, los íconos se regeneran antes de probar.
+
 ## v02.00.00cl — 21 de noviembre de 2026
 
 Rediseño completo de la interfaz. Cambia el número grande (02) porque cambió la forma de un archivo de datos (`data/catalogos.json`: los íconos de categoría ya no son emojis sino nombres de íconos).

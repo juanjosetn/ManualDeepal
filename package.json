@@ -1,12 +1,13 @@
 {
   "name": "manual-practico-deepal",
-  "version": "1.1.0",
+  "version": "2.0.1",
   "private": true,
   "type": "module",
-  "description": "PWA del Manual práctico Deepal (comunidad de propietarios en Colombia). No necesita compilar: se publica tal cual en GitHub Pages. Versión de la app: ver js/version.js.",
+  "description": "PWA del Manual práctico Deepal (comunidad de propietarios en Colombia). No necesita compilar: se publica tal cual en GitHub Pages. Versión de la app: ver js/version.js. Los íconos se generan con «npm run iconos» (requiere sharp: npm i -D sharp).",
   "scripts": {
     "servir": "python3 -m http.server 8080",
     "test": "node --test tests/*.test.mjs",
-    "test:navegador": "node tests/navegador.mjs"
+    "test:navegador": "node tests/navegador.mjs",
+    "iconos": "node herramientas/generar-iconos.mjs"
   }
 }

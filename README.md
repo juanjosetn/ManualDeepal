@@ -37,7 +37,8 @@ Aplicación web progresiva (PWA) con los aprendizajes de la **comunidad de propi
 | `js/ia.js` | IAs en cascada, llaves por usuario |
 | `js/chat.js` | Lector del chat de WhatsApp (.zip/.txt), anonimizador, candidatos |
 | `js/admin.js` | Panel del administrador |
-| `sw.js`, `manifest.webmanifest`, `icons/` | Lo que la hace PWA (en `icons/` también va `logo-deepal.svg`) |
+| `sw.js`, `manifest.webmanifest`, `icons/` | Lo que la hace PWA. En `icons/` van el logo (`logo-deepal.svg`) y el ícono de la app (`icono-app.svg`: emblema de Deepal en trazo fino con un libro pequeño) |
+| `herramientas/generar-iconos.mjs` | Genera el ícono de la app y sus PNG a partir del logo (`npm run iconos`) |
 | `data/tips.json` | **Los tips** (lo que más se actualiza) |
 | `data/directorio.json` | Contactos |
 | `data/catalogos.json` | Categorías (con el nombre de su ícono), modelos y motores (agregar un modelo nuevo = editar aquí) |
